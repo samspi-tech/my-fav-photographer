@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const hashPassword = require('../utils/hashPassword');
 
 const UserSchema = new mongoose.Schema(
     {
@@ -46,5 +47,32 @@ const UserSchema = new mongoose.Schema(
     },
     { timestamps: true, strict: true },
 );
+
+UserSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) return next();
+
+    try {
+        this.password = await hashPassword(this.password);
+        
+        next();
+    } catch (err) {
+        next(err);
+    }
+});
+
+UserSchema.pre('findOneAndUpdate', async function (next) {
+    const update = this.getUpdate();
+
+    if (update.password) {
+        const hashedPassword = await hashPassword(update.password);
+
+        this.setUpdate({
+            ...update,
+            password: hashedPassword,
+        });
+    }
+
+    next();
+});
 
 module.exports = mongoose.model('user', UserSchema, 'users');
