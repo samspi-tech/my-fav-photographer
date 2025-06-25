@@ -4,13 +4,11 @@ const PostSchema = new mongoose.Schema(
     {
         title: {
             type: String,
-            minLength: 1,
             maxLength: 255,
             required: true,
         },
         body: {
             type: String,
-            minLength: 1,
             maxLength: 2550,
             required: true,
         },
@@ -28,4 +26,4 @@ const PostSchema = new mongoose.Schema(
     { timestamps: true, strict: true },
 );
 
-module.exports = mongoose.module('post', PostSchema, 'posts');
+module.exports = mongoose.model('post', PostSchema, 'posts');

@@ -4,7 +4,6 @@ const PhotoSchema = new mongoose.Schema(
     {
         photo: {
             type: String,
-            minLength: 1,
             maxLength: 255,
             match: '/^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$/',
             required: true,
@@ -27,4 +26,4 @@ const PhotoSchema = new mongoose.Schema(
     { timestamps: true, strict: true },
 );
 
-module.exports = mongoose.module('photo', PhotoSchema, 'photos');
+module.exports = mongoose.model('photo', PhotoSchema, 'photos');
