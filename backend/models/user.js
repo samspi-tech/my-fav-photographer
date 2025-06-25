@@ -44,6 +44,42 @@ const UserSchema = new mongoose.Schema(
             enum: ['admin', 'photographer', 'user'],
             required: true,
         },
+        addresses: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'address',
+            },
+        ],
+        comments: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'comment',
+            },
+        ],
+        equipments: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'equipment',
+            },
+        ],
+        photos: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'photo',
+            },
+        ],
+        posts: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'post',
+            },
+        ],
+        workshops: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'workshop',
+            },
+        ],
     },
     { timestamps: true, strict: true },
 );
@@ -53,7 +89,7 @@ UserSchema.pre('save', async function (next) {
 
     try {
         this.password = await hashPassword(this.password);
-        
+
         next();
     } catch (err) {
         next(err);

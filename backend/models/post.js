@@ -14,6 +14,16 @@ const PostSchema = new mongoose.Schema(
             maxLength: 2550,
             required: true,
         },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user',
+        },
+        comments: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'comment',
+            },
+        ],
     },
     { timestamps: true, strict: true },
 );
