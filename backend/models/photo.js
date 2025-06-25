@@ -19,6 +19,10 @@ const PhotoSchema = new mongoose.Schema(
             maxLength: 255,
             default: '',
         },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user',
+        },
     },
     { timestamps: true, strict: true },
 );
