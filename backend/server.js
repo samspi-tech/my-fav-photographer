@@ -10,6 +10,7 @@ const postRoute = require('./routes/post.route');
 const photoRouter = require('./routes/photo.route');
 const commentRoute = require('./routes/comment.route');
 const addressRoute = require('./routes/address.route');
+const followerRoute = require('./routes/follower.route');
 const workshopRoute = require('./routes/workshop.route');
 const equipmentRoute = require('./routes/equipment.route');
 
@@ -22,6 +23,7 @@ server.use('/post', postRoute);
 server.use('/photo', photoRouter);
 server.use('/comment', commentRoute);
 server.use('/address', addressRoute);
+server.use('/follower', followerRoute);
 server.use('/workshop', workshopRoute);
 server.use('/equipment', equipmentRoute);
 

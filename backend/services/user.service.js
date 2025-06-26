@@ -10,7 +10,7 @@ const findUserById = async (userId) => {
 };
 
 const findAllUsers = async () => {
-    const users = await UserSchema.find();
+    const users = await UserSchema.find().populate('followers');
     if (isArrayEmpty(users)) throw new UserNotFoundException();
 
     return users;
