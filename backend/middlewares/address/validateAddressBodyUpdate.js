@@ -21,8 +21,8 @@ const addressBodyUpdateValidation = [
         .withMessage('Province cannot be empty or longer than 255 chars'),
     body('cap')
         .optional()
-        .isString()
-        .withMessage('CAP must be a string')
+        .isInt()
+        .withMessage('CAP must be an integer number')
         .isLength({ min: 1, max: 255 })
         .withMessage('CAP cannot be empty or longer than 255 chars'),
     body('contact')

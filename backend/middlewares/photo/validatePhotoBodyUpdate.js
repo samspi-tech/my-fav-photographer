@@ -11,8 +11,8 @@ const photoBodyUpdateValidation = [
         .optional()
         .isString()
         .withMessage('Body must be a string')
-        .isLength({ min: 1, max: 2550 })
-        .withMessage('Body cannot be empty or longer than 2550 chars'),
+        .isLength({ max: 2550 })
+        .withMessage('Body cannot be longer than 2550 chars'),
     body('tag')
         .optional()
         .isString()

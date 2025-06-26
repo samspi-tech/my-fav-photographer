@@ -18,15 +18,17 @@ const userBodyValidation = [
         .isURL()
         .withMessage('Avatar must be a valid URL'),
     body('password')
-        .isLength({ min: 8 })
-        .withMessage('Password cannot be shorter than 8 chars')
+        .isLength({ min: 8, max: 255 })
+        .withMessage(
+            'Password cannot be shorter than 8 chars or longer than 255 chars',
+        )
         .isString()
         .withMessage('Password must be a string'),
     body('email')
         .isEmail()
         .withMessage('Email must be valid')
-        .isLength({ max: 255 })
-        .withMessage('Email cannot be longer than 255 chars'),
+        .isLength({ min: 1, max: 255 })
+        .withMessage('Email is needed and cannot be longer than 255 chars'),
     body('dob')
         .notEmpty()
         .withMessage('DateOfBirth cannot be empty')
