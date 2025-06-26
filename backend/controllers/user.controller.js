@@ -27,7 +27,6 @@ const getAllPhotographers = async (req, res, next) => {
             photographers,
         });
     } catch (err) {
-        console.log(err);
         next(err);
     }
 };
