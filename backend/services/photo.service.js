@@ -5,7 +5,7 @@ const userService = require('../services/user.service');
 const PhotoNotFoundException = require('../exceptions/photo/PhotoNotFoundException');
 
 const findAllPhotos = async (userId) => {
-    const photos = PhotoSchema.find({ user: userId });
+    const photos = await PhotoSchema.find({ user: userId });
     if (isArrayEmpty(photos)) throw new PhotoNotFoundException();
 
     return photos;

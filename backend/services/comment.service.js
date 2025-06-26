@@ -5,7 +5,7 @@ const postService = require('../services/post.service');
 const CommentNotFoundException = require('../exceptions/comment/CommentNotFoundException');
 
 const findAllComments = async (postId) => {
-    const comments = CommentSchema.find({ post: postId });
+    const comments = await CommentSchema.find({ post: postId });
     if (isArrayEmpty(comments)) throw new CommentNotFoundException();
 
     return comments;

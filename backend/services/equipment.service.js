@@ -5,7 +5,7 @@ const userService = require('../services/user.service');
 const EquipmentNotFoundException = require('../exceptions/equipment/EquipmentNotFoundException');
 
 const findAllEquipments = async (userId) => {
-    const equipments = EquipmentSchema.find({ user: userId });
+    const equipments = await EquipmentSchema.find({ user: userId });
     if (isArrayEmpty(equipments)) throw new EquipmentNotFoundException();
 
     return equipments;
