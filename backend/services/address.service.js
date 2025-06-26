@@ -5,7 +5,7 @@ const userService = require('../services/user.service');
 const AddressNotFoundException = require('../exceptions/address/AddressNotFoundException');
 
 const findAllAddresses = async (userId) => {
-    const addresses = AddressSchema.find({ user: userId });
+    const addresses = await AddressSchema.find({ user: userId });
     if (isArrayEmpty(addresses)) throw new AddressNotFoundException();
 
     return addresses;
