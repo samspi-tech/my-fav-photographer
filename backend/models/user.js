@@ -16,7 +16,6 @@ const UserSchema = new mongoose.Schema(
         avatar: {
             type: String,
             maxLength: 255,
-            match: '/^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$/',
             default:
                 'https://images.unsplash.com/photo-1706606999710-72658165a73d?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         },
