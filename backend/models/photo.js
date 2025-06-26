@@ -5,7 +5,6 @@ const PhotoSchema = new mongoose.Schema(
         photo: {
             type: String,
             maxLength: 255,
-            match: '/^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$/',
             required: true,
         },
         body: {
@@ -16,7 +15,7 @@ const PhotoSchema = new mongoose.Schema(
         tag: {
             type: String,
             maxLength: 255,
-            default: '',
+            required: true,
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,

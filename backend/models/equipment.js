@@ -20,12 +20,12 @@ const EquipmentSchema = new mongoose.Schema(
         tripod: {
             type: String,
             maxLength: 255,
-            required: true,
+            default: 'none',
         },
         other: {
             type: String,
             maxLength: 255,
-            required: true,
+            default: 'none',
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,

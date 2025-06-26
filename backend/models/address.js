@@ -18,14 +18,14 @@ const AddressSchema = new mongoose.Schema(
             required: true,
         },
         cap: {
-            type: String,
+            type: Number,
             maxLength: 255,
             required: true,
         },
         contact: {
             type: Number,
-            min: 10,
-            max: 255,
+            minLength: 10,
+            maxLength: 255,
             required: true,
         },
         user: {
