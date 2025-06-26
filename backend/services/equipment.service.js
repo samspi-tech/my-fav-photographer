@@ -1,11 +1,12 @@
 const UserSchema = require('../models/user');
+const isArrayEmpty = require('../utils/isArrayEmpty');
 const EquipmentSchema = require('../models/equipment');
 const userService = require('../services/user.service');
 const EquipmentNotFoundException = require('../exceptions/equipment/EquipmentNotFoundException');
 
 const findAllEquipments = async (userId) => {
     const equipments = EquipmentSchema.find({ user: userId });
-    if (!equipments) throw new EquipmentNotFoundException();
+    if (isArrayEmpty(equipments)) throw new EquipmentNotFoundException();
 
     return equipments;
 };

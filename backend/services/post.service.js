@@ -1,5 +1,6 @@
 const PostSchema = require('../models/post');
 const UserSchema = require('../models/user');
+const isArrayEmpty = require('../utils/isArrayEmpty');
 const userService = require('../services/user.service');
 const PostNotFoundException = require('../exceptions/post/PostNotFoundException');
 
@@ -12,7 +13,7 @@ const findPostById = async (postId) => {
 
 const findAllPosts = async (userId) => {
     const posts = await PostSchema.find({ user: userId });
-    if (!posts) throw new PostNotFoundException();
+    if (isArrayEmpty(posts)) throw new PostNotFoundException();
 
     return posts;
 };

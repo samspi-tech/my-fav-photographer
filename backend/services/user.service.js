@@ -1,4 +1,5 @@
 const UserSchema = require('../models/user');
+const isArrayEmpty = require('../utils/isArrayEmpty');
 const UserNotFoundException = require('../exceptions/user/UserNotFoundException');
 
 const findUserById = async (userId) => {
@@ -10,7 +11,7 @@ const findUserById = async (userId) => {
 
 const findAllUsers = async () => {
     const users = await UserSchema.find();
-    if (!users) throw new UserNotFoundException();
+    if (isArrayEmpty(users)) throw new UserNotFoundException();
 
     return users;
 };

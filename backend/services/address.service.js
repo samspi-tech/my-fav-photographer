@@ -1,11 +1,12 @@
 const UserSchema = require('../models/user');
 const AddressSchema = require('../models/address');
+const isArrayEmpty = require('../utils/isArrayEmpty');
 const userService = require('../services/user.service');
 const AddressNotFoundException = require('../exceptions/address/AddressNotFoundException');
 
 const findAllAddresses = async (userId) => {
     const addresses = AddressSchema.find({ user: userId });
-    if (!addresses) throw new AddressNotFoundException();
+    if (isArrayEmpty(addresses)) throw new AddressNotFoundException();
 
     return addresses;
 };

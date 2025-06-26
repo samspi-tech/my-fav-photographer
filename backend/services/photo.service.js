@@ -1,11 +1,12 @@
 const UserSchema = require('../models/user');
 const PhotoSchema = require('../models/photo');
+const isArrayEmpty = require('../utils/isArrayEmpty');
 const userService = require('../services/user.service');
 const PhotoNotFoundException = require('../exceptions/photo/PhotoNotFoundException');
 
 const findAllPhotos = async (userId) => {
     const photos = PhotoSchema.find({ user: userId });
-    if (!photos) throw new PhotoNotFoundException();
+    if (isArrayEmpty(photos)) throw new PhotoNotFoundException();
 
     return photos;
 };

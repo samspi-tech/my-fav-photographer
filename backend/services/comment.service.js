@@ -1,11 +1,12 @@
 const PostSchema = require('../models/post');
 const CommentSchema = require('../models/comment');
+const isArrayEmpty = require('../utils/isArrayEmpty');
 const postService = require('../services/post.service');
 const CommentNotFoundException = require('../exceptions/comment/CommentNotFoundException');
 
 const findAllComments = async (postId) => {
     const comments = CommentSchema.find({ post: postId });
-    if (!comments) throw new CommentNotFoundException();
+    if (isArrayEmpty(comments)) throw new CommentNotFoundException();
 
     return comments;
 };
