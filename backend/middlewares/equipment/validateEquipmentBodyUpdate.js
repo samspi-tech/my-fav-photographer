@@ -23,14 +23,14 @@ const equipmentBodyUpdateValidation = [
         .optional()
         .isString()
         .withMessage('Tripod must be a string')
-        .isLength({ min: 1, max: 255 })
-        .withMessage('Tripod cannot be empty or longer than 255 chars'),
+        .isLength({ max: 255 })
+        .withMessage('Tripod cannot be longer than 255 chars'),
     body('other')
         .optional()
         .isString()
         .withMessage('Other must be a string')
-        .isLength({ min: 1, max: 255 })
-        .withMessage('Other cannot be empty or longer than 255 chars'),
+        .isLength({ max: 255 })
+        .withMessage('Other cannot be longer than 255 chars'),
 ];
 
 const equipmentBodyUpdateValidator = (req, res, next) => {
