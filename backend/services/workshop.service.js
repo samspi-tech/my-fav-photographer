@@ -1,11 +1,12 @@
 const UserSchema = require('../models/user');
 const WorkshopSchema = require('../models/workshop');
+const isArrayEmpty = require('../utils/isArrayEmpty');
 const userService = require('../services/user.service');
 const WorkshopNotFoundException = require('../exceptions/workshop/WorkshopNotFoundException');
 
 const findAllWorkshops = async (userId) => {
     const workshops = WorkshopSchema.find({ user: userId });
-    if (!workshops) throw new WorkshopNotFoundException();
+    if (isArrayEmpty(workshops)) throw new WorkshopNotFoundException();
 
     return workshops;
 };
