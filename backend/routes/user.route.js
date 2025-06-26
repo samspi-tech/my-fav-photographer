@@ -4,6 +4,7 @@ const bodyValidation = require('../utils/validation');
 const userController = require('../controllers/user.controller');
 
 user.get('/', userController.getAllUsers);
+user.get('/photographers', userController.getAllPhotographers);
 user.post('/create', bodyValidation('createUser'), userController.createUser);
 user.patch(
     '/update/:userId',

@@ -13,6 +13,25 @@ const getAllUsers = async (req, res, next) => {
     }
 };
 
+const getAllPhotographers = async (req, res, next) => {
+    try {
+        const { firstName, lastName } = req.query;
+
+        const photographers = await userService.findAllPhotographers(
+            firstName,
+            lastName,
+        );
+
+        res.status(200).send({
+            statusCode: 200,
+            photographers,
+        });
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
+};
+
 const createUser = async (req, res, next) => {
     try {
         const { body: userBody } = req;
@@ -61,6 +80,7 @@ const deleteUser = async (req, res, next) => {
 
 module.exports = {
     getAllUsers,
+    getAllPhotographers,
     createUser,
     updateUser,
     deleteUser,
