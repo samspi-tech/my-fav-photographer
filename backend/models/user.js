@@ -76,6 +76,12 @@ const UserSchema = new mongoose.Schema(
                 ref: 'workshop',
             },
         ],
+        followers: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'follower',
+            },
+        ],
     },
     { timestamps: true, strict: true },
 );
