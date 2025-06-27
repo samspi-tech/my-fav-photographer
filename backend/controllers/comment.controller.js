@@ -3,11 +3,16 @@ const commentService = require('../services/comment.service');
 const getAllComments = async (req, res, next) => {
     try {
         const { postId } = req.params;
-        const comments = await commentService.findAllComments(postId);
+        const { page, pageSize } = req.query;
+
+        const { comments, totalPages, totalComments } =
+            await commentService.findAllComments(postId, page, pageSize);
 
         res.status(200).send({
             statusCode: 200,
             comments,
+            totalPages,
+            totalComments,
         });
     } catch (err) {
         next(err);
