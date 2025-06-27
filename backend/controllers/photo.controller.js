@@ -2,8 +2,9 @@ const photoService = require('../services/photo.service');
 
 const getAllPhotos = async (req, res, next) => {
     try {
+        const { tag } = req.query;
         const { userId } = req.params;
-        const photos = await photoService.findAllPhotos(userId);
+        const photos = await photoService.findAllPhotos(userId, tag);
 
         res.status(200).send({
             statusCode: 200,
