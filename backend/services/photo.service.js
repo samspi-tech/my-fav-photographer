@@ -4,8 +4,14 @@ const isArrayEmpty = require('../utils/isArrayEmpty');
 const userService = require('../services/user.service');
 const PhotoNotFoundException = require('../exceptions/photo/PhotoNotFoundException');
 
-const findAllPhotos = async (userId) => {
-    const photos = await PhotoSchema.find({ user: userId });
+const findAllPhotos = async (userId, tag = '') => {
+    const photos = await PhotoSchema.find({
+        user: userId,
+        tag: {
+            $regex: `${tag}`,
+            $options: 'i',
+        },
+    });
     if (isArrayEmpty(photos)) throw new PhotoNotFoundException();
 
     return photos;
