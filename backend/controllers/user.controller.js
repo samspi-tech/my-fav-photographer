@@ -15,16 +15,21 @@ const getAllUsers = async (req, res, next) => {
 
 const getAllPhotographers = async (req, res, next) => {
     try {
-        const { firstName, lastName } = req.query;
+        const { firstName, lastName, page, pageSize } = req.query;
 
-        const photographers = await userService.findAllPhotographers(
-            firstName,
-            lastName,
-        );
+        const { photographers, totalPages, totalPhotographers } =
+            await userService.findAllPhotographers(
+                firstName,
+                lastName,
+                page,
+                pageSize,
+            );
 
         res.status(200).send({
             statusCode: 200,
             photographers,
+            totalPages,
+            totalPhotographers,
         });
     } catch (err) {
         next(err);

@@ -1,7 +1,41 @@
 const UserSchema = require('../models/user');
 const FollowerSchema = require('../models/follower');
+const isArrayEmpty = require('../utils/isArrayEmpty');
+const { calcTotalPages, calcSkipPages } = require('../utils/pagination');
+const UserNotFoundException = require('../exceptions/user/UserNotFoundException');
 const NotFollowingException = require('../exceptions/follower/NotFollowingException');
 const AlreadyFollowingException = require('../exceptions/follower/AlreadyFollowingException');
+
+const findAllFollowers = async (photographerId, page = 1, pageSize = 10) => {
+    const totalFollowers = await FollowerSchema.countDocuments({
+        photographerId,
+    });
+    const totalPages = calcTotalPages(totalFollowers, pageSize);
+    const skipPages = calcSkipPages(page, pageSize);
+
+    const followers = await FollowerSchema.find({ photographerId })
+        .limit(pageSize)
+        .skip(skipPages)
+        .populate('followerId', ['firstName', 'lastName']);
+
+    if (isArrayEmpty(followers)) throw new UserNotFoundException();
+
+    return { followers, totalPages, totalFollowers };
+};
+
+const findAllFollowing = async (followerId, page = 1, pageSize = 10) => {
+    const totalFollowing = await FollowerSchema.countDocuments({ followerId });
+    const totalPages = calcTotalPages(totalFollowing, pageSize);
+    const skipPages = calcSkipPages(page, pageSize);
+
+    const following = await FollowerSchema.find({ followerId })
+        .limit(pageSize)
+        .skip(skipPages)
+        .populate('photographerId', ['firstName', 'lastName']);
+    if (isArrayEmpty(following)) throw new UserNotFoundException();
+
+    return { following, totalPages, totalFollowing };
+};
 
 const checkExistingFollow = async (photographerId, followerId) => {
     return FollowerSchema.findOne({
@@ -62,6 +96,8 @@ const deleteFollow = async (photographerId, followerId) => {
 };
 
 module.exports = {
+    findAllFollowers,
+    findAllFollowing,
     createFollow,
     deleteFollow,
 };

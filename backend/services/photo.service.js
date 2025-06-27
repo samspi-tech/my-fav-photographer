@@ -2,19 +2,26 @@ const UserSchema = require('../models/user');
 const PhotoSchema = require('../models/photo');
 const isArrayEmpty = require('../utils/isArrayEmpty');
 const userService = require('../services/user.service');
+const { calcTotalPages, calcSkipPages } = require('../utils/pagination');
 const PhotoNotFoundException = require('../exceptions/photo/PhotoNotFoundException');
 
-const findAllPhotos = async (userId, tag = '') => {
+const findAllPhotos = async (userId, tag = '', page = 1, pageSize = 10) => {
+    const totalPhotos = await PhotoSchema.countDocuments();
+    const totalPages = calcTotalPages(totalPhotos, pageSize);
+    const skipPages = calcSkipPages(page, pageSize);
+
     const photos = await PhotoSchema.find({
         user: userId,
         tag: {
             $regex: `${tag}`,
             $options: 'i',
         },
-    });
+    })
+        .limit(pageSize)
+        .skip(skipPages);
     if (isArrayEmpty(photos)) throw new PhotoNotFoundException();
 
-    return photos;
+    return { photos, totalPages, totalPhotos };
 };
 
 const createPhoto = async (userId, photoBody) => {

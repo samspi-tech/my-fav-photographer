@@ -2,6 +2,7 @@ const PostSchema = require('../models/post');
 const UserSchema = require('../models/user');
 const isArrayEmpty = require('../utils/isArrayEmpty');
 const userService = require('../services/user.service');
+const { calcTotalPages, calcSkipPages } = require('../utils/pagination');
 const PostNotFoundException = require('../exceptions/post/PostNotFoundException');
 
 const findPostById = async (postId) => {
@@ -11,11 +12,17 @@ const findPostById = async (postId) => {
     return post;
 };
 
-const findAllPosts = async (userId) => {
-    const posts = await PostSchema.find({ user: userId });
+const findAllPosts = async (userId, page = 1, pageSize = 10) => {
+    const totalPosts = await PostSchema.countDocuments();
+    const totalPages = calcTotalPages(totalPosts, pageSize);
+    const skipPages = calcSkipPages(page, pageSize);
+
+    const posts = await PostSchema.find({ user: userId })
+        .limit(pageSize)
+        .skip(skipPages);
     if (isArrayEmpty(posts)) throw new PostNotFoundException();
 
-    return posts;
+    return { posts, totalPages, totalPosts };
 };
 
 const createPost = async (userId, postBody) => {

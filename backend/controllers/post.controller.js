@@ -3,11 +3,16 @@ const postService = require('../services/post.service');
 const getAllPosts = async (req, res, next) => {
     try {
         const { userId } = req.params;
-        const posts = await postService.findAllPosts(userId);
+        const { page, pageSize } = req.query;
+
+        const { posts, totalPages, totalPosts } =
+            await postService.findAllPosts(userId, page, pageSize);
 
         res.status(200).send({
             statusCode: 200,
             posts,
+            totalPages,
+            totalPosts,
         });
     } catch (err) {
         next(err);

@@ -2,13 +2,20 @@ const PostSchema = require('../models/post');
 const CommentSchema = require('../models/comment');
 const isArrayEmpty = require('../utils/isArrayEmpty');
 const postService = require('../services/post.service');
+const { calcTotalPages, calcSkipPages } = require('../utils/pagination');
 const CommentNotFoundException = require('../exceptions/comment/CommentNotFoundException');
 
-const findAllComments = async (postId) => {
-    const comments = await CommentSchema.find({ post: postId });
+const findAllComments = async (postId, page = 1, pageSize = 10) => {
+    const totalComments = await CommentSchema.countDocuments();
+    const totalPages = calcTotalPages(totalComments, pageSize);
+    const skipPages = calcSkipPages(page, pageSize);
+
+    const comments = await CommentSchema.find({ post: postId })
+        .limit(pageSize)
+        .skip(skipPages);
     if (isArrayEmpty(comments)) throw new CommentNotFoundException();
 
-    return comments;
+    return { comments, totalPages, totalComments };
 };
 
 const createComment = async (postId, commentBody) => {
