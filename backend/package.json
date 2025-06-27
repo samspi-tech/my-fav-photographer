@@ -18,10 +18,13 @@
   "homepage": "https://github.com/samspi-tech/my-fav-photographer#readme",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cloudinary": "^2.7.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
-    "mongoose": "^8.16.0"
+    "mongoose": "^8.16.0",
+    "multer": "^2.0.1",
+    "multer-storage-cloudinary": "^4.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
