@@ -24,6 +24,21 @@ const cloudStorage = new CloudinaryStorage({
     },
 });
 
-const cloudUpload = multer({ storage: cloudStorage });
+const cloudPhotoStorage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: 'Capstone photos',
+        format: async (req, file) => 'jpeg',
+        public_id: (req, file) => file.name,
+        transformation: {
+            aspect_ratio: 1.0,
+            height: 1350,
+            crop: 'limit',
+        },
+    },
+});
 
-module.exports = cloudUpload;
+const cloudUpload = multer({ storage: cloudStorage });
+const cloudUploadPhotos = multer({ storage: cloudPhotoStorage });
+
+module.exports = { cloudUpload, cloudUploadPhotos };
