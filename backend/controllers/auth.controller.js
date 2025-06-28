@@ -4,13 +4,21 @@ const loginAuth = async (req, res, next) => {
     try {
         const { body } = req;
         const { email, password } = body;
-
         const { token } = await authService.loginAuth(email, password);
 
-        res.writeHead(200, {
-            'Set-Cookie': `token=${token}; HttpOnly`,
-            'Access-Control-Allow-Credentials': 'true',
-        }).send();
+        const DAY_IN_MILLISECONDS = 86400000;
+        const COOKIE_EXPIRES_IN = new Date(
+            Date.now() +
+                process.env.JWT_COOKIE_EXPIRES_IN * DAY_IN_MILLISECONDS,
+        );
+
+        const cookieOptions = {
+            expires: COOKIE_EXPIRES_IN,
+            httpOnly: true,
+        };
+        if (process.env.NODE_ENV === 'prod') cookieOptions.secure = true;
+
+        res.cookie('token', token, cookieOptions).send();
     } catch (err) {
         next(err);
     }
