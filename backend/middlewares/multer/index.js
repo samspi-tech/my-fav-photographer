@@ -8,18 +8,18 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const cloudStorage = new CloudinaryStorage({
+const cloudAvatarStorage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'Capstone',
-        format: async (req, file) => 'png',
+        folder: 'Capstone avatar',
+        format: async (req, file) => 'jpeg',
         public_id: (req, file) => file.name,
         transformation: {
+            aspect_ratio: 1.0,
+            gravity: 'face',
             width: 320,
             height: 320,
             crop: 'fill',
-            gravity: 'face',
-            aspect_ratio: 1,
         },
     },
 });
@@ -38,7 +38,7 @@ const cloudPhotoStorage = new CloudinaryStorage({
     },
 });
 
-const cloudUpload = multer({ storage: cloudStorage });
+const cloudUploadAvatar = multer({ storage: cloudAvatarStorage });
 const cloudUploadPhotos = multer({ storage: cloudPhotoStorage });
 
-module.exports = { cloudUpload, cloudUploadPhotos };
+module.exports = { cloudUploadAvatar, cloudUploadPhotos };
