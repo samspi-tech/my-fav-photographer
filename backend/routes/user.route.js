@@ -1,7 +1,7 @@
 const express = require('express');
 const user = express.Router();
 const bodyValidation = require('../utils/validation');
-const imageCloudUpload = require('../middlewares/multer/index');
+const { cloudUpload } = require('../middlewares/multer/index');
 const userController = require('../controllers/user.controller');
 const cloudinaryController = require('../controllers/cloudinary.controller');
 
@@ -10,7 +10,7 @@ user.get('/photographers', userController.getAllPhotographers);
 user.post('/create', bodyValidation('createUser'), userController.createUser);
 user.post(
     '/cloud-upload/avatar',
-    imageCloudUpload.single('avatar'),
+    cloudUpload.single('avatar'),
     cloudinaryController.uploadFileOnCloudinary,
 );
 user.patch(
