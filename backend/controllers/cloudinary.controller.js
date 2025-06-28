@@ -1,9 +1,9 @@
-const uploadFileOnCloudinary = async (req, res, next) => {
+const uploadAvatar = async (req, res, next) => {
     try {
         res.status(200).send({
             statusCode: 200,
-            image: req.file.path,
-            message: 'Image uploaded successfully',
+            avatar: req.file.path,
+            message: 'Avatar uploaded successfully',
         });
     } catch (err) {
         next(err);
@@ -23,6 +23,6 @@ const uploadPhotos = async (req, res, next) => {
 };
 
 module.exports = {
-    uploadFileOnCloudinary,
+    uploadAvatar,
     uploadPhotos,
 };
