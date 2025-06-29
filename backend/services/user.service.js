@@ -42,7 +42,8 @@ const findAllPhotographers = async (
         },
     })
         .limit(pageSize)
-        .skip(skipPages);
+        .skip(skipPages)
+        .select(['firstName', 'lastName', 'avatar']);
     if (isArrayEmpty(photographers)) throw new PhotographerNotFoundException();
 
     return { photographers, totalPages, totalPhotographers };
