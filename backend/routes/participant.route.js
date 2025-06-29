@@ -8,7 +8,7 @@ participant.post(
     participantController.createParticipant,
 );
 participant.delete(
-    '/delete/:workshopId',
+    '/delete/:workshopId/participant/:participantId',
     participantController.deleteParticipant,
 );
 

@@ -39,10 +39,7 @@ const createParticipant = async (req, res, next) => {
 
 const deleteParticipant = async (req, res, next) => {
     try {
-        const { body } = req;
-        const { participantId } = body;
-        const { workshopId } = req.params;
-
+        const { workshopId, participantId } = req.params;
         await participantService.deleteParticipant(workshopId, participantId);
 
         res.status(200).send({
