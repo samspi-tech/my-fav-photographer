@@ -5,7 +5,7 @@ const commentController = require('../controllers/comment.controller');
 
 comment.get('/:postId/comments', commentController.getAllComments);
 comment.post(
-    '/create/:postId',
+    '/create/:userId/post/:postId',
     bodyValidation('createComment'),
     commentController.createComment,
 );
@@ -15,7 +15,7 @@ comment.patch(
     commentController.updateComment,
 );
 comment.delete(
-    '/delete/:postId/comment/:commentId',
+    '/delete/:userId/post/:postId/comment/:commentId',
     commentController.deleteComment,
 );
 
