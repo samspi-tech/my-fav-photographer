@@ -3,7 +3,7 @@ const user = express.Router();
 const bodyValidation = require('../utils/validation');
 const userController = require('../controllers/user.controller');
 const { cloudUploadAvatar } = require('../middlewares/multer/index');
-const checkPermission = require('../middlewares/rbac/checkPermission');
+const checkPermission = require('../middlewares/auth/checkPermission');
 const cloudinaryController = require('../controllers/cloudinary.controller');
 
 user.get('/', checkPermission('admin'), userController.getAllUsers);

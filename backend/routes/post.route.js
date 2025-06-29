@@ -2,7 +2,7 @@ const express = require('express');
 const post = express.Router();
 const bodyValidation = require('../utils/validation');
 const postController = require('../controllers/post.controller');
-const checkPermission = require('../middlewares/rbac/checkPermission');
+const checkPermission = require('../middlewares/auth/checkPermission');
 
 post.get('/:userId/posts', postController.getAllPosts);
 post.post(

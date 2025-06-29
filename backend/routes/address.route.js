@@ -1,7 +1,7 @@
 const express = require('express');
 const address = express.Router();
 const bodyValidation = require('../utils/validation');
-const checkPermission = require('../middlewares/rbac/checkPermission');
+const checkPermission = require('../middlewares/auth/checkPermission');
 const addressController = require('../controllers/address.controller');
 
 address.get(

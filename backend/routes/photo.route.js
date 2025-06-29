@@ -3,7 +3,7 @@ const photo = express.Router();
 const bodyValidation = require('../utils/validation');
 const photoController = require('../controllers/photo.controller');
 const { cloudUploadPhotos } = require('../middlewares/multer/index');
-const checkPermission = require('../middlewares/rbac/checkPermission');
+const checkPermission = require('../middlewares/auth/checkPermission');
 const cloudinaryController = require('../controllers/cloudinary.controller');
 
 photo.get('/:userId/photos', photoController.getAllPhotos);

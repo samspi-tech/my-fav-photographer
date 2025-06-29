@@ -1,7 +1,7 @@
 const express = require('express');
 const workshop = express.Router();
 const bodyValidation = require('../utils/validation');
-const checkPermission = require('../middlewares/rbac/checkPermission');
+const checkPermission = require('../middlewares/auth/checkPermission');
 const workshopController = require('../controllers/workshop.controller');
 
 workshop.get('/:userId/workshops', workshopController.getAllWorkshops);

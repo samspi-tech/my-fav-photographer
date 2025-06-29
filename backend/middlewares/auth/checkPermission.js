@@ -1,4 +1,4 @@
-const PermissionDeniedException = require('../../exceptions/rbac/PermissionDeniedException');
+const PermissionDeniedException = require('../../exceptions/auth/PermissionDeniedException');
 
 const checkPermission = (...roles) => {
     return (req, res, next) => {

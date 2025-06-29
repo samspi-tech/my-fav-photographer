@@ -1,6 +1,6 @@
 const express = require('express');
 const follower = express.Router();
-const checkPermission = require('../middlewares/rbac/checkPermission');
+const checkPermission = require('../middlewares/auth/checkPermission');
 const followerController = require('../controllers/follower.controller');
 
 follower.get('/:followerId/following', followerController.getAllFollowing);
