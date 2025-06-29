@@ -22,14 +22,16 @@ const getAllComments = async (req, res, next) => {
 const createComment = async (req, res, next) => {
     try {
         const { body } = req;
-        const { postId } = req.params;
+        const { userId, postId } = req.params;
 
         const commentBody = {
             ...body,
+            user: userId,
             post: postId,
         };
 
         const newComment = await commentService.createComment(
+            userId,
             postId,
             commentBody,
         );
@@ -67,8 +69,8 @@ const updateComment = async (req, res, next) => {
 
 const deleteComment = async (req, res, next) => {
     try {
-        const { postId, commentId } = req.params;
-        await commentService.deleteComment(postId, commentId);
+        const { userId, postId, commentId } = req.params;
+        await commentService.deleteComment(userId, postId, commentId);
 
         res.status(200).send({
             statusCode: 200,
