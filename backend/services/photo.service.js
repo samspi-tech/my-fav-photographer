@@ -32,7 +32,7 @@ const createPhoto = async (userId, photoBody) => {
 
     await UserSchema.updateOne(
         { _id: user._id },
-        { $push: { photo: savedPhoto } },
+        { $push: { photos: savedPhoto } },
     );
 
     return savedPhoto;
