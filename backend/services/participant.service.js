@@ -9,7 +9,7 @@ const ParticipantAlreadyRegisteredException = require('../exceptions/participant
 const findAllParticipants = async (workshopId) => {
     const participants = await ParticipantSchema.find({ workshopId }).populate(
         'participantId',
-        ['firstName', 'lastName'],
+        ['firstName', 'lastName', 'avatar'],
     );
     if (isArrayEmpty(participants)) throw new UserNotFoundException();
 
@@ -36,7 +36,7 @@ const createParticipant = async (workshopId, participantId) => {
 
     await WorkshopSchema.updateOne(
         { _id: workshopId },
-        { $push: { participants: participantId } },
+        { $push: { participants: savedParticipant } },
     );
 
     await UserSchema.updateOne(
@@ -61,7 +61,7 @@ const deleteParticipant = async (workshopId, participantId) => {
 
     await WorkshopSchema.updateOne(
         { _id: workshopId },
-        { $pull: { participants: participantId } },
+        { $pull: { participants: participantToDelete._id } },
     );
 
     await UserSchema.updateOne(
