@@ -1,12 +1,12 @@
 const postService = require('../services/post.service');
 
-const getAllPosts = async (req, res, next) => {
+const getAllUserPosts = async (req, res, next) => {
     try {
         const { userId } = req.params;
         const { page, pageSize } = req.query;
 
         const { posts, totalPages, totalPosts } =
-            await postService.findAllPosts(userId, page, pageSize);
+            await postService.findAllUserPosts(userId, page, pageSize);
 
         res.status(200).send({
             statusCode: 200,
@@ -77,7 +77,7 @@ const deletePost = async (req, res, next) => {
 };
 
 module.exports = {
-    getAllPosts,
+    getAllUserPosts,
     createPost,
     updatePost,
     deletePost,
