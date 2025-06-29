@@ -24,7 +24,45 @@ const loginAuth = async (email, password) => {
 };
 
 const findMe = async (userId) => {
-    const me = await UserSchema.findById(userId).select('-password');
+    const me = await UserSchema.findById(userId)
+        .select('-password')
+        .populate('addresses')
+        .populate({
+            path: 'comments',
+            populate: {
+                path: ['user', 'post'],
+                select: ['firstName', 'lastName', 'title'],
+            },
+        })
+        .populate('equipments')
+        .populate({
+            path: 'followers',
+            populate: {
+                path: ['photographerId', 'followerId'],
+                select: ['firstName', 'lastName', 'avatar'],
+            },
+        })
+        .populate('photos')
+        .populate({
+            path: 'posts',
+            populate: {
+                path: 'comments',
+                populate: {
+                    path: 'user',
+                    select: ['firstName', 'lastName', 'avatar'],
+                },
+            },
+        })
+        .populate({
+            path: 'workshops',
+            populate: {
+                path: 'participants',
+                populate: {
+                    path: 'participantId',
+                    select: ['firstName', 'lastName', 'avatar'],
+                },
+            },
+        });
     if (!me) throw new UserNotFoundException();
 
     return me;
