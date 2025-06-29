@@ -60,12 +60,12 @@ const createFollow = async (photographerId, followerId) => {
 
     await UserSchema.updateOne(
         { _id: photographerId },
-        { $push: { followers: followerId } },
+        { $push: { followers: savedFollow } },
     );
 
     await UserSchema.updateOne(
         { _id: followerId },
-        { $push: { followers: photographerId } },
+        { $push: { followers: savedFollow } },
     );
 
     return savedFollow;
@@ -85,12 +85,12 @@ const deleteFollow = async (photographerId, followerId) => {
 
     await UserSchema.updateOne(
         { _id: photographerId },
-        { $pull: { followers: followerId } },
+        { $pull: { followers: followToDelete._id } },
     );
 
     await UserSchema.updateOne(
         { _id: followerId },
-        { $pull: { followers: photographerId } },
+        { $pull: { followers: followToDelete._id } },
     );
 
     return followToDelete;
