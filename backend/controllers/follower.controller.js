@@ -44,7 +44,9 @@ const getAllFollowing = async (req, res, next) => {
 
 const createFollow = async (req, res, next) => {
     try {
-        const { followerId, photographerId } = req.params;
+        const { body } = req;
+        const { photographerId } = body;
+        const { followerId } = req.params;
 
         const newFollow = await followerService.createFollow(
             photographerId,

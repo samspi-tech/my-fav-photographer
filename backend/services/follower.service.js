@@ -16,8 +16,8 @@ const findAllFollowers = async (photographerId, page = 1, pageSize = 10) => {
     const followers = await FollowerSchema.find({ photographerId })
         .limit(pageSize)
         .skip(skipPages)
+        .select('-photographerId')
         .populate('followerId', ['firstName', 'lastName']);
-
     if (isArrayEmpty(followers)) throw new UserNotFoundException();
 
     return { followers, totalPages, totalFollowers };
@@ -31,6 +31,7 @@ const findAllFollowing = async (followerId, page = 1, pageSize = 10) => {
     const following = await FollowerSchema.find({ followerId })
         .limit(pageSize)
         .skip(skipPages)
+        .select('-followerId')
         .populate('photographerId', ['firstName', 'lastName']);
     if (isArrayEmpty(following)) throw new UserNotFoundException();
 
@@ -59,12 +60,12 @@ const createFollow = async (photographerId, followerId) => {
 
     await UserSchema.updateOne(
         { _id: photographerId },
-        { $push: { followers: savedFollow } },
+        { $push: { followers: followerId } },
     );
 
     await UserSchema.updateOne(
         { _id: followerId },
-        { $push: { followers: savedFollow } },
+        { $push: { followers: photographerId } },
     );
 
     return savedFollow;
@@ -84,12 +85,12 @@ const deleteFollow = async (photographerId, followerId) => {
 
     await UserSchema.updateOne(
         { _id: photographerId },
-        { $pull: { followers: followToDelete._id } },
+        { $pull: { followers: followerId } },
     );
 
     await UserSchema.updateOne(
         { _id: followerId },
-        { $pull: { followers: followToDelete._id } },
+        { $pull: { followers: photographerId } },
     );
 
     return followToDelete;
