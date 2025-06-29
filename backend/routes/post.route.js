@@ -4,7 +4,7 @@ const bodyValidation = require('../utils/validation');
 const postController = require('../controllers/post.controller');
 const checkPermission = require('../middlewares/auth/checkPermission');
 
-post.get('/:userId/posts', postController.getAllPosts);
+post.get('/:userId/posts', postController.getAllUserPosts);
 post.post(
     '/create/:userId',
     bodyValidation('createPost'),

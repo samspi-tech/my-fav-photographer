@@ -12,7 +12,7 @@ const findPostById = async (postId) => {
     return post;
 };
 
-const findAllPosts = async (userId, page = 1, pageSize = 10) => {
+const findAllUserPosts = async (userId, page = 1, pageSize = 10) => {
     const totalPosts = await PostSchema.countDocuments();
     const totalPages = calcTotalPages(totalPosts, pageSize);
     const skipPages = calcSkipPages(page, pageSize);
@@ -72,7 +72,7 @@ const deletePost = async (userId, postId) => {
 
 module.exports = {
     findPostById,
-    findAllPosts,
+    findAllUserPosts,
     createPost,
     updatePost,
     deletePost,
