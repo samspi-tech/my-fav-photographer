@@ -12,6 +12,12 @@ const WorkshopSchema = new mongoose.Schema(
             maxLength: 2550,
             required: true,
         },
+        participants: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'participant',
+            },
+        ],
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
