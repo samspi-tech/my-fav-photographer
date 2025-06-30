@@ -1,4 +1,5 @@
 require('dotenv').config();
+const cors = require('cors');
 const express = require('express');
 const startServer = require('./config/db');
 const cookieParser = require('cookie-parser');
@@ -19,6 +20,13 @@ const equipmentRoute = require('./routes/equipment.route');
 const participantRoute = require('./routes/participant.route');
 
 const server = express();
+
+server.use(
+    cors({
+        origin: `${process.env.CLIENT_BASE_URL}`,
+        credentials: true,
+    }),
+);
 
 server.use(express.json());
 server.use(cookieParser());
