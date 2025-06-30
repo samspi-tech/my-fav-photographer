@@ -12,6 +12,27 @@ const findPostById = async (postId) => {
     return post;
 };
 
+const findAllPosts = async (page = 1, pageSize = 10) => {
+    const totalPosts = await PostSchema.countDocuments();
+    const totalPages = calcTotalPages(totalPosts, pageSize);
+    const skipPages = calcSkipPages(page, pageSize);
+
+    const posts = await PostSchema.find()
+        .limit(pageSize)
+        .skip(skipPages)
+        .populate('user', ['firstName', 'lastName', 'avatar'])
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'user',
+                select: ['firstName', 'lastName', 'avatar'],
+            },
+        });
+    if (isArrayEmpty(posts)) throw new PostNotFoundException();
+
+    return { posts, totalPages, totalPosts };
+};
+
 const findAllUserPosts = async (userId, page = 1, pageSize = 10) => {
     const totalPosts = await PostSchema.countDocuments();
     const totalPages = calcTotalPages(totalPosts, pageSize);
@@ -72,6 +93,7 @@ const deletePost = async (userId, postId) => {
 
 module.exports = {
     findPostById,
+    findAllPosts,
     findAllUserPosts,
     createPost,
     updatePost,
