@@ -17,7 +17,7 @@ const findAllFollowers = async (photographerId, page = 1, pageSize = 10) => {
         .limit(pageSize)
         .skip(skipPages)
         .select('-photographerId')
-        .populate('followerId', ['firstName', 'lastName']);
+        .populate('followerId', ['firstName', 'lastName', 'avatar']);
     if (isArrayEmpty(followers)) throw new UserNotFoundException();
 
     return { followers, totalPages, totalFollowers };
@@ -32,7 +32,20 @@ const findAllFollowing = async (followerId, page = 1, pageSize = 10) => {
         .limit(pageSize)
         .skip(skipPages)
         .select('-followerId')
-        .populate('photographerId', ['firstName', 'lastName']);
+        .populate({
+            path: 'photographerId',
+            select: ['firstName', 'lastName', 'avatar'],
+            populate: {
+                path: 'posts',
+                populate: {
+                    path: 'comments',
+                    populate: {
+                        path: 'user',
+                        select: ['firstName', 'lastName', 'avatar'],
+                    },
+                },
+            },
+        });
     if (isArrayEmpty(following)) throw new UserNotFoundException();
 
     return { following, totalPages, totalFollowing };
