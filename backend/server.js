@@ -9,6 +9,7 @@ const verifiedToken = require('./middlewares/auth/verifiedToken');
 const PORT = process.env.PORT || 9099;
 
 const userRoute = require('./routes/user.route');
+const voteRoute = require('./routes/vote.route');
 const postRoute = require('./routes/post.route');
 const authRoute = require('./routes/auth.route');
 const photoRouter = require('./routes/photo.route');
@@ -33,6 +34,7 @@ server.use(cookieParser());
 server.use(verifiedToken);
 
 server.use('/user', userRoute);
+server.use('/vote', voteRoute);
 server.use('/post', postRoute);
 server.use('/auth', authRoute);
 server.use('/photo', photoRouter);
