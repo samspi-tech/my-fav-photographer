@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --primary: #111827;
+    --secondary: #ECC05B;
+    --accent: #2C3D63;
+    --text-primary: #DCFFFD;
+    --text-secondary: #131515;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100vh;
+    color: var(--text-primary);
+    background-color: var(--primary);
+    font-family: "Inter", sans-serif;
+}
