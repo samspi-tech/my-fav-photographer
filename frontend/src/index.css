@@ -2,19 +2,31 @@
 
 :root {
     --primary: #111827;
-    --secondary: #ECC05B;
-    --accent: #2C3D63;
+    --secondary: #2C3D63;
+    --accent: #ECC05B;
     --text-primary: #DCFFFD;
     --text-secondary: #131515;
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    height: 100vh;
     color: var(--text-primary);
     background-color: var(--primary);
     font-family: "Inter", sans-serif;
+}
+
+.custom-btn {
+    border: none;
+    color: #131515;
+    background-color: var(--accent);
+}
+
+.p-button:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #ECC05B, 0 1px 2px 0 rgba(0, 0, 0, 0);
+}
+
+.p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 1px #ECC05B;
+    border-color: #ECC05B;
 }
