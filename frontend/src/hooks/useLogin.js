@@ -1,0 +1,56 @@
+import { useState } from 'react';
+
+export const useLogin = () => {
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [payload, setPayload] = useState({
+        email: '',
+        password: '',
+    });
+
+    const handlePayload = (e) => {
+        const { name, value } = e.target;
+
+        setPayload({
+            ...payload,
+            [name]: value,
+        });
+    };
+
+    const login = async () => {
+        setIsLoading(true);
+        try {
+            const res = await fetch(
+                `${import.meta.env.VITE_SERVER_BASE_URL}/auth/login`,
+                {
+                    method: 'POST',
+                    credentials: 'include',
+                    body: JSON.stringify(payload),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                },
+            );
+
+            const data = await res.json();
+
+            if (res.ok) {
+                console.log('Logged in successfully:', data);
+            }
+
+            return data;
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    return {
+        error,
+        isLoading,
+        payload,
+        handlePayload,
+        login,
+    };
+};

@@ -1,7 +1,0 @@
-.p-inputtext {
-    border-radius: 0;
-}
-
-.p-float-label:focus-within label {
-    color: var(--text-primary);
-}

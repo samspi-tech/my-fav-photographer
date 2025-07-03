@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
     --primary: #111827;
     --secondary: #2C3D63;
-    --accent: #ECC05B;
+    --accent: #E7B236;
     --text-primary: #DCFFFD;
     --text-secondary: #131515;
 }
@@ -18,6 +18,14 @@ body {
     border: none;
     color: #131515;
     background-color: var(--accent);
+
+    transition: all 150ms linear;
+}
+
+.custom-btn:hover,
+.custom-btn:focus {
+    border-radius: 5px;
+    background-color: #ECC05B;
 }
 
 .p-button:focus {
