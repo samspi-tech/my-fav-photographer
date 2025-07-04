@@ -22,7 +22,7 @@ export const useLogin = () => {
             const data = await res.json();
 
             if (res.ok) {
-                console.log('Logged in successfully:', data);
+                setError('');
             } else {
                 throw new Error(`${data.message}`);
             }
