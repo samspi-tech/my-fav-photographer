@@ -6,7 +6,7 @@ const InvalidOrMissingPasswordException = require('../exceptions/auth/InvalidOrM
 
 const loginAuth = async (email, password) => {
     const user = await UserSchema.findOne({ email });
-    if (!user) throw new UserNotFoundException();
+    if (!user) throw new InvalidOrMissingPasswordException();
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) throw new InvalidOrMissingPasswordException();

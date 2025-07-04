@@ -18,7 +18,12 @@ const loginAuth = async (req, res, next) => {
         };
         if (process.env.NODE_ENV === 'prod') cookieOptions.secure = true;
 
-        res.cookie('token', token, cookieOptions).send();
+        res.cookie('token', token, cookieOptions);
+
+        res.status(200).send({
+            statusCode: 200,
+            message: 'Login successfully',
+        });
     } catch (err) {
         next(err);
     }
