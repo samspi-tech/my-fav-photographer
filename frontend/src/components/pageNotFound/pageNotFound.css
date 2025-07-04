@@ -1,0 +1,7 @@
+.page-not-found {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), center/cover no-repeat url('../../assets/images/unsplashNotFound.jpg');
+
+    width: 100vw;
+    height: 100vh;
+    font-family: "Bebas neue", sans-serif;
+}
