@@ -8,7 +8,7 @@ const LoginPage = () => {
         <Container fluid={true}>
             <Row className="vh-100 flex-column justify-content-center">
                 <Col lg={4} className="p-0">
-                    <Row className="justify-content-center gy-4">
+                    <Row className="justify-content-center gy-5">
                         <Col xs={12}>
                             <Logo />
                         </Col>

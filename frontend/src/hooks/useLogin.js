@@ -3,21 +3,8 @@ import { useState } from 'react';
 export const useLogin = () => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [payload, setPayload] = useState({
-        email: '',
-        password: '',
-    });
 
-    const handlePayload = (e) => {
-        const { name, value } = e.target;
-
-        setPayload({
-            ...payload,
-            [name]: value,
-        });
-    };
-
-    const login = async () => {
+    const login = async (payload) => {
         setIsLoading(true);
         try {
             const res = await fetch(
@@ -36,6 +23,8 @@ export const useLogin = () => {
 
             if (res.ok) {
                 console.log('Logged in successfully:', data);
+            } else {
+                throw new Error(`${data.message}`);
             }
 
             return data;
@@ -49,8 +38,6 @@ export const useLogin = () => {
     return {
         error,
         isLoading,
-        payload,
-        handlePayload,
         login,
     };
 };
