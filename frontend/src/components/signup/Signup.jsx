@@ -5,10 +5,14 @@ import { Button } from 'primereact/button';
 import { Calendar } from 'primereact/calendar';
 import { ref, object, string, date } from 'yup';
 import { InputText } from 'primereact/inputtext';
+import { useLogin } from '../../hooks/useLogin.js';
 import { RadioButton } from 'primereact/radiobutton';
+import { CascadeSelect } from 'primereact/cascadeselect';
 import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
 
 const Signup = ({ isVisible, handleIsVisible }) => {
+    const { isLoading, error, signup } = useLogin();
+
     const yupSignupSchema = object({
         firstName: string()
             .required('Required')
@@ -38,8 +42,8 @@ const Signup = ({ isVisible, handleIsVisible }) => {
             confirmPassword: '',
         },
         validationSchema: yupSignupSchema,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values));
+        onSubmit: async (values) => {
+            await signup(values);
         },
     });
 
@@ -165,19 +169,30 @@ const Signup = ({ isVisible, handleIsVisible }) => {
                         ) : null}
                     </Form.Group>
                 </div>
-                <div className="d-flex gap-3 w-100">
-                    <Button
-                        type="submit"
-                        label="Sign up"
-                        className="custom-btn w-100"
-                    />
-                    <Button
-                        type="button"
-                        label="Cancel"
-                        onClick={handleIsVisible}
-                        className="cancel-btn w-100"
-                    />
+                <div className="d-flex flex-column flex-md-row gap-3 w-100">
+                    {isLoading ? (
+                        <CascadeSelect
+                            loading
+                            placeholder="Logging in..."
+                            className="custom-btn loading-btn w-100"
+                        />
+                    ) : (
+                        <Button
+                            type="submit"
+                            label="Sign up"
+                            className="custom-btn w-100"
+                        />
+                    )}
+                    {!isLoading && (
+                        <Button
+                            type="button"
+                            label="Cancel"
+                            onClick={handleIsVisible}
+                            className="cancel-btn w-100"
+                        />
+                    )}
                 </div>
+                {error && <ErrorMessage error={error} />}
             </Form>
         </div>
     );

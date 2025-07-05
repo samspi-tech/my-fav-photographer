@@ -35,9 +35,40 @@ export const useLogin = () => {
         }
     };
 
+    const signup = async (payload) => {
+        setIsLoading(true);
+        try {
+            const res = await fetch(
+                `${import.meta.env.VITE_SERVER_BASE_URL}/user/create`,
+                {
+                    method: 'POST',
+                    body: JSON.stringify(payload),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                },
+            );
+
+            const data = await res.json();
+
+            if (res.ok) {
+                setError('');
+            } else {
+                throw new Error(`${data.message}`);
+            }
+
+            return data;
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return {
         error,
         isLoading,
         login,
+        signup,
     };
 };
