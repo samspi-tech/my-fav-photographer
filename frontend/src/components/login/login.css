@@ -23,3 +23,11 @@
     line-height: 35px;
     font-family: "Bebas neue", sans-serif;
 }
+
+.login-cover-container {
+    background: center/cover no-repeat url('../../assets/images/unsplashLoginPage.jpg');
+
+    width: 100%;
+    height: 100vh;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+}

@@ -1,0 +1,46 @@
+.signup-form-container {
+    background-color: rgba(44, 61, 99, 0.8);
+    backdrop-filter: blur(10px);
+    overflow-y: auto;
+    padding: 50px 0;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    transform: translateX(-100%);
+
+    transition: transform 400ms ease-in-out;
+}
+
+.slide-in {
+    transform: translateX(0);
+}
+
+.cancel-btn {
+    border-color: #0D3B66;
+    background-color: #0D3B66;
+
+    transition: all 150ms linear;
+}
+
+.cancel-btn:hover {
+    border-radius: 5px;
+    border-color: #FFF;
+}
+
+.signup-form {
+    margin-top: 200px;
+}
+
+@media (min-width: 768px) {
+    .signup-form-container {
+        padding: 0;
+    }
+
+    .signup-form {
+        margin: 0;
+    }
+}
