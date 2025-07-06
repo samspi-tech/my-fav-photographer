@@ -37,8 +37,9 @@ const userBodyUpdateValidation = [
         .optional()
         .notEmpty()
         .withMessage('DateOfBirth cannot be empty')
-        .isDate()
-        .withMessage('DateOfBirth must be a valid date (year-month-day)'),
+        .isISO8601()
+        .toDate()
+        .withMessage('DateOfBirth must be a valid date'),
 ];
 
 const userBodyUpdateValidator = (req, res, next) => {
