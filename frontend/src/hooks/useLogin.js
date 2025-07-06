@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const useLogin = () => {
+    const navigate = useNavigate();
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -22,7 +24,7 @@ export const useLogin = () => {
             const data = await res.json();
 
             if (res.ok) {
-                setError('');
+                navigate('/homepage', { replace: true });
             } else {
                 throw new Error(`${data.message}`);
             }
@@ -52,7 +54,7 @@ export const useLogin = () => {
             const data = await res.json();
 
             if (res.ok) {
-                setError('');
+                navigate('/homepage', { replace: true });
             } else {
                 throw new Error(`${data.message}`);
             }
