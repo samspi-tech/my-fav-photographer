@@ -39,6 +39,7 @@ const Login = () => {
                         <InputText
                             id="email"
                             type="email"
+                            name="email"
                             value={formik.values.email}
                             onChange={formik.handleChange}
                         />
@@ -54,6 +55,7 @@ const Login = () => {
                         <InputText
                             id="password"
                             type="password"
+                            name="password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
                         />
