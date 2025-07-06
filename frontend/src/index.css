@@ -43,3 +43,9 @@ body {
     box-shadow: 0 0 0 1px #ECC05B;
     border-color: #ECC05B;
 }
+
+@media (max-width: 768px) {
+    .p-tooltip {
+        display: none;
+    }
+}

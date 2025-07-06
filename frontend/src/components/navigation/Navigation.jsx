@@ -14,7 +14,9 @@ const Navigation = () => {
                         end={<NavEnd />}
                         model={navItems}
                         className="d-flex align-items-center"
-                        start={<Logo cssClass="nav-logo me-2" />}
+                        start={
+                            <Logo cssClass="nav-logo me-5 d-none d-lg-flex" />
+                        }
                     />
                 </Col>
             </Row>
