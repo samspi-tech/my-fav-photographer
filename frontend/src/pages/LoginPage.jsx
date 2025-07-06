@@ -20,7 +20,7 @@ const LoginPage = () => {
                 <Col lg={4}>
                     <Row className="justify-content-center gy-5">
                         <Col xs={12}>
-                            <Logo />
+                            <Logo cssClass="login-logo" />
                         </Col>
                         <Col xs={12}>
                             <Login />

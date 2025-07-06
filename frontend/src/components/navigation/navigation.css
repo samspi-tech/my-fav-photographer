@@ -1,0 +1,41 @@
+.p-menubar {
+    border: none;
+    border-radius: 0;
+    color: var(--text-primary);
+    background-color: var(--secondary);
+}
+
+.p-menuitem-text, .p-menuitem-icon {
+    color: #DCFFFD;
+}
+
+.p-menuitem-link:hover {
+    border-radius: 5px;
+    background-color: #111827;
+}
+
+ul.p-menubar-root-list {
+    margin: 0;
+    background-color: var(--secondary);
+}
+
+a.p-menubar-button .p-icon {
+    color: #FFF;
+}
+
+a.p-menubar-button:hover {
+    background-color: #111827;
+}
+
+.p-menuitem-link {
+    text-decoration: none;
+}
+
+.p-dialog {
+    min-width: 304px;
+    width: 500px;
+}
+
+.p-tooltip-text {
+    font-size: 14px;
+}
