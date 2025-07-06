@@ -1,13 +1,12 @@
-import Navigation from '../components/navigation/Navigation.jsx';
+import BaseLayout from '../baseLayout/BaseLayout.jsx';
 
 const Homepage = () => {
     return (
-        <>
-            <Navigation />
+        <BaseLayout>
             <div className="d-flex justify-content-center align-items-center vh-100">
                 <h1 className="display-1 fw-bold">Homepage</h1>
             </div>
-        </>
+        </BaseLayout>
     );
 };
 

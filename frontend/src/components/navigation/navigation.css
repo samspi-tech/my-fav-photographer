@@ -40,3 +40,7 @@ a.p-menubar-button:hover {
 .p-tooltip-text {
     font-size: 14px;
 }
+
+.nav-container {
+    background-color: var(--secondary);
+}
