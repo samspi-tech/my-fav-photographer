@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import About from '../../about/About.jsx';
 import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import SearchDialog from '../../searchDialog/SearchDialog.jsx';
-import About from '../../about/About.jsx';
 
-const NavEnd = () => {
+const NavEnd = ({ user }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const handleIsVisible = () => {
@@ -30,10 +30,7 @@ const NavEnd = () => {
                 onHide={handleIsVisible}
                 content={<SearchDialog handleHide={handleIsVisible} />}
             />
-            <Avatar
-                image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png"
-                shape="circle"
-            />
+            {user && <Avatar image={user.avatar} shape="circle" />}
         </div>
     );
 };
