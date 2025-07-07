@@ -1,3 +1,33 @@
-.p-card-content {
-    padding-top: 0;
+.post-body {
+    line-clamp: 4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.p-panel {
+    background-color: #FFF;
+}
+
+.post-header {
+    color: #131515;
+    font-weight: 500;
+}
+
+.p-panel-content {
+    border-radius: 0;
+}
+
+.post-footer button {
+    width: 30px;
+    height: 30px;
+    color: #0D3B66;
+
+    transition: all 100ms ease-in-out;
+}
+
+.post-footer button:hover {
+    color: #FFFFFF !important;
+    background-color: #0D3B66;
 }
