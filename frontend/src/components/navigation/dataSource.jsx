@@ -1,12 +1,8 @@
-export const photographerNavItems = [
+export const navItems = [
     {
         label: 'Home',
         icon: 'pi pi-home',
         url: '/homepage',
-    },
-    {
-        label: 'Profile',
-        icon: 'pi pi-user',
     },
     {
         label: 'Settings',
@@ -14,14 +10,10 @@ export const photographerNavItems = [
     },
 ];
 
-export const userNavItems = [
+export const photographerNavItems = [
+    ...navItems,
     {
-        label: 'Home',
-        icon: 'pi pi-home',
-        url: '/homepage',
-    },
-    {
-        label: 'Settings',
-        icon: 'pi pi-cog',
+        label: 'Profile',
+        icon: 'pi pi-user',
     },
 ];

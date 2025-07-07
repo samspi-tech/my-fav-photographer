@@ -5,7 +5,7 @@ import NavEnd from './partials/NavEnd.jsx';
 import { Menubar } from 'primereact/menubar';
 import { Col, Container, Row } from 'react-bootstrap';
 import { UserContext } from '../../contexts/UserContext.jsx';
-import { photographerNavItems, userNavItems } from './dataSource.jsx';
+import { navItems, photographerNavItems } from './dataSource.jsx';
 
 const Navigation = () => {
     const { user } = useContext(UserContext);
@@ -19,7 +19,7 @@ const Navigation = () => {
                             end={<NavEnd user={user} />}
                             model={
                                 user && user.role === 'user'
-                                    ? userNavItems
+                                    ? navItems
                                     : photographerNavItems
                             }
                             className="d-flex align-items-center"

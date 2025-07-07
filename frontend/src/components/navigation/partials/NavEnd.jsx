@@ -30,7 +30,14 @@ const NavEnd = ({ user }) => {
                 onHide={handleIsVisible}
                 content={<SearchDialog handleHide={handleIsVisible} />}
             />
-            {user && <Avatar image={user.avatar} shape="circle" />}
+            {user && (
+                <Avatar
+                    size="large"
+                    shape="circle"
+                    className="border"
+                    image={user.avatar}
+                />
+            )}
         </div>
     );
 };
