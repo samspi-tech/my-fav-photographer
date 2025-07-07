@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import Posts from '../components/posts/Posts.jsx';
 import BaseLayout from '../baseLayout/BaseLayout.jsx';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useFetchData } from '../hooks/useFetchData.jsx';
+import { useFetchData } from '../hooks/useFetchData.js';
 import { UserContext } from '../contexts/UserContext.jsx';
 
 const Homepage = () => {

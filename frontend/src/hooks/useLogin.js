@@ -42,13 +42,7 @@ export const useLogin = () => {
         try {
             const res = await fetch(
                 `${import.meta.env.VITE_SERVER_BASE_URL}/auth/logout`,
-                {
-                    method: 'POST',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                },
+                { credentials: 'include' },
             );
 
             if (res.ok) navigate('/', { replace: true });
