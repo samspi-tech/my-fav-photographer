@@ -37,13 +37,13 @@ const Login = () => {
                 <Form.Group>
                     <FloatLabel>
                         <InputText
-                            id="email"
+                            id="loginEmail"
                             type="email"
                             name="email"
                             value={formik.values.email}
                             onChange={formik.handleChange}
                         />
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="loginEmail">Email</label>
                     </FloatLabel>
                     {formik.touched.email && formik.errors.email ? (
                         <ErrorMessage error={formik.errors.email} />
@@ -53,13 +53,13 @@ const Login = () => {
                 <Form.Group>
                     <FloatLabel className="mt-4">
                         <InputText
-                            id="password"
+                            id="loginPassword"
                             type="password"
                             name="password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
                         />
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="loginPassword">Password</label>
                     </FloatLabel>
                     {formik.touched.password && formik.errors.password ? (
                         <ErrorMessage error={formik.errors.password} />
