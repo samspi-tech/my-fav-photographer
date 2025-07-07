@@ -4,5 +4,6 @@ const authController = require('../controllers/auth.controller');
 
 auth.get('/me', authController.getMe);
 auth.post('/login', authController.loginAuth);
+auth.post('/logout', authController.logoutAuth);
 
 module.exports = auth;

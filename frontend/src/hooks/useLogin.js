@@ -37,6 +37,30 @@ export const useLogin = () => {
         }
     };
 
+    const logout = async () => {
+        setIsLoading(true);
+        try {
+            const res = await fetch(
+                `${import.meta.env.VITE_SERVER_BASE_URL}/auth/logout`,
+                {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                },
+            );
+
+            if (res.ok) navigate('/', { replace: true });
+
+            return res.json();
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     const signup = async (payload) => {
         setIsLoading(true);
         try {
@@ -71,6 +95,7 @@ export const useLogin = () => {
         error,
         isLoading,
         login,
+        logout,
         signup,
     };
 };

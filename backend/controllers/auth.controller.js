@@ -29,6 +29,27 @@ const loginAuth = async (req, res, next) => {
     }
 };
 
+const logoutAuth = async (req, res, next) => {
+    try {
+        const ONE_SECOND = 1000;
+        const COOKIE_EXPIRES_IN = new Date(Date.now() + ONE_SECOND);
+
+        const cookieOptions = {
+            expires: COOKIE_EXPIRES_IN,
+            httpOnly: true,
+        };
+
+        res.cookie('token', 'loggedOut', cookieOptions);
+
+        res.status(200).send({
+            statusCode: 200,
+            message: 'Logged out successfully',
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
 const getMe = async (req, res, next) => {
     try {
         const userId = req.user.id;
@@ -45,5 +66,6 @@ const getMe = async (req, res, next) => {
 
 module.exports = {
     loginAuth,
+    logoutAuth,
     getMe,
 };

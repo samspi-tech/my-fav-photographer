@@ -3,9 +3,11 @@ import About from '../../about/About.jsx';
 import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import { useLogin } from '../../../hooks/useLogin.js';
 import SearchDialog from '../../searchDialog/SearchDialog.jsx';
 
 const NavEnd = ({ user }) => {
+    const { logout } = useLogin();
     const [isVisible, setIsVisible] = useState(false);
 
     const handleIsVisible = () => {
@@ -38,6 +40,14 @@ const NavEnd = ({ user }) => {
                     image={user.avatar}
                 />
             )}
+            <Button
+                text
+                onClick={logout}
+                tooltip="Logout"
+                icon="pi pi-sign-out"
+                className="text-white ms-2"
+                tooltipOptions={{ position: 'bottom' }}
+            />
         </div>
     );
 };
