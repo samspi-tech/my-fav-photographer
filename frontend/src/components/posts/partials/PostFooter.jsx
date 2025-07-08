@@ -10,20 +10,28 @@ const PostFooter = ({ post }) => {
         setIsVisible((prevState) => !prevState);
     };
 
+    const { comments } = post;
+    const commentsNum = comments.length;
+
     return (
-        <div className="post-footer py-2 px-3">
-            <Button
-                link
-                icon="pi pi-comment"
-                onClick={handleIsVisible}
-                className="shadow-none rounded-circle"
-            />
+        <div className="post-footer d-flex py-2 px-3">
+            <div className="d-flex flex-column justify-content-center align-items-center">
+                <Button
+                    link
+                    icon="pi pi-comments"
+                    onClick={handleIsVisible}
+                    className="shadow-none rounded-circle text-secondary"
+                />
+                <small className="text-secondary">{commentsNum} Comments</small>
+            </div>
             <Dialog
                 header="Comments"
                 visible={isVisible}
                 onHide={handleIsVisible}
             >
-                <Comments post={post} />
+                <div className="d-flex flex-column gap-2">
+                    <Comments post={post} />
+                </div>
             </Dialog>
         </div>
     );
