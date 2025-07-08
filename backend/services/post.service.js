@@ -27,7 +27,9 @@ const findAllPosts = async (page = 1, pageSize = 10) => {
                 path: 'user',
                 select: ['firstName', 'lastName', 'avatar'],
             },
-        });
+        })
+        .populate('upVotes')
+        .populate('downVotes');
     if (isArrayEmpty(posts)) throw new PostNotFoundException();
 
     return { posts, totalPages, totalPosts };
