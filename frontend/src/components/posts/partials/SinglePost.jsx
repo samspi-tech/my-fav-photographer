@@ -1,21 +1,18 @@
 import { Col } from 'react-bootstrap';
-import { Card } from 'primereact/card';
-import { Avatar } from 'primereact/avatar';
+import PostBody from './PostBody.jsx';
+import { Panel } from 'primereact/panel';
+import PostHeader from './PostHeader.jsx';
+import PostFooter from './PostFooter.jsx';
 
 const SinglePost = ({ post }) => {
-    const { title, body, user } = post;
-    const { firstName, lastName, avatar } = user;
-    const postCreator = `${firstName} ${lastName}`;
-
     return (
         <Col xs={12}>
-            <Card title={title}>
-                <small className="d-flex align-items-center gap-2 mb-2 text-secondary">
-                    by <span className="text-capitalize">{postCreator}</span>
-                    <span>{<Avatar image={avatar} shape="circle" />}</span>
-                </small>
-                <p>{body}</p>
-            </Card>
+            <Panel
+                headerTemplate={<PostHeader post={post} />}
+                footerTemplate={<PostFooter post={post} />}
+            >
+                <PostBody post={post} />
+            </Panel>
         </Col>
     );
 };
