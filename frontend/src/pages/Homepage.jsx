@@ -2,16 +2,16 @@ import { useContext, useEffect } from 'react';
 import Posts from '../components/posts/Posts.jsx';
 import BaseLayout from '../baseLayout/BaseLayout.jsx';
 import { Col, Container, Row } from 'react-bootstrap';
-import { useFetchData } from '../hooks/useFetchData.js';
 import { UserContext } from '../contexts/UserContext.jsx';
+import { PostContext } from '../contexts/PostContext.jsx';
 
 const Homepage = () => {
     const { getMe } = useContext(UserContext);
-    const { fetchData, data, error, isLoading } = useFetchData();
+    const { data, error, isLoading, getAllPosts } = useContext(PostContext);
 
     useEffect(() => {
         getMe();
-        fetchData('post');
+        getAllPosts();
     }, []);
 
     return (

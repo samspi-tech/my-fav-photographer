@@ -12,7 +12,7 @@ const VoteSchema = new mongoose.Schema(
         },
         post: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'post ',
+            ref: 'post',
         },
     },
     { timestamps: true, strict: true },

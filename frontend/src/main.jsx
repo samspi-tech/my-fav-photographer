@@ -7,13 +7,16 @@ import './index.css';
 import App from './App.jsx';
 import { PrimeReactProvider } from 'primereact/api';
 import { UserProvider } from './contexts/UserContext.jsx';
+import { PostProvider } from './contexts/PostContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <UserProvider>
-            <PrimeReactProvider>
-                <App />
-            </PrimeReactProvider>
+            <PostProvider>
+                <PrimeReactProvider>
+                    <App />
+                </PrimeReactProvider>
+            </PostProvider>
         </UserProvider>
     </StrictMode>,
 );

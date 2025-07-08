@@ -36,10 +36,7 @@ const downVote = async (req, res, next) => {
 
 const removeUpVote = async (req, res, next) => {
     try {
-        const { body } = req;
-        const { userId } = body;
-        const { postId } = req.params;
-
+        const { postId, userId } = req.params;
         await voteService.removeUpVote(postId, userId);
 
         res.status(200).send({
@@ -53,10 +50,7 @@ const removeUpVote = async (req, res, next) => {
 
 const removeDownVote = async (req, res, next) => {
     try {
-        const { body } = req;
-        const { userId } = body;
-        const { postId } = req.params;
-
+        const { postId, userId } = req.params;
         await voteService.removeDownVote(postId, userId);
 
         res.status(200).send({
