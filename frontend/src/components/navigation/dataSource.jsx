@@ -11,9 +11,9 @@ export const navItems = [
 ];
 
 export const photographerNavItems = [
-    ...navItems,
     {
         label: 'Profile',
         icon: 'pi pi-user',
     },
+    ...navItems,
 ];
