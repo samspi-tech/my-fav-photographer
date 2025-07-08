@@ -13,7 +13,9 @@ const PostBody = ({ post }) => {
     return (
         <>
             <h5 className="fw-bold">{title}</h5>
-            <p className={`${!seeMore && 'post-body'} mb-0`}>{body}</p>
+            <p className={`${!seeMore && 'post-body'} post-body-length mb-0`}>
+                {body}
+            </p>
             <Button
                 link
                 onClick={handleSeeMore}
