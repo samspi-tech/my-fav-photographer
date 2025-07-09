@@ -7,13 +7,14 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { CascadeSelect } from 'primereact/cascadeselect';
 import { InputTextarea } from 'primereact/inputtextarea';
-import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
-import { UserContext } from '../../../../../contexts/UserContext.jsx';
-import { PostContext } from '../../../../../contexts/PostContext.jsx';
+import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
+import { UserContext } from '../../contexts/UserContext.jsx';
+import { PostContext } from '../../contexts/PostContext.jsx';
 
-const PostForm = () => {
+const PostForm = ({ initialValues, submitFn, postId }) => {
     const { user } = useContext(UserContext);
-    const { error, isLoading, createPost } = useContext(PostContext);
+    const { error, isLoading, createPost, updatePost } =
+        useContext(PostContext);
 
     const yupPostSchema = object({
         title: string()
@@ -25,14 +26,13 @@ const PostForm = () => {
     });
 
     const formik = useFormik({
-        initialValues: {
-            title: '',
-            body: '',
-        },
+        initialValues,
         validationSchema: yupPostSchema,
         onSubmit: async (values) => {
             const userId = user && user._id;
-            await createPost(userId, values);
+            submitFn === 'create'
+                ? await createPost(userId, values)
+                : await updatePost(userId, postId, values);
         },
     });
 

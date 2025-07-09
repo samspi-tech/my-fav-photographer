@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import PostForm from './partials/PostForm.jsx';
+import PostForm from '../../../postForm/PostForm.jsx';
 
 const CreatePost = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     const handleIsVisible = () => {
         setIsVisible((prevState) => !prevState);
+    };
+
+    const initialValues = {
+        title: '',
+        body: '',
     };
 
     return (
@@ -27,7 +32,7 @@ const CreatePost = () => {
                 header="Create new post"
                 onHide={handleIsVisible}
             >
-                <PostForm />
+                <PostForm initialValues={initialValues} submitFn="create" />
             </Dialog>
         </>
     );

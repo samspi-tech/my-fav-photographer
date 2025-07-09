@@ -4,7 +4,7 @@ import HeaderMenu from './partials/HeaderMenu.jsx';
 import { UserContext } from '../../../../contexts/UserContext.jsx';
 
 const PostHeader = ({ post }) => {
-    const { user, _id: postId } = post;
+    const { user } = post;
     const { firstName, lastName, avatar, _id: userId } = user;
     const author = `${firstName} ${lastName}`;
 
@@ -17,7 +17,7 @@ const PostHeader = ({ post }) => {
                 <p className="text-capitalize mb-0">{author}</p>
             </div>
             {loggedUser && loggedUser._id === userId && (
-                <HeaderMenu userId={userId} postId={postId} />
+                <HeaderMenu userId={userId} post={post} />
             )}
         </div>
     );

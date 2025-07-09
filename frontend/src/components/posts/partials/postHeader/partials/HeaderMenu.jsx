@@ -1,15 +1,30 @@
 import { Menu } from 'primereact/menu';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { PostContext } from '../../../../../contexts/PostContext.jsx';
+import PostForm from '../../../../postForm/PostForm.jsx';
+import { Dialog } from 'primereact/dialog';
 
-const HeaderMenu = ({ userId, postId }) => {
+const HeaderMenu = ({ userId, post }) => {
+    const { title, body, _id: postId } = post;
     const { deletePost } = useContext(PostContext);
+
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handleIsVisible = () => {
+        setIsVisible((prevState) => !prevState);
+    };
+
+    const initialValues = {
+        title: `${title}`,
+        body: `${body}`,
+    };
 
     const configMenu = useRef(null);
     const items = [
         {
             label: 'Edit',
             icon: 'pi pi-file-edit',
+            command: handleIsVisible,
         },
         {
             label: 'Delete',
@@ -33,6 +48,19 @@ const HeaderMenu = ({ userId, postId }) => {
             >
                 <span className="pi pi-cog"></span>
             </button>
+            <Dialog
+                position="top"
+                visible={isVisible}
+                focusOnShow={false}
+                header="Update your post"
+                onHide={handleIsVisible}
+            >
+                <PostForm
+                    postId={postId}
+                    submitFn="update"
+                    initialValues={initialValues}
+                />
+            </Dialog>
         </div>
     );
 };
