@@ -17,7 +17,7 @@ const About = () => {
                 tooltip="About"
                 icon="pi pi-info-circle"
                 onClick={handleIsVisible}
-                className="text-white shadow-none"
+                className="text-white shadow-none ms-2"
                 tooltipOptions={{ position: 'bottom' }}
             />
             <Dialog visible={isVisible} onHide={handleIsVisible} header="About">

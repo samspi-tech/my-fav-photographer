@@ -1,6 +1,6 @@
 import { Button } from 'primereact/button';
 import { useContext } from 'react';
-import { PostContext } from '../../../contexts/PostContext.jsx';
+import { PostContext } from '../../../../../contexts/PostContext.jsx';
 
 const VotePostButton = ({ icon, vote, postId, userVote, userId }) => {
     const { votePost, deleteVote } = useContext(PostContext);

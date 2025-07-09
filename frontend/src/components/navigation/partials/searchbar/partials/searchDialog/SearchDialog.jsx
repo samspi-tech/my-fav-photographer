@@ -4,8 +4,8 @@ import { InputText } from 'primereact/inputtext';
 import { Form, ListGroup } from 'react-bootstrap';
 import { useContext, useEffect, useState } from 'react';
 import Photographers from './partials/Photographers.jsx';
-import { UserContext } from '../../contexts/UserContext.jsx';
-import CustomMessage from '../customMessage/CustomMessage.jsx';
+import { UserContext } from '../../../../../../contexts/UserContext.jsx';
+import CustomMessage from '../../../../../customMessage/CustomMessage.jsx';
 
 const SearchDialog = ({ handleHide }) => {
     const { error, isLoading, getAllPhotographers, photographers } =
