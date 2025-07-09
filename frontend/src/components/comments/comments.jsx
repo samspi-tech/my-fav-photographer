@@ -1,22 +1,28 @@
 import './comments.css';
 import SingleComment from './partials/SingleComment.jsx';
+import { useContext } from 'react';
+import { CommentContext } from '../../contexts/CommentContext.jsx';
 
-const Comments = ({ post }) => {
-    const { comments } = post;
+const Comments = ({ comments }) => {
+    const { error, isLoading } = useContext(CommentContext);
 
     return (
         <>
-            {comments.length === 0 && (
+            {isLoading && <p>Loading comments...</p>}
+            {!isLoading && error && (
                 <div className="bg-body-secondary px-2 py-3">
                     <p className="mb-0 text-secondary text-center">
                         No comments yet.
                     </p>
                 </div>
             )}
-            {comments.map((comment) => {
-                const { _id: commentId } = comment;
-                return <SingleComment key={commentId} comment={comment} />;
-            })}
+            {!isLoading &&
+                !error &&
+                comments &&
+                comments.map((comment) => {
+                    const { _id: commentId } = comment;
+                    return <SingleComment key={commentId} comment={comment} />;
+                })}
         </>
     );
 };

@@ -14,7 +14,8 @@ const findAllComments = async (postId, page = 1, pageSize = 10) => {
 
     const comments = await CommentSchema.find({ post: postId })
         .limit(pageSize)
-        .skip(skipPages);
+        .skip(skipPages)
+        .populate('user', ['firstName', 'lastName', 'avatar']);
     if (isArrayEmpty(comments)) throw new CommentNotFoundException();
 
     return { comments, totalPages, totalComments };

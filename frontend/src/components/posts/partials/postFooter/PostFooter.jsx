@@ -1,22 +1,13 @@
-import { Button } from 'primereact/button';
-import { Dialog } from 'primereact/dialog';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import VotePostButton from './partials/VotePostButton.jsx';
-import Comments from '../../../comments/comments.jsx';
 import { UserContext } from '../../../../contexts/UserContext.jsx';
+import PostFooterComments from './partials/PostFooterComments.jsx';
 
 const PostFooter = ({ post }) => {
     const { user } = useContext(UserContext);
     const { _id: userId } = user;
 
-    const [isVisible, setIsVisible] = useState(false);
-
-    const handleIsVisible = () => {
-        setIsVisible((prevState) => !prevState);
-    };
-
-    const { _id: postId, comments, upVotes, downVotes } = post;
-    const commentsNum = comments.length;
+    const { _id: postId, upVotes, downVotes } = post;
 
     const upVotesNum = upVotes.length;
     const downVotesNum = downVotes.length;
@@ -32,17 +23,7 @@ const PostFooter = ({ post }) => {
     return (
         <>
             <div className="post-footer d-flex py-2 px-3">
-                <div className="d-flex flex-column justify-content-center align-items-center">
-                    <Button
-                        link
-                        icon="pi pi-comments"
-                        onClick={handleIsVisible}
-                        className="shadow-none rounded-circle text-secondary"
-                    />
-                    <small className="text-secondary">
-                        {commentsNum} Comments
-                    </small>
-                </div>
+                <PostFooterComments post={post} />
                 <div className="ms-auto d-flex gap-2">
                     <VotePostButton
                         postId={postId}
@@ -68,15 +49,6 @@ const PostFooter = ({ post }) => {
                     />
                 </div>
             </div>
-            <Dialog
-                header="Comments"
-                visible={isVisible}
-                onHide={handleIsVisible}
-            >
-                <div className="d-flex flex-column gap-2">
-                    <Comments post={post} />
-                </div>
-            </Dialog>
         </>
     );
 };
