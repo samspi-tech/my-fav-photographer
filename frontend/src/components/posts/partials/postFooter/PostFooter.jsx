@@ -1,9 +1,9 @@
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { useContext, useState } from 'react';
-import VotePostButton from './VotePostButton.jsx';
-import Comments from '../../comments/comments.jsx';
-import { UserContext } from '../../../contexts/UserContext.jsx';
+import VotePostButton from './partials/VotePostButton.jsx';
+import Comments from '../../../comments/comments.jsx';
+import { UserContext } from '../../../../contexts/UserContext.jsx';
 
 const PostFooter = ({ post }) => {
     const { user } = useContext(UserContext);

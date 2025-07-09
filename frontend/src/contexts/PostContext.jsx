@@ -32,6 +32,83 @@ export const PostProvider = ({ children }) => {
         }
     };
 
+    const createPost = async (userId, payload) => {
+        setIsLoading(true);
+        try {
+            const res = await fetch(
+                `${import.meta.env.VITE_SERVER_BASE_URL}/post/create/${userId}`,
+                {
+                    method: 'POST',
+                    credentials: 'include',
+                    body: JSON.stringify(payload),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                },
+            );
+
+            const data = await res.json();
+            if (!res.ok) throw new Error(`${data.message}`);
+
+            return data;
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            await getAllPosts();
+            setIsLoading(false);
+        }
+    };
+
+    const deletePost = async (userId, postId) => {
+        setIsLoading(true);
+        try {
+            const res = await fetch(
+                `${import.meta.env.VITE_SERVER_BASE_URL}/post/delete/${userId}/post/${postId}`,
+                {
+                    method: 'DELETE',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                },
+            );
+
+            return await res.json();
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            await getAllPosts();
+            setIsLoading(false);
+        }
+    };
+
+    const updatePost = async (userId, postId, payload) => {
+        setIsLoading(true);
+        try {
+            const res = await fetch(
+                `${import.meta.env.VITE_SERVER_BASE_URL}/post/update/${userId}/post/${postId}`,
+                {
+                    method: 'PATCH',
+                    body: JSON.stringify(payload),
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                },
+            );
+
+            const data = await res.json();
+            if (!res.ok) throw new Error(`${data.message}`);
+
+            return data;
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            await getAllPosts();
+            setIsLoading(false);
+        }
+    };
+
     const votePost = async (type, postId, userId) => {
         try {
             const res = await fetch(
@@ -79,6 +156,9 @@ export const PostProvider = ({ children }) => {
                 error,
                 isLoading,
                 getAllPosts,
+                createPost,
+                deletePost,
+                updatePost,
                 votePost,
                 deleteVote,
             }}
