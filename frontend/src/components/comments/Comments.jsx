@@ -3,16 +3,15 @@ import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { useContext, useState } from 'react';
 import SingleComment from './partials/SingleComment.jsx';
-import { CommentContext } from '../../contexts/CommentContext.jsx';
 import CustomMessage from '../customMessage/CustomMessage.jsx';
+import { CommentContext } from '../../contexts/CommentContext.jsx';
 
 const Comments = ({ post }) => {
-    const { error, isLoading } = useContext(CommentContext);
+    const { error, isLoading, comments, getPostComments } =
+        useContext(CommentContext);
 
     const { _id: postId, comments: postComments } = post;
     const commentsNum = postComments.length;
-
-    const { getPostComments, comments } = useContext(CommentContext);
 
     const [isVisible, setIsVisible] = useState(false);
 

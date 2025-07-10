@@ -1,11 +1,10 @@
 import { useContext } from 'react';
-import Comments from '../../../comments/comments.jsx';
+import Comments from '../../../comments/Comments.jsx';
 import VotePostButton from './partials/VotePostButton.jsx';
 import { UserContext } from '../../../../contexts/UserContext.jsx';
 
 const PostFooter = ({ post }) => {
     const { user } = useContext(UserContext);
-    const { _id: userId } = user;
 
     const { _id: postId, upVotes, downVotes } = post;
 
@@ -14,7 +13,7 @@ const PostFooter = ({ post }) => {
 
     const isLoggedInUserVote = (votes, type) => {
         const vote = votes.filter((vote) => {
-            return vote[type] === userId;
+            if (user) return vote[type] === user._id;
         });
 
         return vote.length !== 0;
@@ -27,7 +26,7 @@ const PostFooter = ({ post }) => {
                 <div className="ms-auto d-flex gap-2">
                     <VotePostButton
                         postId={postId}
-                        userId={userId}
+                        userId={user && user._id}
                         vote={upVotesNum}
                         userVote="upvote"
                         icon={
@@ -38,7 +37,7 @@ const PostFooter = ({ post }) => {
                     />
                     <VotePostButton
                         postId={postId}
-                        userId={userId}
+                        userId={user && user._id}
                         userVote="downvote"
                         vote={downVotesNum}
                         icon={
