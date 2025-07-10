@@ -1,7 +1,7 @@
 import { useContext } from 'react';
+import Comments from '../../../comments/comments.jsx';
 import VotePostButton from './partials/VotePostButton.jsx';
 import { UserContext } from '../../../../contexts/UserContext.jsx';
-import PostFooterComments from './partials/PostFooterComments.jsx';
 
 const PostFooter = ({ post }) => {
     const { user } = useContext(UserContext);
@@ -23,7 +23,7 @@ const PostFooter = ({ post }) => {
     return (
         <>
             <div className="post-footer d-flex py-2 px-3">
-                <PostFooterComments post={post} />
+                <Comments post={post} />
                 <div className="ms-auto d-flex gap-2">
                     <VotePostButton
                         postId={postId}
