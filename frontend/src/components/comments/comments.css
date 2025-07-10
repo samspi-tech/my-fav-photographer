@@ -2,3 +2,13 @@
     width: 25px;
     height: 25px;
 }
+
+.comment-loading-spinner {
+    width: 25px;
+    height: 25px;
+}
+
+.comments-container {
+    max-height: 378px;
+    overflow-y: auto;
+}

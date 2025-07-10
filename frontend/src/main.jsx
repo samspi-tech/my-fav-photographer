@@ -8,14 +8,17 @@ import App from './App.jsx';
 import { PrimeReactProvider } from 'primereact/api';
 import { UserProvider } from './contexts/UserContext.jsx';
 import { PostProvider } from './contexts/PostContext.jsx';
+import { CommentProvider } from './contexts/CommentContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <UserProvider>
             <PostProvider>
-                <PrimeReactProvider>
-                    <App />
-                </PrimeReactProvider>
+                <CommentProvider>
+                    <PrimeReactProvider>
+                        <App />
+                    </PrimeReactProvider>
+                </CommentProvider>
             </PostProvider>
         </UserProvider>
     </StrictMode>,

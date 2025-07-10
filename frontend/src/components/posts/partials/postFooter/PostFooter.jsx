@@ -1,29 +1,19 @@
-import { Button } from 'primereact/button';
-import { Dialog } from 'primereact/dialog';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
+import Comments from '../../../comments/Comments.jsx';
 import VotePostButton from './partials/VotePostButton.jsx';
-import Comments from '../../../comments/comments.jsx';
 import { UserContext } from '../../../../contexts/UserContext.jsx';
 
 const PostFooter = ({ post }) => {
     const { user } = useContext(UserContext);
-    const { _id: userId } = user;
 
-    const [isVisible, setIsVisible] = useState(false);
-
-    const handleIsVisible = () => {
-        setIsVisible((prevState) => !prevState);
-    };
-
-    const { _id: postId, comments, upVotes, downVotes } = post;
-    const commentsNum = comments.length;
+    const { _id: postId, upVotes, downVotes } = post;
 
     const upVotesNum = upVotes.length;
     const downVotesNum = downVotes.length;
 
     const isLoggedInUserVote = (votes, type) => {
         const vote = votes.filter((vote) => {
-            return vote[type] === userId;
+            if (user) return vote[type] === user._id;
         });
 
         return vote.length !== 0;
@@ -32,21 +22,11 @@ const PostFooter = ({ post }) => {
     return (
         <>
             <div className="post-footer d-flex py-2 px-3">
-                <div className="d-flex flex-column justify-content-center align-items-center">
-                    <Button
-                        link
-                        icon="pi pi-comments"
-                        onClick={handleIsVisible}
-                        className="shadow-none rounded-circle text-secondary"
-                    />
-                    <small className="text-secondary">
-                        {commentsNum} Comments
-                    </small>
-                </div>
+                <Comments post={post} />
                 <div className="ms-auto d-flex gap-2">
                     <VotePostButton
                         postId={postId}
-                        userId={userId}
+                        userId={user && user._id}
                         vote={upVotesNum}
                         userVote="upvote"
                         icon={
@@ -57,7 +37,7 @@ const PostFooter = ({ post }) => {
                     />
                     <VotePostButton
                         postId={postId}
-                        userId={userId}
+                        userId={user && user._id}
                         userVote="downvote"
                         vote={downVotesNum}
                         icon={
@@ -68,15 +48,6 @@ const PostFooter = ({ post }) => {
                     />
                 </div>
             </div>
-            <Dialog
-                header="Comments"
-                visible={isVisible}
-                onHide={handleIsVisible}
-            >
-                <div className="d-flex flex-column gap-2">
-                    <Comments post={post} />
-                </div>
-            </Dialog>
         </>
     );
 };

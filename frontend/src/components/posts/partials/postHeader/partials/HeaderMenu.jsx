@@ -46,7 +46,7 @@ const HeaderMenu = ({ userId, post }) => {
                 className="p-panel-header-icon p-link mr-2"
                 onClick={(e) => configMenu?.current?.toggle(e)}
             >
-                <span className="pi pi-cog"></span>
+                <span className="pi pi-ellipsis-v"></span>
             </button>
             <Dialog
                 position="top"
