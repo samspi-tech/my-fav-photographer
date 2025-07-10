@@ -29,6 +29,8 @@ const CommentForm = ({ initialValues, submitFn, postId, commentId }) => {
             submitFn === 'create'
                 ? await createComment(userId, postId, values)
                 : await updateComment(postId, commentId, values);
+
+            formik.resetForm();
         },
     });
 
@@ -40,6 +42,7 @@ const CommentForm = ({ initialValues, submitFn, postId, commentId }) => {
             <Form.Group className="w-100">
                 <InputTextarea
                     rows={1}
+                    autoFocus
                     type="text"
                     name="comment"
                     value={formik.values.comment}

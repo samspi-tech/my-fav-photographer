@@ -13,6 +13,7 @@ const findAllComments = async (postId, page = 1, pageSize = 10) => {
     const skipPages = calcSkipPages(page, pageSize);
 
     const comments = await CommentSchema.find({ post: postId })
+        .sort({ createdAt: -1 })
         .limit(pageSize)
         .skip(skipPages)
         .populate('user', ['firstName', 'lastName', 'avatar']);

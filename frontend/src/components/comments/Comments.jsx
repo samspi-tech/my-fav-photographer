@@ -4,10 +4,12 @@ import { Dialog } from 'primereact/dialog';
 import { useContext, useState } from 'react';
 import CommentForm from './partials/CommentForm.jsx';
 import SingleComment from './partials/SingleComment.jsx';
+import { PostContext } from '../../contexts/PostContext.jsx';
 import CustomMessage from '../customMessage/CustomMessage.jsx';
 import { CommentContext } from '../../contexts/CommentContext.jsx';
 
 const Comments = ({ post }) => {
+    const { getAllPosts } = useContext(PostContext);
     const { error, isLoading, comments, getPostComments } =
         useContext(CommentContext);
 
@@ -41,9 +43,12 @@ const Comments = ({ post }) => {
             <Dialog
                 header="Comments"
                 visible={isVisible}
-                onHide={handleIsVisible}
+                onHide={() => {
+                    handleIsVisible();
+                    getAllPosts();
+                }}
             >
-                <div className="d-flex flex-column gap-2">
+                <div className="comments-container d-flex flex-column gap-2">
                     {isLoading && <CustomMessage error="Loading..." />}
                     {!isLoading && error && (
                         <CustomMessage error="No comments yet." />
