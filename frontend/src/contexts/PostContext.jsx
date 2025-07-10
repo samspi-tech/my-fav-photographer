@@ -7,6 +7,7 @@ export const PostProvider = ({ children }) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [photographerPosts, setPhotographerPosts] = useState(null);
 
     const getAllPosts = async () => {
         setIsLoading(true);
@@ -25,7 +26,29 @@ export const PostProvider = ({ children }) => {
 
             return data;
         } catch (err) {
-            console.log(err.message);
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const getPhotographerPosts = async (userId) => {
+        setIsLoading(true);
+        try {
+            const res = await fetch(
+                `${import.meta.env.VITE_SERVER_BASE_URL}/post/${userId}/posts`,
+                {
+                    credentials: 'include',
+                },
+            );
+
+            const data = await res.json();
+            setPhotographerPosts(data.posts);
+
+            if (!res.ok) throw new Error(data.message);
+
+            return data;
+        } catch (err) {
             setError(err.message);
         } finally {
             setIsLoading(false);
@@ -48,7 +71,7 @@ export const PostProvider = ({ children }) => {
             );
 
             const data = await res.json();
-            if (!res.ok) throw new Error(`${data.message}`);
+            if (!res.ok) throw new Error(data.message);
 
             return data;
         } catch (err) {
@@ -56,6 +79,7 @@ export const PostProvider = ({ children }) => {
         } finally {
             await getAllPosts();
             setIsLoading(false);
+            await getPhotographerPosts(userId);
         }
     };
 
@@ -79,6 +103,7 @@ export const PostProvider = ({ children }) => {
         } finally {
             await getAllPosts();
             setIsLoading(false);
+            await getPhotographerPosts(userId);
         }
     };
 
@@ -98,7 +123,7 @@ export const PostProvider = ({ children }) => {
             );
 
             const data = await res.json();
-            if (!res.ok) throw new Error(`${data.message}`);
+            if (!res.ok) throw new Error(data.message);
 
             return data;
         } catch (err) {
@@ -106,6 +131,7 @@ export const PostProvider = ({ children }) => {
         } finally {
             await getAllPosts();
             setIsLoading(false);
+            await getPhotographerPosts(userId);
         }
     };
 
@@ -128,6 +154,7 @@ export const PostProvider = ({ children }) => {
             setError(err.message);
         } finally {
             await getAllPosts();
+            await getPhotographerPosts(userId);
         }
     };
 
@@ -146,6 +173,7 @@ export const PostProvider = ({ children }) => {
             setError(err.message);
         } finally {
             await getAllPosts();
+            await getPhotographerPosts(userId);
         }
     };
 
@@ -153,9 +181,11 @@ export const PostProvider = ({ children }) => {
         <PostContext.Provider
             value={{
                 data,
+                photographerPosts,
                 error,
                 isLoading,
                 getAllPosts,
+                getPhotographerPosts,
                 createPost,
                 deletePost,
                 updatePost,

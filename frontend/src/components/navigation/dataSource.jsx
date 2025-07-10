@@ -14,6 +14,7 @@ export const photographerNavItems = [
     {
         label: 'Profile',
         icon: 'pi pi-user',
+        url: '/profile',
     },
     ...navItems,
 ];

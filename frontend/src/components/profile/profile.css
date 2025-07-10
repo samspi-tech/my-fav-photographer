@@ -1,0 +1,40 @@
+.profile-avatar {
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--accent);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-tabview .p-tabview-nav {
+    padding: 0;
+}
+
+.profile-tabview .p-tabview-nav,
+.profile-tabview .p-tabview-nav a {
+    text-decoration: none;
+    color: #8C8C8C;
+    background-color: var(--secondary);
+}
+
+.profile-tabview .p-tabview-nav a:hover {
+    color: #FFF;
+}
+
+.profile-tabview .p-tabview-selected a {
+    color: var(--accent) !important;
+    border-color: var(--accent);
+}
+
+.profile-tabview .p-tabview-panels {
+    min-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    color: var(--text-primary);
+    background-color: var(--primary);
+}
+

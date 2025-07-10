@@ -42,7 +42,10 @@ const findAllUserPosts = async (userId, page = 1, pageSize = 10) => {
 
     const posts = await PostSchema.find({ user: userId })
         .limit(pageSize)
-        .skip(skipPages);
+        .skip(skipPages)
+        .populate('user', ['firstName', 'lastName', 'avatar'])
+        .populate('upVotes')
+        .populate('downVotes');
     if (isArrayEmpty(posts)) throw new PostNotFoundException();
 
     return { posts, totalPages, totalPosts };
