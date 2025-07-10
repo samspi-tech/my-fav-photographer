@@ -2,6 +2,7 @@ import './comments.css';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { useContext, useState } from 'react';
+import CommentForm from './partials/CommentForm.jsx';
 import SingleComment from './partials/SingleComment.jsx';
 import CustomMessage from '../customMessage/CustomMessage.jsx';
 import { CommentContext } from '../../contexts/CommentContext.jsx';
@@ -18,6 +19,8 @@ const Comments = ({ post }) => {
     const handleIsVisible = () => {
         setIsVisible((prevState) => !prevState);
     };
+
+    const initialValues = { comment: '' };
 
     return (
         <>
@@ -58,6 +61,11 @@ const Comments = ({ post }) => {
                             );
                         })}
                 </div>
+                <CommentForm
+                    initialValues={initialValues}
+                    submitFn="create"
+                    postId={postId}
+                />
             </Dialog>
         </>
     );
