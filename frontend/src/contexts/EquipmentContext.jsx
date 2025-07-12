@@ -18,6 +18,23 @@ export const EquipmentProvider = ({ children }) => {
         return data;
     };
 
+    const createEquipment = async (userId, payload) => {
+        return await EquipmentReq.post(`equipment/create/${userId}`, payload);
+    };
+
+    const updateEquipment = async (userId, equipmentId, payload) => {
+        return await EquipmentReq.patch(
+            `equipment/update/${userId}/equipment/${equipmentId}`,
+            payload,
+        );
+    };
+
+    const deleteEquipment = async (userId, equipmentId) => {
+        return await EquipmentReq.delete(
+            `equipment/delete/${userId}/equipment/${equipmentId}`,
+        );
+    };
+
     return (
         <EquipmentContext.Provider
             value={{
@@ -25,6 +42,9 @@ export const EquipmentProvider = ({ children }) => {
                 isLoading,
                 equipments,
                 getEquipment,
+                createEquipment,
+                updateEquipment,
+                deleteEquipment,
             }}
         >
             {children}
