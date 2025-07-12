@@ -11,8 +11,10 @@ export const PhotoProvider = ({ children }) => {
 
     const PhotoRequests = new Requests(setError, setIsLoading);
 
-    const getPhotographerPhotos = async (userId) => {
-        const data = await PhotoRequests.get(`photo/${userId}/photos`);
+    const getPhotographerPhotos = async (userId, tag = '') => {
+        const data = await PhotoRequests.get(
+            `photo/${userId}/photos?tag=${tag}`,
+        );
         setPhotos(data?.photos);
 
         return data;
