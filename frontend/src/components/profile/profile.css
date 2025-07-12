@@ -160,3 +160,19 @@
     color: var(--text-secondary);
     background-color: var(--accent);
 }
+
+.equipment-list {
+    width: fit-content;
+}
+
+.equipment-list .p-card-body {
+    padding: 0 30px;
+    color: var(--text-primary);
+    background-color: var(--secondary);
+}
+
+.equipment-list .list-group-item {
+    border: none;
+    color: var(--text-primary);
+    background-color: var(--primary);
+}

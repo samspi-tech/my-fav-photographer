@@ -10,6 +10,7 @@ import { UserProvider } from './contexts/UserContext.jsx';
 import { PostProvider } from './contexts/PostContext.jsx';
 import { CommentProvider } from './contexts/CommentContext.jsx';
 import { PhotoProvider } from './contexts/PhotoContext.jsx';
+import { EquipmentProvider } from './contexts/EquipmentContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
@@ -17,9 +18,11 @@ createRoot(document.getElementById('root')).render(
             <PostProvider>
                 <CommentProvider>
                     <PhotoProvider>
-                        <PrimeReactProvider>
-                            <App />
-                        </PrimeReactProvider>
+                        <EquipmentProvider>
+                            <PrimeReactProvider>
+                                <App />
+                            </PrimeReactProvider>
+                        </EquipmentProvider>
                     </PhotoProvider>
                 </CommentProvider>
             </PostProvider>
