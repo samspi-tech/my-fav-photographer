@@ -22,13 +22,7 @@ const Homepage = () => {
                     <Col xs={12} lg={6}>
                         {isLoading && <p>Loading...</p>}
                         {!isLoading && error && <p>{error}</p>}
-                        {!isLoading && !error && data && (
-                            <Posts
-                                error={error}
-                                posts={data.posts}
-                                loading={isLoading}
-                            />
-                        )}
+                        {!isLoading && !error && data && <Posts posts={data} />}
                     </Col>
                     <Col lg={3} className="d-none d-lg-block"></Col>
                 </Row>

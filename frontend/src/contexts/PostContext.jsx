@@ -20,7 +20,7 @@ export const PostProvider = ({ children }) => {
             );
 
             const data = await res.json();
-            setData(data);
+            setData(data.posts);
 
             if (!res.ok) throw new Error(data.message);
 
@@ -56,6 +56,7 @@ export const PostProvider = ({ children }) => {
     };
 
     const createPost = async (userId, payload) => {
+        setError('');
         setIsLoading(true);
         try {
             const res = await fetch(

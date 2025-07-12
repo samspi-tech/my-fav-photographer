@@ -12,8 +12,6 @@ const ProfilePosts = ({ userId }) => {
         getPhotographerPosts(userId);
     }, [userId]);
 
-    photographerPosts && console.log(photographerPosts);
-
     return (
         <Container className="mb-5">
             <Row className="justify-content-center">

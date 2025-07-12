@@ -40,7 +40,7 @@ const HeaderMenu = ({ userId, post }) => {
                 model={items}
                 ref={configMenu}
                 id="config_menu"
-                className="post-menu"
+                className="custom-menu"
             />
             <button
                 className="p-panel-header-icon p-link mr-2"

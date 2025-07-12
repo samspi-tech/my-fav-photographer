@@ -9,15 +9,18 @@ import { PrimeReactProvider } from 'primereact/api';
 import { UserProvider } from './contexts/UserContext.jsx';
 import { PostProvider } from './contexts/PostContext.jsx';
 import { CommentProvider } from './contexts/CommentContext.jsx';
+import { PhotoProvider } from './contexts/PhotoContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <UserProvider>
             <PostProvider>
                 <CommentProvider>
-                    <PrimeReactProvider>
-                        <App />
-                    </PrimeReactProvider>
+                    <PhotoProvider>
+                        <PrimeReactProvider>
+                            <App />
+                        </PrimeReactProvider>
+                    </PhotoProvider>
                 </CommentProvider>
             </PostProvider>
         </UserProvider>
