@@ -35,18 +35,3 @@
     overflow: auto;
     max-height: 312px;
 }
-
-.post-menu > .p-menu-list {
-    margin: 0;
-    padding: 0;
-}
-
-.post-menu .p-menuitem-text,
-.post-menu .p-menuitem-icon {
-    color: #111827 !important;
-    font-size: 14px;
-}
-
-.post-menu .p-menuitem-link:hover {
-    background-color: #DCFFFD;
-}

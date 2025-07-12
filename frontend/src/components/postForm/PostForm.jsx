@@ -12,8 +12,7 @@ import { PostContext } from '../../contexts/PostContext.jsx';
 
 const PostForm = ({ initialValues, submitFn, postId }) => {
     const { user } = useContext(UserContext);
-    const { error, isLoading, createPost, updatePost } =
-        useContext(PostContext);
+    const { isLoading, createPost, updatePost } = useContext(PostContext);
 
     const yupPostSchema = object({
         title: string()
@@ -77,9 +76,6 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                     className="custom-btn w-100 mt-3"
                 />
             )}
-            <div className="d-flex justify-content-center pt-3">
-                {error && <ErrorMessage error={error} />}
-            </div>
         </Form>
     );
 };

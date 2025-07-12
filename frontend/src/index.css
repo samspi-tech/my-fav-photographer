@@ -53,3 +53,23 @@ body {
 textarea {
     resize: none;
 }
+
+.custom-menu > .p-menu-list {
+    margin: 0;
+    padding: 0;
+}
+
+.custom-menu .p-menuitem-text,
+.custom-menu .p-menuitem-icon {
+    color: #111827 !important;
+    font-size: 14px;
+}
+
+.custom-menu .p-menuitem-link:hover {
+    background-color: #DCFFFD;
+}
+
+.custom-menu .p-contextmenu-root-list {
+    margin: 0;
+    padding: 0;
+}
