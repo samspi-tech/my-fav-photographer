@@ -54,7 +54,7 @@ const UploadPhoto = () => {
                 label="Upload"
                 icon="pi pi-image"
                 onClick={handleIsVisible}
-                className="custom-btn"
+                className="custom-btn align-self-end"
             />
             <Dialog
                 visible={isVisible}

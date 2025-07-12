@@ -61,11 +61,11 @@ const ProfilePhotos = ({ user }) => {
     return (
         <Container>
             <Row className="justify-content-center">
-                <Col lg={6}>
+                <Col lg={10}>
                     {isLoading && <CustomMessage error="Loading..." />}
                     {!isLoading && isRolePhotographer && (
-                        <div className="d-flex flex-column flex-lg-row gap-3 gap-lg-0 my-3">
-                            <div className="d-flex flex-column flex-md-row gap-3 gap-md-0 justify-content-between align-items-center">
+                        <div className="d-flex flex-column gap-5 my-3">
+                            <div className="d-flex flex-column flex-md-row gap-5 gap-md-0 justify-content-between align-items-center">
                                 <UploadPhoto />
                                 <SearchPhoto />
                             </div>
