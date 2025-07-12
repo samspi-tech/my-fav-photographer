@@ -2,6 +2,7 @@ import { Galleria } from 'primereact/galleria';
 import SinglePhoto from './partials/SinglePhoto.jsx';
 import UploadPhoto from './partials/UploadPhoto.jsx';
 import { Col, Container, Row } from 'react-bootstrap';
+import SearchPhoto from './partials/SearchPhoto.jsx';
 import { useContext, useEffect, useRef, useState } from 'react';
 import CustomMessage from '../../../customMessage/CustomMessage.jsx';
 import { PhotoContext } from '../../../../contexts/PhotoContext.jsx';
@@ -63,11 +64,15 @@ const ProfilePhotos = ({ user }) => {
                 <Col lg={6}>
                     {isLoading && <CustomMessage error="Loading..." />}
                     {!isLoading && isRolePhotographer && (
-                        <div className="my-3">
-                            <UploadPhoto />
+                        <div className="d-flex flex-column flex-lg-row gap-3 gap-lg-0 my-3">
+                            <div className="d-flex flex-column flex-md-row gap-3 gap-md-0 justify-content-between align-items-center">
+                                <UploadPhoto />
+                                <SearchPhoto />
+                            </div>
                             <small className="d-flex align-items-center gap-1">
                                 <span className="pi pi-info-circle"></span>
-                                Right click to edit or delete a photo.
+                                Right click or keep pressing to edit or delete a
+                                photo.
                             </small>
                         </div>
                     )}
