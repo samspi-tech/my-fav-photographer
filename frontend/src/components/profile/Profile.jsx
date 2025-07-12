@@ -3,6 +3,7 @@ import { Avatar } from 'primereact/avatar';
 import { TabPanel, TabView } from 'primereact/tabview';
 import ProfilePosts from './partials/ProfilePosts.jsx';
 import ProfilePhotos from './partials/profilePhotos/ProfilePhotos.jsx';
+import ProfileEquipment from './partials/profileEquipment/ProfileEquipment.jsx';
 
 const Profile = ({ user }) => {
     const { firstName, lastName, avatar, _id: userId } = user;
@@ -27,7 +28,7 @@ const Profile = ({ user }) => {
                     <ProfilePhotos user={user} />
                 </TabPanel>
                 <TabPanel header="Equipment">
-                    <p>my equipment</p>
+                    <ProfileEquipment userId={userId} />
                 </TabPanel>
                 <TabPanel header="Workshop">
                     <p>my workshops</p>

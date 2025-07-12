@@ -160,3 +160,41 @@
     color: var(--text-secondary);
     background-color: var(--accent);
 }
+
+.equipment-list {
+    width: fit-content;
+}
+
+.equipment-list .p-card-body {
+    padding: 0 30px;
+    width: 265px;
+    color: var(--text-primary);
+    background-color: var(--secondary);
+}
+
+.equipment-list .list-group-item {
+    border: none;
+    color: var(--text-primary);
+    background-color: var(--primary);
+}
+
+.equipment-menu {
+    position: absolute;
+    right: 7px;
+    top: 7px;
+}
+
+.equipment-menu .pi {
+    visibility: hidden;
+    color: var(--text-primary);
+
+    transition: all 100ms ease-in-out;
+}
+
+.equipment-list:hover .pi {
+    visibility: visible;
+}
+
+.equipment-menu .pi:hover {
+    transform: scale(1.1);
+}
