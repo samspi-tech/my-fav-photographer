@@ -202,3 +202,7 @@
 .workshop-card .p-card-content {
     padding: 0;
 }
+
+.custom-calendar-input .p-component {
+    box-shadow: none;
+}

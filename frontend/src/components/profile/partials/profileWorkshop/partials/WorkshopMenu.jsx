@@ -2,11 +2,12 @@ import { Menu } from 'primereact/menu';
 import { Dialog } from 'primereact/dialog';
 import { useContext, useRef, useState } from 'react';
 import { WorkshopContext } from '../../../../../contexts/WorkshopContext.jsx';
+import WorkshopForm from './WorkshopForm.jsx';
 
 const WorkshopMenu = ({ workshop }) => {
     const configMenu = useRef(null);
 
-    const { _id: workshopId, user: userId } = workshop;
+    const { _id: workshopId, user: userId, title, body, date } = workshop;
 
     const { deleteWorkshop, getWorkshops } = useContext(WorkshopContext);
 
@@ -31,6 +32,12 @@ const WorkshopMenu = ({ workshop }) => {
         },
     ];
 
+    const initialValues = {
+        title,
+        body,
+        date,
+    };
+
     return (
         <div>
             <Menu
@@ -49,8 +56,16 @@ const WorkshopMenu = ({ workshop }) => {
             <Dialog
                 visible={isVisible}
                 onHide={handleVisibility}
+                className="custom-dialog"
                 header="Update your workshop"
-            ></Dialog>
+            >
+                <WorkshopForm
+                    userId={userId}
+                    submitFn="update"
+                    workshopId={workshopId}
+                    initialValues={initialValues}
+                />
+            </Dialog>
         </div>
     );
 };

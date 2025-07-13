@@ -15,7 +15,8 @@ const workshopBodyUpdateValidation = [
         .withMessage('Body cannot be empty or longer than 2550 chars'),
     body('date')
         .optional()
-        .isDate()
+        .isISO8601()
+        .toDate()
         .withMessage('Date must be valid')
         .notEmpty()
         .withMessage('Date is required'),

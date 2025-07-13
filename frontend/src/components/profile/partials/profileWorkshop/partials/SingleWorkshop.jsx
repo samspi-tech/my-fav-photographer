@@ -10,7 +10,10 @@ const SingleWorkshop = ({ workshop, user }) => {
     const isActionAllowed =
         loggedInUserId === workshopAuthor && role === 'photographer';
 
-    const workshopDate = date.split('T')[0];
+    const formatDate = date.split('T');
+    const workshopDate = formatDate[0];
+    const workshopTime = formatDate[1].slice(0, 5);
+
     const participantsNum = participants.length;
     const isSingular = participantsNum === 1 ? 'Participant' : 'Participants';
 
@@ -38,10 +41,16 @@ const SingleWorkshop = ({ workshop, user }) => {
                                 {participantsNum} {isSingular}
                             </small>
                         </div>
-                        <small className="ms-auto mt-auto">
-                            <span className="fw-medium">when:</span>{' '}
-                            {workshopDate}
-                        </small>
+                        <div className="d-flex flex-column gap-2 ms-auto">
+                            <small>
+                                <span className="fw-medium">when:</span>{' '}
+                                {workshopDate}
+                            </small>
+                            <small>
+                                <span className="fw-medium">at:</span>{' '}
+                                {workshopTime}
+                            </small>
+                        </div>
                     </footer>
                 </Card>
             </Col>
