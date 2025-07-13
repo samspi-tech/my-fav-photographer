@@ -12,23 +12,26 @@ import { PhotoProvider } from './contexts/PhotoContext.jsx';
 import { CommentProvider } from './contexts/CommentContext.jsx';
 import { WorkshopProvider } from './contexts/WorkshopContext.jsx';
 import { EquipmentProvider } from './contexts/EquipmentContext.jsx';
+import { FollowerProvider } from './contexts/FollowerContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <UserProvider>
-            <PostProvider>
-                <CommentProvider>
-                    <PhotoProvider>
-                        <EquipmentProvider>
-                            <WorkshopProvider>
-                                <PrimeReactProvider>
-                                    <App />
-                                </PrimeReactProvider>
-                            </WorkshopProvider>
-                        </EquipmentProvider>
-                    </PhotoProvider>
-                </CommentProvider>
-            </PostProvider>
+            <FollowerProvider>
+                <PostProvider>
+                    <CommentProvider>
+                        <PhotoProvider>
+                            <EquipmentProvider>
+                                <WorkshopProvider>
+                                    <PrimeReactProvider>
+                                        <App />
+                                    </PrimeReactProvider>
+                                </WorkshopProvider>
+                            </EquipmentProvider>
+                        </PhotoProvider>
+                    </CommentProvider>
+                </PostProvider>
+            </FollowerProvider>
         </UserProvider>
     </StrictMode>,
 );
