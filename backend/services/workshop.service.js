@@ -5,7 +5,13 @@ const userService = require('../services/user.service');
 const WorkshopNotFoundException = require('../exceptions/workshop/WorkshopNotFoundException');
 
 const findAllWorkshops = async (userId) => {
-    const workshops = await WorkshopSchema.find({ user: userId });
+    const workshops = await WorkshopSchema.find({ user: userId }).populate({
+        path: 'participants',
+        populate: {
+            path: 'participantId',
+            select: ['firstName', 'lastName', 'avatar'],
+        },
+    });
     if (isArrayEmpty(workshops)) throw new WorkshopNotFoundException();
 
     return workshops;
