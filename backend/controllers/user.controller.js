@@ -1,4 +1,5 @@
 const userService = require('../services/user.service');
+const authService = require('../services/auth.service');
 
 const getAllUsers = async (req, res, next) => {
     try {
@@ -7,6 +8,21 @@ const getAllUsers = async (req, res, next) => {
         res.status(200).send({
             statusCode: 200,
             users,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+const getSinglePhotographer = async (req, res, next) => {
+    try {
+        const { photographerId } = req.params;
+
+        const photographer = await authService.findMe(photographerId);
+
+        res.status(200).send({
+            statusCode: 200,
+            photographer,
         });
     } catch (err) {
         next(err);
@@ -84,6 +100,7 @@ const deleteUser = async (req, res, next) => {
 
 module.exports = {
     getAllUsers,
+    getSinglePhotographer,
     getAllPhotographers,
     createUser,
     updateUser,
