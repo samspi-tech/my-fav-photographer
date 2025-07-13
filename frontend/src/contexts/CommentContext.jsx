@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { Requests } from '../utils/Requests.js';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const CommentContext = createContext();
@@ -8,110 +9,33 @@ export const CommentProvider = ({ children }) => {
     const [comments, setComments] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
+    const CommentReq = new Requests(setError, setIsLoading);
+
     const getPostComments = async (postId) => {
-        setError('');
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/comment/${postId}/comments`,
-                {
-                    credentials: 'include',
-                },
-            );
+        const data = await CommentReq.get(`comment/${postId}/comments`);
+        setComments(data.comments);
 
-            const data = await res.json();
-            if (!res.ok) throw new Error(`${data.message}`);
-
-            setComments(data.comments);
-            return data;
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-        }
+        return data;
     };
 
     const createComment = async (userId, postId, payload) => {
-        setError('');
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/comment/create/${userId}/post/${postId}`,
-                {
-                    method: 'POST',
-                    body: JSON.stringify(payload),
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                },
-            );
-
-            const data = await res.json();
-            if (!res.ok) throw new Error(`${data.message}`);
-
-            return data;
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-            await getPostComments(postId);
-        }
+        return await CommentReq.post(
+            `comment/create/${userId}/post/${postId}`,
+            payload,
+        );
     };
 
     const updateComment = async (postId, commentId, payload) => {
-        setError('');
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/comment/update/${postId}/comment/${commentId}`,
-                {
-                    method: 'PATCH',
-                    body: JSON.stringify(payload),
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                },
-            );
-
-            const data = await res.json();
-            if (!res.ok) throw new Error(`${data.message}`);
-
-            return data;
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-            await getPostComments(postId);
-        }
+        return await CommentReq.patch(
+            `comment/update/${postId}/comment/${commentId}`,
+            payload,
+        );
     };
 
     const deleteComment = async (userId, postId, commentId) => {
-        setError('');
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/comment/delete/${userId}/post/${postId}/comment/${commentId}`,
-                {
-                    method: 'DELETE',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                },
-            );
-
-            const data = await res.json();
-            if (!res.ok) throw new Error(`${data.message}`);
-
-            return data;
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-            await getPostComments(postId);
-        }
+        return await CommentReq.delete(
+            `comment/delete/${userId}/post/${postId}/comment/${commentId}`,
+        );
     };
 
     return (
@@ -119,11 +43,11 @@ export const CommentProvider = ({ children }) => {
             value={{
                 error,
                 isLoading,
+                comments,
                 getPostComments,
                 createComment,
                 updateComment,
                 deleteComment,
-                comments,
             }}
         >
             {children}

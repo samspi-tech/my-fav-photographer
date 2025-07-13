@@ -3,12 +3,8 @@ import { Card } from 'primereact/card';
 import WorkshopMenu from './WorkshopMenu.jsx';
 import WorkshopParticipants from '../../workshopParticipants/WorkshopParticipants.jsx';
 
-const SingleWorkshop = ({ workshop, user }) => {
-    const { _id: loggedInUserId, role } = user;
-    const { title, body, date, user: workshopAuthor } = workshop;
-
-    const isActionAllowed =
-        loggedInUserId === workshopAuthor && role === 'photographer';
+const SingleWorkshop = ({ workshop, isActionAllowed }) => {
+    const { title, body, date } = workshop;
 
     const formatDate = date.split('T');
     const workshopDate = formatDate[0];
@@ -25,10 +21,7 @@ const SingleWorkshop = ({ workshop, user }) => {
                     <p className="mb-0">{body}</p>
                 </div>
                 <footer className="pt-3 d-flex">
-                    <WorkshopParticipants
-                        workshop={workshop}
-                        loggedInUserId={loggedInUserId}
-                    />
+                    <WorkshopParticipants workshop={workshop} />
                     <div className="d-flex flex-column gap-2 ms-auto">
                         <small>
                             <span className="fw-medium">when:</span>{' '}

@@ -14,49 +14,19 @@ export const UserProvider = ({ children }) => {
     const UserReq = new Requests(setError, setIsLoading);
 
     const getMe = async () => {
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/auth/me`,
-                { credentials: 'include' },
-            );
+        const data = await UserReq.get('auth/me');
+        setUser(data.me);
 
-            const data = await res.json();
-
-            if (res.ok) {
-                setUser(data.me);
-            } else {
-                throw new Error(`${data.message}`);
-            }
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-        }
+        return data;
     };
 
     const getAllPhotographers = async (first = '', last = '') => {
-        setError('');
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/user/photographers?firstName=${first}&lastName=${last}`,
-                {
-                    credentials: 'include',
-                },
-            );
+        const data = await UserReq.get(
+            `user/photographers?firstName=${first}&lastName=${last}`,
+        );
+        setPhotographers(data.photographers);
 
-            const data = await res.json();
-            setPhotographers(data.photographers);
-
-            if (!res.ok) throw new Error(`${data.message}`);
-
-            return data;
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-        }
+        return data;
     };
 
     const getSinglePhotographer = async (photographerId) => {
@@ -73,12 +43,12 @@ export const UserProvider = ({ children }) => {
             value={{
                 error,
                 isLoading,
-                getMe,
                 user,
-                getAllPhotographers,
                 photographers,
-                getSinglePhotographer,
                 singlePhotographer,
+                getMe,
+                getAllPhotographers,
+                getSinglePhotographer,
             }}
         >
             {children}

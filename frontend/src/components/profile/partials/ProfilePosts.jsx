@@ -1,6 +1,6 @@
 import Posts from '../../posts/Posts.jsx';
-import { Col, Container, Row } from 'react-bootstrap';
 import { useContext, useEffect } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import { PostContext } from '../../../contexts/PostContext.jsx';
 import CustomMessage from '../../customMessage/CustomMessage.jsx';
 

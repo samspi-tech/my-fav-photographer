@@ -1,9 +1,17 @@
-import { Button } from 'primereact/button';
 import { useContext } from 'react';
+import { Button } from 'primereact/button';
 import { PostContext } from '../../../../../contexts/PostContext.jsx';
 
-const VotePostButton = ({ icon, vote, postId, userVote, userId }) => {
-    const { votePost, deleteVote } = useContext(PostContext);
+const VotePostButton = ({
+    icon,
+    vote,
+    postId,
+    userVote,
+    loggedInUserId,
+    postAuthorId,
+}) => {
+    const { votePost, deleteVote, getAllPosts, getPhotographerPosts } =
+        useContext(PostContext);
 
     return (
         <div className="d-flex align-items-center">
@@ -11,14 +19,24 @@ const VotePostButton = ({ icon, vote, postId, userVote, userId }) => {
             <Button
                 link
                 icon={icon}
-                onClick={() => {
+                onClick={async () => {
                     switch (true) {
                         case icon === 'pi pi-thumbs-down-fill':
-                            return deleteVote(userVote, postId, userId);
+                            return await deleteVote(
+                                userVote,
+                                postId,
+                                loggedInUserId,
+                            );
                         case icon === 'pi pi-thumbs-up-fill':
-                            return deleteVote(userVote, postId, userId);
+                            return await deleteVote(
+                                userVote,
+                                postId,
+                                loggedInUserId,
+                            );
                     }
-                    votePost(userVote, postId, userId);
+                    await votePost(userVote, postId, loggedInUserId);
+                    await getAllPosts();
+                    await getPhotographerPosts(postAuthorId);
                 }}
                 className="shadow-none rounded-circle text-secondary"
             />

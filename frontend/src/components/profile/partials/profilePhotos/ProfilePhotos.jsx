@@ -6,10 +6,13 @@ import SearchPhoto from './partials/SearchPhoto.jsx';
 import { useContext, useEffect, useRef, useState } from 'react';
 import CustomMessage from '../../../customMessage/CustomMessage.jsx';
 import { PhotoContext } from '../../../../contexts/PhotoContext.jsx';
+import { getFromSessionStorage } from '../../../../utils/sessionStorage.js';
 
 const ProfilePhotos = ({ user }) => {
-    const { _id: userId, role } = user;
-    const isRolePhotographer = role === 'photographer';
+    const { _id: userId } = user;
+
+    const loggedInUserRole = getFromSessionStorage('role');
+    const isActionAllowed = loggedInUserRole === 'photographer';
 
     const [isVisible, setIsVisible] = useState(true);
     const handleCaptionVisibility = () => {
@@ -63,7 +66,7 @@ const ProfilePhotos = ({ user }) => {
             <Row className="justify-content-center">
                 <Col lg={10}>
                     {isLoading && <CustomMessage error="Loading..." />}
-                    {!isLoading && isRolePhotographer && (
+                    {!isLoading && isActionAllowed && (
                         <div className="d-flex flex-column gap-5 my-3">
                             <div className="d-flex flex-column flex-md-row gap-5 gap-md-0 justify-content-between align-items-center">
                                 <UploadPhoto />
@@ -109,7 +112,7 @@ const ProfilePhotos = ({ user }) => {
                                     index={index}
                                     galleria={galleria}
                                     setActiveIndex={setActiveIndex}
-                                    isRolePhotographer={isRolePhotographer}
+                                    isActionAllowed={isActionAllowed}
                                 />
                             );
                         })}

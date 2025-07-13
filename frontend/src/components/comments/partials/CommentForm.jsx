@@ -11,7 +11,7 @@ import { CommentContext } from '../../../contexts/CommentContext.jsx';
 
 const CommentForm = ({ initialValues, submitFn, postId, commentId }) => {
     const { user } = useContext(UserContext);
-    const { isLoading, createComment, updateComment } =
+    const { isLoading, createComment, updateComment, getPostComments } =
         useContext(CommentContext);
 
     const yupCommentSchema = object({
@@ -29,6 +29,8 @@ const CommentForm = ({ initialValues, submitFn, postId, commentId }) => {
             submitFn === 'create'
                 ? await createComment(userId, postId, values)
                 : await updateComment(postId, commentId, values);
+
+            await getPostComments(postId);
 
             formik.resetForm();
         },

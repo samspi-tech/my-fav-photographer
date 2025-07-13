@@ -26,7 +26,7 @@ export const useLogin = () => {
             if (res.ok) {
                 navigate('/homepage', { replace: true });
             } else {
-                throw new Error(`${data.message}`);
+                throw new Error(data.message);
             }
 
             return data;
@@ -45,7 +45,10 @@ export const useLogin = () => {
                 { credentials: 'include' },
             );
 
-            if (res.ok) navigate('/', { replace: true });
+            if (res.ok) {
+                navigate('/', { replace: true });
+                sessionStorage.clear();
+            }
 
             return res.json();
         } catch (err) {
@@ -74,7 +77,7 @@ export const useLogin = () => {
             if (res.ok) {
                 navigate('/homepage', { replace: true });
             } else {
-                throw new Error(`${data.message}`);
+                throw new Error(data.message);
             }
 
             return data;

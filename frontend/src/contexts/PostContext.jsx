@@ -1,195 +1,68 @@
 import { createContext, useState } from 'react';
+import { Requests } from '../utils/Requests.js';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
-    const [data, setData] = useState(null);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [posts, setPosts] = useState(null);
     const [photographerPosts, setPhotographerPosts] = useState(null);
 
+    const PostReq = new Requests(setError, setIsLoading);
+
     const getAllPosts = async () => {
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/post`,
-                {
-                    credentials: 'include',
-                },
-            );
+        const data = await PostReq.get(`post`);
+        setPosts(data.posts);
 
-            const data = await res.json();
-            setData(data.posts);
-
-            if (!res.ok) throw new Error(data.message);
-
-            return data;
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-        }
+        return data;
     };
 
     const getPhotographerPosts = async (userId) => {
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/post/${userId}/posts`,
-                {
-                    credentials: 'include',
-                },
-            );
+        const data = await PostReq.get(`post/${userId}/posts`);
+        setPhotographerPosts(data.posts);
 
-            const data = await res.json();
-            setPhotographerPosts(data.posts);
-
-            if (!res.ok) throw new Error(data.message);
-
-            return data;
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setIsLoading(false);
-        }
+        return data;
     };
 
     const createPost = async (userId, payload) => {
-        setError('');
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/post/create/${userId}`,
-                {
-                    method: 'POST',
-                    credentials: 'include',
-                    body: JSON.stringify(payload),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                },
-            );
-
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message);
-
-            return data;
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            await getAllPosts();
-            setIsLoading(false);
-            await getPhotographerPosts(userId);
-        }
-    };
-
-    const deletePost = async (userId, postId) => {
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/post/delete/${userId}/post/${postId}`,
-                {
-                    method: 'DELETE',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                },
-            );
-
-            return await res.json();
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            await getAllPosts();
-            setIsLoading(false);
-            await getPhotographerPosts(userId);
-        }
+        return await PostReq.post(`post/create/${userId}`, payload);
     };
 
     const updatePost = async (userId, postId, payload) => {
-        setIsLoading(true);
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/post/update/${userId}/post/${postId}`,
-                {
-                    method: 'PATCH',
-                    body: JSON.stringify(payload),
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                },
-            );
+        return await PostReq.patch(
+            `post/update/${userId}/post/${postId}`,
+            payload,
+        );
+    };
 
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message);
-
-            return data;
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            await getAllPosts();
-            setIsLoading(false);
-            await getPhotographerPosts(userId);
-        }
+    const deletePost = async (userId, postId) => {
+        return await PostReq.delete(`post/delete/${userId}/post/${postId}`);
     };
 
     const votePost = async (type, postId, userId) => {
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/vote/${type}/${postId}`,
-                {
-                    method: 'POST',
-                    credentials: 'include',
-                    body: JSON.stringify({ userId }),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                },
-            );
-
-            return await res.json();
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            await getAllPosts();
-            await getPhotographerPosts(userId);
-        }
+        return await PostReq.post(`vote/${type}/${postId}`, { userId });
     };
 
     const deleteVote = async (type, postId, userId) => {
-        try {
-            const res = await fetch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/vote/delete/${type}/${postId}/user/${userId}`,
-                {
-                    method: 'DELETE',
-                    credentials: 'include',
-                },
-            );
-
-            return await res.json();
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            await getAllPosts();
-            await getPhotographerPosts(userId);
-        }
+        return await PostReq.delete(
+            `vote/delete/${type}/${postId}/user/${userId}`,
+        );
     };
 
     return (
         <PostContext.Provider
             value={{
-                data,
-                photographerPosts,
                 error,
                 isLoading,
+                posts,
+                photographerPosts,
                 getAllPosts,
                 getPhotographerPosts,
                 createPost,
-                deletePost,
                 updatePost,
+                deletePost,
                 votePost,
                 deleteVote,
             }}

@@ -13,8 +13,12 @@ const Comments = ({ post }) => {
     const { error, isLoading, comments, getPostComments } =
         useContext(CommentContext);
 
-    const { _id: postId, comments: postComments } = post;
+    const { getPhotographerPosts } = useContext(PostContext);
+
+    const { _id: postId, comments: postComments, user } = post;
     const commentsNum = postComments.length;
+
+    const { _id: userId } = user;
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -30,9 +34,9 @@ const Comments = ({ post }) => {
                 <Button
                     link
                     icon="pi pi-comments"
-                    onClick={() => {
+                    onClick={async () => {
                         handleIsVisible();
-                        getPostComments(postId);
+                        await getPostComments(postId);
                     }}
                     className="shadow-none rounded-circle text-secondary"
                 />
@@ -43,9 +47,10 @@ const Comments = ({ post }) => {
             <Dialog
                 header="Comments"
                 visible={isVisible}
-                onHide={() => {
+                onHide={async () => {
                     handleIsVisible();
-                    getAllPosts();
+                    await getAllPosts();
+                    await getPhotographerPosts(userId);
                 }}
             >
                 <div className="comments-container d-flex flex-column gap-2">

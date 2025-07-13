@@ -10,7 +10,7 @@ const SinglePhoto = ({
     index,
     galleria,
     formik,
-    isRolePhotographer,
+    isActionAllowed,
 }) => {
     const [isVisible, setIsVisible] = useState(false);
     const handleEditPhotoVisibility = () => {
@@ -55,7 +55,7 @@ const SinglePhoto = ({
         <>
             <div className="photo-container">
                 {photoEl}
-                {isRolePhotographer && (
+                {isActionAllowed && (
                     <ContextMenu
                         model={items}
                         ref={contextMenu}

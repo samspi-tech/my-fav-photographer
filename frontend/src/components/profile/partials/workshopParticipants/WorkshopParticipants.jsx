@@ -6,8 +6,9 @@ import ParticipantsList from './partials/ParticipantsList.jsx';
 import CustomMessage from '../../../customMessage/CustomMessage.jsx';
 import { useParticipateWorkshop } from '../../../../hooks/useParticipateWorkshop.js';
 import { WorkshopContext } from '../../../../contexts/WorkshopContext.jsx';
+import { getFromSessionStorage } from '../../../../utils/sessionStorage.js';
 
-const WorkshopParticipants = ({ workshop, loggedInUserId }) => {
+const WorkshopParticipants = ({ workshop }) => {
     const { participateWorkshop, unsubscribeFromWorkshop } =
         useParticipateWorkshop();
 
@@ -21,6 +22,10 @@ const WorkshopParticipants = ({ workshop, loggedInUserId }) => {
     const handleVisibility = () => {
         setIsVisible((prevState) => !prevState);
     };
+
+    const loggedInUserId = getFromSessionStorage('userId');
+    const loggedInUserRole = getFromSessionStorage('role');
+    const isRoleUser = loggedInUserRole === 'user';
 
     const isParticipant = participants.filter((participant) => {
         return participant.participantId._id === loggedInUserId;
@@ -49,33 +54,35 @@ const WorkshopParticipants = ({ workshop, loggedInUserId }) => {
                     <CustomMessage error="No participants yet" />
                 )}
                 <div>
-                    <div className="d-flex justify-content-between mb-3 mt-2">
-                        {isParticipant.length === 0 && (
-                            <Button
-                                label="Participate"
-                                className="custom-btn p-1"
-                                onClick={async () => {
-                                    await participateWorkshop(workshopId, {
-                                        participantId: loggedInUserId,
-                                    });
-                                    await getWorkshops(workshopAuthor);
-                                }}
-                            />
-                        )}
-                        {isParticipant.length > 0 && (
-                            <Button
-                                label="Unsubscribe"
-                                className="custom-btn p-1"
-                                onClick={async () => {
-                                    await unsubscribeFromWorkshop(
-                                        workshopId,
-                                        loggedInUserId,
-                                    );
-                                    await getWorkshops(workshopAuthor);
-                                }}
-                            />
-                        )}
-                    </div>
+                    {isRoleUser && (
+                        <div className="d-flex justify-content-between mb-3 mt-2">
+                            {isParticipant.length === 0 && (
+                                <Button
+                                    label="Participate"
+                                    className="custom-btn p-1"
+                                    onClick={async () => {
+                                        await participateWorkshop(workshopId, {
+                                            participantId: loggedInUserId,
+                                        });
+                                        await getWorkshops(workshopAuthor);
+                                    }}
+                                />
+                            )}
+                            {isParticipant.length > 0 && (
+                                <Button
+                                    label="Unsubscribe"
+                                    className="custom-btn p-1"
+                                    onClick={async () => {
+                                        await unsubscribeFromWorkshop(
+                                            workshopId,
+                                            loggedInUserId,
+                                        );
+                                        await getWorkshops(workshopAuthor);
+                                    }}
+                                />
+                            )}
+                        </div>
+                    )}
                 </div>
                 <ListGroup>
                     {participants.map((participant) => {

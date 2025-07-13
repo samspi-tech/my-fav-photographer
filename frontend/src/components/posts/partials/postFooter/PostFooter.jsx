@@ -1,19 +1,19 @@
-import { useContext } from 'react';
 import Comments from '../../../comments/Comments.jsx';
 import VotePostButton from './partials/VotePostButton.jsx';
-import { UserContext } from '../../../../contexts/UserContext.jsx';
+import { getFromSessionStorage } from '../../../../utils/sessionStorage.js';
 
 const PostFooter = ({ post }) => {
-    const { user } = useContext(UserContext);
+    const loggedInUserId = getFromSessionStorage('userId');
 
-    const { _id: postId, upVotes, downVotes } = post;
+    const { _id: postId, upVotes, downVotes, user } = post;
+    const { _id: userId } = user;
 
     const upVotesNum = upVotes.length;
     const downVotesNum = downVotes.length;
 
     const isLoggedInUserVote = (votes, type) => {
         const vote = votes.filter((vote) => {
-            if (user) return vote[type] === user._id;
+            return vote[type] === loggedInUserId;
         });
 
         return vote.length !== 0;
@@ -26,7 +26,8 @@ const PostFooter = ({ post }) => {
                 <div className="ms-auto d-flex gap-2">
                     <VotePostButton
                         postId={postId}
-                        userId={user && user._id}
+                        loggedInUserId={loggedInUserId}
+                        postAuthorId={userId}
                         vote={upVotesNum}
                         userVote="upvote"
                         icon={
@@ -37,7 +38,8 @@ const PostFooter = ({ post }) => {
                     />
                     <VotePostButton
                         postId={postId}
-                        userId={user && user._id}
+                        loggedInUserId={loggedInUserId}
+                        postAuthorId={userId}
                         userVote="downvote"
                         vote={downVotesNum}
                         icon={

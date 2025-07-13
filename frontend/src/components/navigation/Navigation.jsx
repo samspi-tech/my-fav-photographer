@@ -6,9 +6,13 @@ import { Menubar } from 'primereact/menubar';
 import { Col, Container, Row } from 'react-bootstrap';
 import { UserContext } from '../../contexts/UserContext.jsx';
 import { navItems, photographerNavItems } from './dataSource.jsx';
+import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 
 const Navigation = () => {
     const { user } = useContext(UserContext);
+
+    const loggedInUserRole = getFromSessionStorage('role');
+    const isRoleUser = loggedInUserRole === 'user';
 
     return (
         <Container fluid={true} className="nav-container">
@@ -16,12 +20,8 @@ const Navigation = () => {
                 <Row>
                     <Col>
                         <Menubar
-                            end={<NavEnd user={user} />}
-                            model={
-                                user && user.role === 'user'
-                                    ? navItems
-                                    : photographerNavItems
-                            }
+                            end={<NavEnd user={user} isRoleUser={isRoleUser} />}
+                            model={isRoleUser ? navItems : photographerNavItems}
                             className="d-flex align-items-center"
                             start={
                                 <Logo cssClass="nav-logo me-5 d-none d-lg-flex" />
