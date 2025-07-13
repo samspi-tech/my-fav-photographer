@@ -7,13 +7,13 @@ const workshopController = require('../controllers/workshop.controller');
 workshop.get('/:userId/workshops', workshopController.getAllWorkshops);
 workshop.post(
     '/create/:userId',
-    bodyValidation('createPost'),
+    bodyValidation('createWorkshop'),
     checkPermission('photographer'),
     workshopController.createWorkshop,
 );
 workshop.patch(
     '/update/:userId/workshop/:workshopId',
-    bodyValidation('updatePost'),
+    bodyValidation('updateWorkshop'),
     checkPermission('photographer'),
     workshopController.updateWorkshop,
 );

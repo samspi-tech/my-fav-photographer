@@ -12,6 +12,10 @@ const WorkshopSchema = new mongoose.Schema(
             maxLength: 2550,
             required: true,
         },
+        date: {
+            type: Date,
+            required: true,
+        },
         participants: [
             {
                 type: mongoose.Schema.Types.ObjectId,
