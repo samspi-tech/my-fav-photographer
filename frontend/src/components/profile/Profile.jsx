@@ -32,7 +32,7 @@ const Profile = ({ user }) => {
                     <ProfileEquipment userId={userId} />
                 </TabPanel>
                 <TabPanel header="Workshop">
-                    <ProfileWorkshop />
+                    <ProfileWorkshop userId={userId} />
                 </TabPanel>
             </TabView>
         </div>

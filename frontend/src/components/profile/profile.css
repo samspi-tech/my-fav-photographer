@@ -198,3 +198,7 @@
 .equipment-menu .pi:hover {
     transform: scale(1.1);
 }
+
+.workshop-card .p-card-content {
+    padding: 0;
+}
