@@ -25,7 +25,10 @@ const SingleWorkshop = ({ workshop, user }) => {
                     <p className="mb-0">{body}</p>
                 </div>
                 <footer className="pt-3 d-flex">
-                    <WorkshopParticipants workshop={workshop} />
+                    <WorkshopParticipants
+                        workshop={workshop}
+                        loggedInUserId={loggedInUserId}
+                    />
                     <div className="d-flex flex-column gap-2 ms-auto">
                         <small>
                             <span className="fw-medium">when:</span>{' '}
