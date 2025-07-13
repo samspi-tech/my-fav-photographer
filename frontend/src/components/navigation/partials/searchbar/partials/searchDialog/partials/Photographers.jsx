@@ -8,7 +8,10 @@ const Photographers = ({ photographer }) => {
     const { _id: photographerId, firstName, lastName, avatar } = photographer;
 
     return (
-        <Link to={`/user/${photographerId}`} className="text-decoration-none">
+        <Link
+            to={`/photographer/${photographerId}`}
+            className="text-decoration-none"
+        >
             <ListGroup.Item
                 onMouseEnter={() => setIsHover(true)}
                 onMouseLeave={() => setIsHover(false)}

@@ -7,6 +7,10 @@ const checkPermission = require('../middlewares/auth/checkPermission');
 const cloudinaryController = require('../controllers/cloudinary.controller');
 
 user.get('/', checkPermission('admin'), userController.getAllUsers);
+user.get(
+    '/singlePhotographer/:photographerId',
+    userController.getSinglePhotographer,
+);
 user.get('/photographers', userController.getAllPhotographers);
 user.post('/create', bodyValidation('createUser'), userController.createUser);
 user.post(
