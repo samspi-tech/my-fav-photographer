@@ -4,15 +4,21 @@ import BaseLayout from '../baseLayout/BaseLayout.jsx';
 import { Col, Container, Row } from 'react-bootstrap';
 import { UserContext } from '../contexts/UserContext.jsx';
 import { PostContext } from '../contexts/PostContext.jsx';
+import { saveToSessionStorage } from '../utils/sessionStorage.js';
 
 const Homepage = () => {
-    const { getMe } = useContext(UserContext);
-    const { data, error, isLoading, getAllPosts } = useContext(PostContext);
+    const { getMe, user } = useContext(UserContext);
+    const { posts, error, isLoading, getAllPosts } = useContext(PostContext);
 
     useEffect(() => {
         getMe();
         getAllPosts();
     }, []);
+
+    if (user) {
+        saveToSessionStorage('role', user.role);
+        saveToSessionStorage('userId', user._id);
+    }
 
     return (
         <BaseLayout>
@@ -22,7 +28,9 @@ const Homepage = () => {
                     <Col xs={12} lg={6}>
                         {isLoading && <p>Loading...</p>}
                         {!isLoading && error && <p>{error}</p>}
-                        {!isLoading && !error && data && <Posts posts={data} />}
+                        {!isLoading && !error && posts && (
+                            <Posts posts={posts} />
+                        )}
                     </Col>
                     <Col lg={3} className="d-none d-lg-block"></Col>
                 </Row>

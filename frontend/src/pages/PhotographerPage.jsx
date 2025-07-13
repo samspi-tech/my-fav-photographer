@@ -13,7 +13,7 @@ const PhotographerPage = () => {
 
     useEffect(() => {
         getSinglePhotographer(photographerId);
-    }, []);
+    }, [photographerId]);
 
     return (
         <BaseLayout>

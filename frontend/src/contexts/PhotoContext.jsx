@@ -15,7 +15,7 @@ export const PhotoProvider = ({ children }) => {
         const data = await PhotoRequests.get(
             `photo/${userId}/photos?tag=${tag}`,
         );
-        setPhotos(data?.photos);
+        setPhotos(data.photos);
 
         return data;
     };

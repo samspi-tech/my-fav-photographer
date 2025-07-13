@@ -5,13 +5,13 @@ import Searchbar from './searchbar/Searchbar.jsx';
 import CreatePost from './createPost/CreatePost.jsx';
 import { useLogin } from '../../../hooks/useLogin.js';
 
-const NavEnd = ({ user }) => {
+const NavEnd = ({ user, isRoleUser }) => {
     const { logout } = useLogin();
 
     return (
         <div className="d-flex align-items-center">
-            <Searchbar />
-            {user && user.role === 'photographer' && <CreatePost />}
+            {isRoleUser && <Searchbar />}
+            {!isRoleUser && <CreatePost />}
             {user && (
                 <Avatar
                     size="large"

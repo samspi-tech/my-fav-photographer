@@ -7,7 +7,7 @@ const CommentMenu = ({ postId, commentId, handleUpdate }) => {
     const { user } = useContext(UserContext);
     const configMenu = useRef(null);
 
-    const { deleteComment } = useContext(CommentContext);
+    const { deleteComment, getPostComments } = useContext(CommentContext);
 
     const items = [
         {
@@ -18,7 +18,10 @@ const CommentMenu = ({ postId, commentId, handleUpdate }) => {
         {
             label: 'Delete',
             icon: 'pi pi-trash',
-            command: () => deleteComment(user._id, postId, commentId),
+            command: async () => {
+                await deleteComment(user._id, postId, commentId);
+                await getPostComments(postId);
+            },
         },
     ];
 
