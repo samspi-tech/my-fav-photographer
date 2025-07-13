@@ -8,8 +8,9 @@ import App from './App.jsx';
 import { PrimeReactProvider } from 'primereact/api';
 import { UserProvider } from './contexts/UserContext.jsx';
 import { PostProvider } from './contexts/PostContext.jsx';
-import { CommentProvider } from './contexts/CommentContext.jsx';
 import { PhotoProvider } from './contexts/PhotoContext.jsx';
+import { CommentProvider } from './contexts/CommentContext.jsx';
+import { WorkshopProvider } from './contexts/WorkshopContext.jsx';
 import { EquipmentProvider } from './contexts/EquipmentContext.jsx';
 
 createRoot(document.getElementById('root')).render(
@@ -19,9 +20,11 @@ createRoot(document.getElementById('root')).render(
                 <CommentProvider>
                     <PhotoProvider>
                         <EquipmentProvider>
-                            <PrimeReactProvider>
-                                <App />
-                            </PrimeReactProvider>
+                            <WorkshopProvider>
+                                <PrimeReactProvider>
+                                    <App />
+                                </PrimeReactProvider>
+                            </WorkshopProvider>
                         </EquipmentProvider>
                     </PhotoProvider>
                 </CommentProvider>

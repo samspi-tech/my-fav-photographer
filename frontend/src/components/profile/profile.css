@@ -198,3 +198,11 @@
 .equipment-menu .pi:hover {
     transform: scale(1.1);
 }
+
+.workshop-card .p-card-content {
+    padding: 0;
+}
+
+.custom-calendar-input .p-component {
+    box-shadow: none;
+}

@@ -58,6 +58,16 @@ const {
     userBodyUpdateValidation,
 } = require('../middlewares/user/validateUserBodyUpdate');
 
+const {
+    workshopBodyValidation,
+    workshopBodyValidator,
+} = require('../middlewares/workshop/validateWorkshopBody');
+
+const {
+    workshopBodyUpdateValidation,
+    workshopBodyUpdateValidator,
+} = require('../middlewares/workshop/validateWrokshopBodyUpdate');
+
 const validation = (bodyValidation) => {
     switch (bodyValidation) {
         case 'createAddress': {
@@ -98,6 +108,12 @@ const validation = (bodyValidation) => {
         }
         case 'updateUser': {
             return [userBodyUpdateValidation, userBodyUpdateValidator];
+        }
+        case 'createWorkshop': {
+            return [workshopBodyValidation, workshopBodyValidator];
+        }
+        case 'updateWorkshop': {
+            return [workshopBodyUpdateValidation, workshopBodyUpdateValidator];
         }
     }
 };

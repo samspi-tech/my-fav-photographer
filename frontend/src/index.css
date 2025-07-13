@@ -73,3 +73,18 @@ textarea {
     margin: 0;
     padding: 0;
 }
+
+.custom-dialog .p-dialog-header,
+.custom-dialog .p-dialog-content,
+.custom-dialog .p-dialog-header-icon {
+    color: var(--text-primary);
+    background-color: var(--secondary);
+    border: 1px solid var(--secondary);
+
+    transition: all 100ms ease-in-out;
+}
+
+.custom-dialog .p-dialog-header-icon:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
