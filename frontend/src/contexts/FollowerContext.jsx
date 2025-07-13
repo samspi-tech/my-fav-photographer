@@ -7,8 +7,7 @@ export const FollowerContext = createContext();
 export const FollowerProvider = ({ children }) => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [followers, setFollowers] = useState(null);
-    const [following, setFollowing] = useState(null);
+    const [followList, setFollowList] = useState(null);
 
     const FollowerReq = new Requests(setError, setIsLoading);
 
@@ -16,14 +15,14 @@ export const FollowerProvider = ({ children }) => {
         const data = await FollowerReq.get(
             `follower/${photographerId}/followers`,
         );
-        setFollowers(data.followers);
+        setFollowList(data.followers);
 
         return data;
     };
 
     const getFollowing = async (userId) => {
         const data = await FollowerReq.get(`follower/${userId}/following`);
-        setFollowing(data.following);
+        setFollowList(data.following);
 
         return data;
     };
@@ -45,8 +44,7 @@ export const FollowerProvider = ({ children }) => {
             value={{
                 error,
                 isLoading,
-                followers,
-                following,
+                followList,
                 getFollowers,
                 getFollowing,
                 followPhotographer,
