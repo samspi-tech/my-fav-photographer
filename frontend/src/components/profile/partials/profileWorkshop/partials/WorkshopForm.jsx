@@ -81,7 +81,7 @@ const WorkshopForm = ({ initialValues, submitFn, userId, workshopId }) => {
                     showTime
                     type="date"
                     name="date"
-                    hourFormat="12"
+                    hourFormat="24"
                     id="workshop-date"
                     value={formik.values.date}
                     onChange={formik.handleChange}
