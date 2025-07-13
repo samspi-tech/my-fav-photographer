@@ -1,9 +1,14 @@
-import { Col, Row } from 'react-bootstrap';
 import { Card } from 'primereact/card';
+import { Col, Row } from 'react-bootstrap';
 import { Button } from 'primereact/button';
+import WorkshopMenu from './WorkshopMenu.jsx';
 
-const SingleWorkshop = ({ workshop }) => {
-    const { title, body, date, participants } = workshop;
+const SingleWorkshop = ({ workshop, user }) => {
+    const { _id: loggedInUserId, role } = user;
+    const { title, body, date, participants, user: workshopAuthor } = workshop;
+
+    const isActionAllowed =
+        loggedInUserId === workshopAuthor && role === 'photographer';
 
     const workshopDate = date.split('T')[0];
     const participantsNum = participants.length;
@@ -15,10 +20,9 @@ const SingleWorkshop = ({ workshop }) => {
                 <Card className="workshop-card">
                     <header className="d-flex justify-content-between align-items-center">
                         <h5 className="fw-bold">{title}</h5>
-                        <small>
-                            <span className="fw-medium">when:</span>{' '}
-                            {workshopDate}
-                        </small>
+                        {isActionAllowed && (
+                            <WorkshopMenu workshop={workshop} />
+                        )}
                     </header>
                     <div className="border-bottom border-top py-4">
                         <p className="mb-0">{body}</p>
@@ -34,6 +38,10 @@ const SingleWorkshop = ({ workshop }) => {
                                 {participantsNum} {isSingular}
                             </small>
                         </div>
+                        <small className="ms-auto mt-auto">
+                            <span className="fw-medium">when:</span>{' '}
+                            {workshopDate}
+                        </small>
                     </footer>
                 </Card>
             </Col>

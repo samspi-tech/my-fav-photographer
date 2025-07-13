@@ -4,7 +4,9 @@ import CustomMessage from '../../../customMessage/CustomMessage.jsx';
 import { WorkshopContext } from '../../../../contexts/WorkshopContext.jsx';
 import SingleWorkshop from './partials/SingleWorkshop.jsx';
 
-const ProfileWorkshop = ({ userId }) => {
+const ProfileWorkshop = ({ user }) => {
+    const { _id: userId } = user;
+
     const { error, isLoading, workshops, getWorkshops } =
         useContext(WorkshopContext);
 
@@ -28,6 +30,7 @@ const ProfileWorkshop = ({ userId }) => {
 
                             return (
                                 <SingleWorkshop
+                                    user={user}
                                     key={workshopId}
                                     workshop={workshop}
                                 />
