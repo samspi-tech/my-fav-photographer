@@ -9,42 +9,25 @@ import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 const FollowList = () => {
     const loggedInUserId = getFromSessionStorage('userId');
 
-    const loggedInUserRole = getFromSessionStorage('role');
-    const isRoleUser = loggedInUserRole === 'user';
-
-    const { error, isLoading, getFollowers, getFollowing, followList } =
+    const { error, isLoading, getFollowing, following } =
         useContext(FollowerContext);
 
     useEffect(() => {
-        isRoleUser
-            ? getFollowing(loggedInUserId)
-            : getFollowers(loggedInUserId);
+        getFollowing(loggedInUserId);
     }, []);
 
     return (
         <Card className="rounded-0">
-            <h5 className="fw-bold">
-                {isRoleUser ? 'Following' : 'Followers'}
-            </h5>
+            <h5 className="fw-bold">Following</h5>
             {isLoading && <CustomMessage error="Loading..." />}
             {!isLoading && error && <CustomMessage error={error} />}
             <ListGroup>
                 {!isLoading &&
                     !error &&
-                    followList &&
-                    followList.map((follow) => {
-                        if (isRoleUser) {
-                            const { _id: key, photographerId: followItem } =
-                                follow;
-                            return (
-                                <FollowItem key={key} followItem={followItem} />
-                            );
-                        } else {
-                            const { _id: key, followerId: followItem } = follow;
-                            return (
-                                <FollowItem key={key} followItem={followItem} />
-                            );
-                        }
+                    following &&
+                    following.map((follow) => {
+                        const { _id: key, photographerId: followItem } = follow;
+                        return <FollowItem key={key} followItem={followItem} />;
                     })}
             </ListGroup>
         </Card>
