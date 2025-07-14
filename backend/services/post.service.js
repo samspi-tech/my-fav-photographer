@@ -18,6 +18,7 @@ const findAllPosts = async (page = 1, pageSize = 10) => {
     const skipPages = calcSkipPages(page, pageSize);
 
     const posts = await PostSchema.find()
+        .sort({ createdAt: -1 })
         .limit(pageSize)
         .skip(skipPages)
         .populate('user', ['firstName', 'lastName', 'avatar'])

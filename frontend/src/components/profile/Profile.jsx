@@ -1,13 +1,40 @@
 import './profile.css';
+import { Button } from 'primereact/button';
 import { Avatar } from 'primereact/avatar';
+import { useParams } from 'react-router-dom';
 import { TabPanel, TabView } from 'primereact/tabview';
+import { useContext, useEffect, useMemo } from 'react';
 import ProfilePosts from './partials/ProfilePosts.jsx';
+import { FollowerContext } from '../../contexts/FollowerContext.jsx';
+import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 import ProfilePhotos from './partials/profilePhotos/ProfilePhotos.jsx';
 import ProfileWorkshop from './partials/profileWorkshop/ProfileWorkshop.jsx';
 import ProfileEquipment from './partials/profileEquipment/ProfileEquipment.jsx';
 
 const Profile = ({ user }) => {
     const { firstName, lastName, avatar, _id: userId } = user;
+
+    const {
+        getFollowing,
+        following,
+        followPhotographer,
+        unfollowPhotographer,
+    } = useContext(FollowerContext);
+
+    const followingList = useMemo(
+        () => following && following.map((follow) => follow.photographerId._id),
+        [following],
+    );
+
+    const { photographerId } = useParams();
+    const loggedInUserId = getFromSessionStorage('userId');
+
+    const loggedInUserRole = getFromSessionStorage('role');
+    const isRoleUser = loggedInUserRole === 'user';
+
+    useEffect(() => {
+        getFollowing(loggedInUserId);
+    }, [photographerId]);
 
     return (
         <div>
@@ -20,6 +47,31 @@ const Profile = ({ user }) => {
                 <h2 className="fw-medium text-capitalize">
                     {firstName} {lastName}
                 </h2>
+                {isRoleUser && (
+                    <Button
+                        label={
+                            followingList &&
+                            followingList.includes(photographerId)
+                                ? 'Unfollow'
+                                : 'Follow'
+                        }
+                        className="custom-btn"
+                        onClick={async () => {
+                            followingList &&
+                            followingList.includes(photographerId)
+                                ? await unfollowPhotographer(
+                                      loggedInUserId,
+                                      photographerId,
+                                  )
+                                : await followPhotographer(
+                                      loggedInUserId,
+                                      photographerId,
+                                  );
+
+                            window.location.reload();
+                        }}
+                    />
+                )}
             </div>
             <TabView className="profile-tabview d-flex flex-column align-items-center">
                 <TabPanel header="Posts">
