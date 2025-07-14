@@ -3,9 +3,14 @@ import { TabPanel, TabView } from 'primereact/tabview';
 import { useContext, useEffect } from 'react';
 import { UserContext } from '../../contexts/UserContext.jsx';
 import UpdateProfile from './partials/UpdateProfile.jsx';
+import { getFromSessionStorage } from '../../utils/sessionStorage.js';
+import Addresses from './partials/addresses/Addresses.jsx';
 
 const Settings = () => {
     const { getMe, user } = useContext(UserContext);
+
+    const loggedInUserRole = getFromSessionStorage('role');
+    const isRoleUser = loggedInUserRole === 'user';
 
     useEffect(() => {
         getMe();
@@ -19,10 +24,14 @@ const Settings = () => {
                         <TabPanel header="Profile" leftIcon="pi pi-user me-2">
                             {user && <UpdateProfile user={user} />}
                         </TabPanel>
-                        <TabPanel
-                            header="Addresses"
-                            leftIcon="pi pi-address-book me-2"
-                        ></TabPanel>
+                        {isRoleUser && (
+                            <TabPanel
+                                header="Addresses"
+                                leftIcon="pi pi-address-book me-2"
+                            >
+                                <Addresses />
+                            </TabPanel>
+                        )}
                     </TabView>
                 </Col>
             </Row>
