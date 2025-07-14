@@ -1,11 +1,20 @@
+import { useContext } from 'react';
 import { useFormik } from 'formik';
 import { Form } from 'react-bootstrap';
 import { Button } from 'primereact/button';
 import { object, string, number } from 'yup';
 import { InputText } from 'primereact/inputtext';
 import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
+import { AddressContext } from '../../../../../contexts/AddressContext.jsx';
+import { getFromSessionStorage } from '../../../../../utils/sessionStorage.js';
+import { InputNumber } from 'primereact/inputnumber';
 
-const AddressForm = ({ initialValues, submitFn }) => {
+const AddressForm = ({ initialValues, addressId, submitFn }) => {
+    const { getAddresses, createAddress, updateAddress } =
+        useContext(AddressContext);
+
+    const loggedInUserId = getFromSessionStorage('userId');
+
     const yupAddressSchema = object({
         street: string()
             .required('Required')
@@ -18,21 +27,43 @@ const AddressForm = ({ initialValues, submitFn }) => {
             .max(255, 'Must be 255 characters or less'),
         cap: number()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .positive()
+            .integer()
+            .test(
+                'maxDigits',
+                'Must be 255 characters or less',
+                (number) => String(number).length <= 255,
+            ),
         contact: number()
             .required('Required')
-            .min(10, 'Must be a valid phone number')
-            .max(255, 'Must be 255 characters or less')
+            .positive()
+            .integer()
+            .test(
+                'minDigits',
+                'Invalid Phone number',
+                (number) => String(number).length >= 10,
+            )
+            .test(
+                'maxDigits',
+                'Must be 255 characters or less',
+                (number) => String(number).length <= 255,
+            ),
     });
 
     const formik = useFormik({
         initialValues,
         validationSchema: yupAddressSchema,
         onSubmit: async (values) => {
-            submitFn();
-            console.log(values);
-        }
+            submitFn === 'create'
+                ? await createAddress(loggedInUserId, values)
+                : await updateAddress(loggedInUserId, addressId, values);
+
+            await getAddresses(loggedInUserId);
+        },
     });
+
+    console.log(formik.values.cap);
+    console.log(formik.values.contact);
 
     return (
         <Form
@@ -77,11 +108,12 @@ const AddressForm = ({ initialValues, submitFn }) => {
             </Form.Group>
             <Form.Group className="d-flex flex-column gap-1">
                 <label htmlFor="cap">CAP</label>
-                <InputText
+                <InputNumber
                     id="cap"
                     name="cap"
+                    useGrouping={false}
                     value={formik.values.cap}
-                    onChange={formik.handleChange}
+                    onValueChange={formik.handleChange}
                 />
                 {formik.touched.cap && formik.errors.cap ? (
                     <ErrorMessage error={formik.errors.cap} />
@@ -89,11 +121,12 @@ const AddressForm = ({ initialValues, submitFn }) => {
             </Form.Group>
             <Form.Group className="d-flex flex-column gap-1">
                 <label htmlFor="contact">Phone Number</label>
-                <InputText
+                <InputNumber
                     id="contact"
                     name="contact"
+                    useGrouping={false}
                     value={formik.values.contact}
-                    onChange={formik.handleChange}
+                    onValueChange={formik.handleChange}
                 />
                 {formik.touched.contact && formik.errors.contact ? (
                     <ErrorMessage error={formik.errors.contact} />
