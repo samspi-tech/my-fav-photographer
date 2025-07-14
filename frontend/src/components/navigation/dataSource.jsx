@@ -7,6 +7,7 @@ export const navItems = [
     {
         label: 'Settings',
         icon: 'pi pi-cog',
+        url: '/settings',
     },
 ];
 

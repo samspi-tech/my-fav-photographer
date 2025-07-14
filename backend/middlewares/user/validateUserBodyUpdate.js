@@ -33,13 +33,7 @@ const userBodyUpdateValidation = [
         .withMessage('Email must be valid')
         .isLength({ min: 1, max: 255 })
         .withMessage('Email is needed and cannot be longer than 255 chars'),
-    body('dob')
-        .optional()
-        .notEmpty()
-        .withMessage('DateOfBirth cannot be empty')
-        .isISO8601()
-        .toDate()
-        .withMessage('DateOfBirth must be a valid date'),
+    body('dob').optional(),
 ];
 
 const userBodyUpdateValidator = (req, res, next) => {

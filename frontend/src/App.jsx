@@ -3,6 +3,7 @@ import Homepage from './pages/Homepage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
+import SettingsPage from './pages/SettingsPage.jsx';
 import PhotographerPage from './pages/PhotographerPage.jsx';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
                     path="photographer/:photographerId"
                     element={<PhotographerPage />}
                 />
+                <Route path="/settings" element={<SettingsPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </Router>
