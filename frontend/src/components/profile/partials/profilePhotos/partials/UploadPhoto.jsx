@@ -8,7 +8,7 @@ import { InputText } from 'primereact/inputtext';
 import { FileUpload } from 'primereact/fileupload';
 import { InputTextarea } from 'primereact/inputtextarea';
 import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
-import { useFileUpload } from '../../../../../hooks/useFileUpload.js';
+import { usePhotosUpload } from '../../../../../hooks/usePhotosUpload.js';
 import { UserContext } from '../../../../../contexts/UserContext.jsx';
 import { PhotoContext } from '../../../../../contexts/PhotoContext.jsx';
 
@@ -22,7 +22,10 @@ const UploadPhoto = () => {
     const { getPhotographerPhotos } = useContext(PhotoContext);
 
     const [files, setFiles] = useState(null);
-    const { handlePhotosUpload } = useFileUpload(files, getPhotographerPhotos);
+    const { handlePhotosUpload } = usePhotosUpload(
+        files,
+        getPhotographerPhotos,
+    );
 
     const yupPhotoSchema = object({
         body: string().max(2550, 'Must be 2550 characters or less'),

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Requests } from '../utils/Requests.js';
 
-export const useFileUpload = (files, getPhotographerPhotos) => {
+export const usePhotosUpload = (files, getPhotographerPhotos) => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 

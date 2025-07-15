@@ -17,8 +17,7 @@ const FollowList = () => {
     }, []);
 
     return (
-        <Card className="rounded-0">
-            <h5 className="fw-bold">Following</h5>
+        <Card title="Following" className="rounded-0">
             {isLoading && <CustomMessage error="Loading..." />}
             {!isLoading && error && <CustomMessage error={error} />}
             <ListGroup>
