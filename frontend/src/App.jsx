@@ -6,6 +6,7 @@ import NotFoundPage from './pages/NotFoundPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
 import PhotographerPage from './pages/PhotographerPage.jsx';
 import SuccessPage from './pages/SuccessPage.jsx';
+import ProtectedRoutes from './middleware/ProtectedRoutes.jsx';
 
 const App = () => {
     return (
@@ -13,13 +14,27 @@ const App = () => {
             <Routes>
                 <Route index path="/" element={<LoginPage />} />
                 <Route index path="/success" element={<SuccessPage />} />
-                <Route path="/homepage" element={<Homepage />} />
-                <Route path="/profile" element={<ProfilePage />} />
+
+                <Route element={<ProtectedRoutes role="user" />}>
+                    <Route path="/homepage" element={<Homepage />} />
+                    <Route
+                        path="photographer/:photographerId"
+                        element={<PhotographerPage />}
+                    />
+                </Route>
+
+                <Route element={<ProtectedRoutes role="photographer" />}>
+                    <Route path="/profile" element={<ProfilePage />} />
+                </Route>
+
                 <Route
-                    path="photographer/:photographerId"
-                    element={<PhotographerPage />}
-                />
-                <Route path="/settings" element={<SettingsPage />} />
+                    element={
+                        <ProtectedRoutes role={['user', 'photographer']} />
+                    }
+                >
+                    <Route path="/settings" element={<SettingsPage />} />
+                </Route>
+                
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </Router>
