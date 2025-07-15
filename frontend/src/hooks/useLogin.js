@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const useLogin = () => {
+export const useLogin = (getMe, setUser) => {
     const navigate = useNavigate();
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,11 @@ export const useLogin = () => {
             const data = await res.json();
 
             if (res.ok) {
-                navigate('/homepage', { replace: true });
+                await getMe();
+
+                setTimeout(() => {
+                    navigate('/success', { replace: true });
+                }, 600);
             } else {
                 throw new Error(data.message);
             }
@@ -46,11 +50,12 @@ export const useLogin = () => {
             );
 
             if (res.ok) {
-                navigate('/', { replace: true });
+                setUser(null);
                 sessionStorage.clear();
+                navigate('/', { replace: true });
             }
 
-            return res.json();
+            return await res.json();
         } catch (err) {
             setError(err.message);
         } finally {
@@ -73,12 +78,9 @@ export const useLogin = () => {
             );
 
             const data = await res.json();
+            if (!res.ok) throw new Error(data.message);
 
-            if (res.ok) {
-                navigate('/homepage', { replace: true });
-            } else {
-                throw new Error(data.message);
-            }
+            await login({ email: payload.email, password: payload.password });
 
             return data;
         } catch (err) {
