@@ -1,17 +1,31 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import Logo from '../components/logo/Logo.jsx';
 import Login from '../components/login/Login.jsx';
 import Signup from '../components/signup/Signup.jsx';
 import { Col, Container, Row } from 'react-bootstrap';
 import LoginCover from '../components/loginCover/LoginCover.jsx';
+import { UserContext } from '../contexts/UserContext.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+    const { getMe, user } = useContext(UserContext);
+
+    const navigate = useNavigate();
+
     const [isVisible, setIsVisible] = useState(false);
 
     const handleIsVisible = () => {
         setIsVisible((prevState) => !prevState);
     };
+
+    useEffect(() => {
+        getMe();
+
+        setTimeout(() => {
+            if (user) navigate('success', { replace: true });
+        }, 600);
+    }, [navigate, user]);
 
     return (
         <Container fluid={true}>

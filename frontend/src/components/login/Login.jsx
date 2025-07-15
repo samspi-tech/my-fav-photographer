@@ -8,9 +8,13 @@ import { useLogin } from '../../hooks/useLogin.js';
 import { FloatLabel } from 'primereact/floatlabel';
 import { CascadeSelect } from 'primereact/cascadeselect';
 import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext.jsx';
 
 const Login = () => {
-    const { isLoading, error, login } = useLogin();
+    const { getMe } = useContext(UserContext);
+
+    const { isLoading, error, login } = useLogin(getMe);
 
     const yupLoginSchema = object({
         email: string().required('Required').email('Invalid email address'),
@@ -69,7 +73,7 @@ const Login = () => {
                 {isLoading ? (
                     <CascadeSelect
                         loading
-                        placeholder="Logging in..."
+                        placeholder="Loading..."
                         className="custom-btn loading-btn mt-3"
                     />
                 ) : (

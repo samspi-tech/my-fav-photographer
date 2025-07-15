@@ -44,6 +44,7 @@ export const UserProvider = ({ children }) => {
                 error,
                 isLoading,
                 user,
+                setUser,
                 photographers,
                 singlePhotographer,
                 getMe,

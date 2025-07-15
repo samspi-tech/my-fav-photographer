@@ -4,9 +4,12 @@ import { Button } from 'primereact/button';
 import Searchbar from './searchbar/Searchbar.jsx';
 import CreatePost from './createPost/CreatePost.jsx';
 import { useLogin } from '../../../hooks/useLogin.js';
+import { useContext } from 'react';
+import { UserContext } from '../../../contexts/UserContext.jsx';
 
 const NavEnd = ({ user, isRoleUser }) => {
-    const { logout } = useLogin();
+    const { setUser } = useContext(UserContext);
+    const { logout } = useLogin(null, setUser);
 
     return (
         <div className="d-flex align-items-center">
