@@ -53,20 +53,26 @@ const Addresses = () => {
                     </Dialog>
                 </Col>
             </Row>
-            <Row>
+            <Row className="justify-content-center">
                 <Col lg={6}>
                     {isLoading && <CustomMessage error="Loading..." />}
                     {!isLoading && error && <CustomMessage error={error} />}
                 </Col>
             </Row>
-            <Row className="justify-content-center">
+            <Row className="gy-5">
                 {!isLoading &&
                     !error &&
                     addresses &&
-                    addresses.map((address) => {
+                    addresses.map((address, index) => {
                         const { _id: key } = address;
 
-                        return <SingleAddress key={key} address={address} />;
+                        return (
+                            <SingleAddress
+                                key={key}
+                                index={index}
+                                address={address}
+                            />
+                        );
                     })}
             </Row>
         </>

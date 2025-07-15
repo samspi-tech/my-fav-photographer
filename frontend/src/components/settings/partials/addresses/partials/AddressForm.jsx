@@ -132,7 +132,11 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
                     <ErrorMessage error={formik.errors.contact} />
                 ) : null}
             </Form.Group>
-            <Button type="submit" label="Add" className="custom-btn mt-2" />
+            <Button
+                type="submit"
+                className="custom-btn mt-2"
+                label={submitFn === 'create' ? 'Add' : 'Edit'}
+            />
         </Form>
     );
 };
