@@ -1,4 +1,5 @@
 import './signup.css';
+import { useContext } from 'react';
 import { useFormik } from 'formik';
 import { Form } from 'react-bootstrap';
 import { Button } from 'primereact/button';
@@ -9,9 +10,11 @@ import { useLogin } from '../../hooks/useLogin.js';
 import { RadioButton } from 'primereact/radiobutton';
 import { CascadeSelect } from 'primereact/cascadeselect';
 import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
+import { UserContext } from '../../contexts/UserContext.jsx';
 
 const Signup = ({ isVisible, handleIsVisible }) => {
-    const { isLoading, error, signup } = useLogin();
+    const { getMe } = useContext(UserContext);
+    const { isLoading, error, signup } = useLogin(getMe);
 
     const yupSignupSchema = object({
         firstName: string()
