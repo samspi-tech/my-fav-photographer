@@ -5,6 +5,7 @@ import { UserContext } from '../../contexts/UserContext.jsx';
 import UpdateProfile from './partials/UpdateProfile.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 import Addresses from './partials/addresses/Addresses.jsx';
+import FollowList from '../followList/FollowList.jsx';
 
 const Settings = () => {
     const { getMe, user } = useContext(UserContext);
@@ -30,6 +31,18 @@ const Settings = () => {
                                 leftIcon="pi pi-address-book me-2"
                             >
                                 <Addresses />
+                            </TabPanel>
+                        )}
+                        {isRoleUser && (
+                            <TabPanel
+                                header="Following"
+                                leftIcon="pi pi-camera me-2"
+                            >
+                                <Row className="justify-content-center">
+                                    <Col lg={6}>
+                                        <FollowList />
+                                    </Col>
+                                </Row>
                             </TabPanel>
                         )}
                     </TabView>
