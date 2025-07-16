@@ -21,7 +21,7 @@ export const PostProvider = ({ children }) => {
 
     const getPhotographerPosts = async (userId) => {
         const data = await PostReq.get(`post/${userId}/posts`);
-        setPhotographerPosts(data.posts);
+        setPhotographerPosts(data);
 
         return data;
     };

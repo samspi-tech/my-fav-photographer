@@ -12,7 +12,13 @@ import { PostContext } from '../../contexts/PostContext.jsx';
 
 const PostForm = ({ initialValues, submitFn, postId }) => {
     const { user } = useContext(UserContext);
-    const { isLoading, createPost, updatePost } = useContext(PostContext);
+    const {
+        isLoading,
+        createPost,
+        updatePost,
+        getAllPosts,
+        getPhotographerPosts,
+    } = useContext(PostContext);
 
     const yupPostSchema = object({
         title: string()
@@ -31,6 +37,9 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
             submitFn === 'create'
                 ? await createPost(userId, values)
                 : await updatePost(userId, postId, values);
+
+            await getAllPosts();
+            await getPhotographerPosts(userId);
         },
     });
 
