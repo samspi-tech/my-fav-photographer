@@ -5,7 +5,7 @@ import NavEnd from './partials/NavEnd.jsx';
 import { Menubar } from 'primereact/menubar';
 import { Col, Container, Row } from 'react-bootstrap';
 import { UserContext } from '../../contexts/UserContext.jsx';
-import { navItems, photographerNavItems } from './dataSource.jsx';
+import { userNavItems, photographerNavItems } from './dataSource.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 
 const Navigation = () => {
@@ -21,7 +21,9 @@ const Navigation = () => {
                     <Col>
                         <Menubar
                             end={<NavEnd user={user} isRoleUser={isRoleUser} />}
-                            model={isRoleUser ? navItems : photographerNavItems}
+                            model={
+                                isRoleUser ? userNavItems : photographerNavItems
+                            }
                             className="d-flex align-items-center"
                             start={
                                 <Logo cssClass="nav-logo me-5 d-none d-lg-flex" />
