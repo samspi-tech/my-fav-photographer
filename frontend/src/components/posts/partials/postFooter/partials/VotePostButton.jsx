@@ -13,31 +13,25 @@ const VotePostButton = ({
     const { votePost, deleteVote, getAllPosts, getPhotographerPosts } =
         useContext(PostContext);
 
+    const handleVote = async () => {
+        if (icon.includes('fill')) {
+            await deleteVote(userVote, postId, loggedInUserId);
+            await getAllPosts();
+            return await getPhotographerPosts(postAuthorId);
+        }
+
+        await votePost(userVote, postId, loggedInUserId);
+        await getAllPosts();
+        await getPhotographerPosts(postAuthorId);
+    };
+
     return (
         <div className="d-flex align-items-center">
             <small className="text-secondary">{vote}</small>
             <Button
                 link
                 icon={icon}
-                onClick={async () => {
-                    switch (true) {
-                        case icon === 'pi pi-thumbs-down-fill':
-                            return await deleteVote(
-                                userVote,
-                                postId,
-                                loggedInUserId,
-                            );
-                        case icon === 'pi pi-thumbs-up-fill':
-                            return await deleteVote(
-                                userVote,
-                                postId,
-                                loggedInUserId,
-                            );
-                    }
-                    await votePost(userVote, postId, loggedInUserId);
-                    await getAllPosts();
-                    await getPhotographerPosts(postAuthorId);
-                }}
+                onClick={handleVote}
                 className="shadow-none rounded-circle text-secondary"
             />
         </div>
