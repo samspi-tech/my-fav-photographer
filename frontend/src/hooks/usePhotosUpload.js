@@ -48,7 +48,7 @@ export const usePhotosUpload = (files, getPhotographerPhotos) => {
         } catch (err) {
             setError(err.message);
         } finally {
-            await getPhotographerPhotos(userId);
+            await getPhotographerPhotos(userId, '');
         }
     };
 

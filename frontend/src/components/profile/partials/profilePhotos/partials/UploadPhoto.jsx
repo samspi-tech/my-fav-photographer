@@ -44,7 +44,7 @@ const UploadPhoto = () => {
         validationSchema: yupPhotoSchema,
         onSubmit: async (values) => {
             await handlePhotosUpload(loggedInUserId, values);
-            await getPhotographerPhotos(loggedInUserId);
+            await getPhotographerPhotos(loggedInUserId, '');
         },
     });
 
@@ -59,7 +59,10 @@ const UploadPhoto = () => {
             />
             <Dialog
                 visible={isVisible}
-                onHide={handleIsVisible}
+                onHide={async () => {
+                    handleIsVisible();
+                    await getPhotographerPhotos(loggedInUserId);
+                }}
                 header="Upload your photos"
                 className="dialog-photo-upload"
             >
