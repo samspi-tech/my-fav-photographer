@@ -7,6 +7,7 @@ import SingleComment from './partials/SingleComment.jsx';
 import { PostContext } from '../../contexts/PostContext.jsx';
 import CustomMessage from '../customMessage/CustomMessage.jsx';
 import { CommentContext } from '../../contexts/CommentContext.jsx';
+import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 
 const Comments = ({ post }) => {
     const { getAllPosts } = useContext(PostContext);
@@ -14,6 +15,8 @@ const Comments = ({ post }) => {
         useContext(CommentContext);
 
     const { getPhotographerPosts } = useContext(PostContext);
+
+    const loggedInUserId = getFromSessionStorage('userId');
 
     const { _id: postId, comments: postComments, user } = post;
     const commentsNum = postComments.length;
@@ -49,7 +52,7 @@ const Comments = ({ post }) => {
                 visible={isVisible}
                 onHide={async () => {
                     handleIsVisible();
-                    await getAllPosts();
+                    await getAllPosts(loggedInUserId);
                     await getPhotographerPosts(userId);
                 }}
             >

@@ -26,7 +26,9 @@ const Posts = ({ isHomePage }) => {
         : loggedInUserId;
 
     useEffect(() => {
-        isHomePage ? getAllPosts() : getPhotographerPosts(postsPhotographerId);
+        isHomePage
+            ? getAllPosts(loggedInUserId)
+            : getPhotographerPosts(postsPhotographerId);
     }, [loggedInUserId]);
 
     return (
@@ -35,11 +37,15 @@ const Posts = ({ isHomePage }) => {
             {!isLoading && error && <CustomMessage error={error} />}
             {isHomePage
                 ? posts &&
-                  posts.map((post) => {
-                      const { _id: postId } = post;
-
-                      return <SinglePost key={postId} post={post} />;
-                  })
+                  posts
+                      .reduce((acc, curr) => {
+                          curr = curr.photographerId.posts;
+                          return acc.concat(curr);
+                      }, [])
+                      .map((post) => {
+                          const { _id: key } = post;
+                          return <SinglePost key={key} post={post} />;
+                      })
                 : photographerPosts &&
                   photographerPosts.posts.map((post) => {
                       const { _id: postId } = post;
