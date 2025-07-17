@@ -9,9 +9,11 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
 import { UserContext } from '../../contexts/UserContext.jsx';
 import { PostContext } from '../../contexts/PostContext.jsx';
+import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 
 const PostForm = ({ initialValues, submitFn, postId }) => {
     const { user } = useContext(UserContext);
+
     const {
         isLoading,
         createPost,
@@ -19,6 +21,8 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
         getAllPosts,
         getPhotographerPosts,
     } = useContext(PostContext);
+
+    const loggedInUserId = getFromSessionStorage('userId');
 
     const yupPostSchema = object({
         title: string()
@@ -38,7 +42,7 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                 ? await createPost(userId, values)
                 : await updatePost(userId, postId, values);
 
-            await getAllPosts();
+            await getAllPosts(loggedInUserId);
             await getPhotographerPosts(userId);
         },
     });

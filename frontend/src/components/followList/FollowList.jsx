@@ -1,3 +1,4 @@
+import './followList.css';
 import { Card } from 'primereact/card';
 import { ListGroup } from 'react-bootstrap';
 import { useContext, useEffect } from 'react';

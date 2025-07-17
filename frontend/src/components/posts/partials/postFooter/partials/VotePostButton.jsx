@@ -16,12 +16,12 @@ const VotePostButton = ({
     const handleVote = async () => {
         if (icon.includes('fill')) {
             await deleteVote(userVote, postId, loggedInUserId);
-            await getAllPosts();
+            await getAllPosts(loggedInUserId);
             return await getPhotographerPosts(postAuthorId);
         }
 
         await votePost(userVote, postId, loggedInUserId);
-        await getAllPosts();
+        await getAllPosts(loggedInUserId);
         await getPhotographerPosts(postAuthorId);
     };
 

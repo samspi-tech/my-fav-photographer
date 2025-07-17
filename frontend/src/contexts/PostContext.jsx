@@ -12,9 +12,9 @@ export const PostProvider = ({ children }) => {
 
     const PostReq = new Requests(setError, setIsLoading);
 
-    const getAllPosts = async () => {
-        const data = await PostReq.get(`post`);
-        setPosts(data.posts);
+    const getAllPosts = async (userId) => {
+        const data = await PostReq.get(`follower/${userId}/following`);
+        setPosts(data.following);
 
         return data;
     };

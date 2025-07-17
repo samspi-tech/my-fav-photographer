@@ -38,11 +38,14 @@ const findAllFollowing = async (followerId, page = 1, pageSize = 10) => {
             populate: {
                 path: 'posts',
                 populate: {
-                    path: 'comments',
-                    populate: {
-                        path: 'user',
-                        select: ['firstName', 'lastName', 'avatar'],
-                    },
+                    path: ['user', 'upVotes', 'downVotes'],
+                    select: [
+                        'firstName',
+                        'lastName',
+                        'avatar',
+                        'upVote',
+                        'downVote',
+                    ],
                 },
             },
         });
