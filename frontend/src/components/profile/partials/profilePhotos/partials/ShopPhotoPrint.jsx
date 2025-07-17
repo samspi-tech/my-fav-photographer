@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { RadioButton } from 'primereact/radiobutton';
+import { ShoppingCartContext } from '../../../../../contexts/ShoppingCartContext.jsx';
 
 const ShopPhotoPrint = ({ photo }) => {
     const { photo: singlePhoto } = photo;
+    const { setCartItems } = useContext(ShoppingCartContext);
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -24,6 +26,7 @@ const ShopPhotoPrint = ({ photo }) => {
         const cart = JSON.parse(localStorage.getItem('cart')) ?? [];
         const newCart = [...cart, selectedSize];
 
+        setCartItems(newCart);
         localStorage.setItem('cart', JSON.stringify(newCart));
     };
 
@@ -32,7 +35,7 @@ const ShopPhotoPrint = ({ photo }) => {
             <Button
                 onClick={handleVisibility}
                 icon="pi pi-cart-arrow-down"
-                className="custom-btn shop-photo-btn shadow"
+                className="custom-btn shop-photo-print-btn shadow"
             />
             <Dialog
                 visible={isVisible}
@@ -41,7 +44,7 @@ const ShopPhotoPrint = ({ photo }) => {
                 onHide={handleVisibility}
             >
                 <div className="d-flex flex-column flex-md-row gap-3">
-                    <div className="shopping-cart-photo-container w-100">
+                    <div className="shop-photo-print-container w-100">
                         <img src={singlePhoto} alt="photographerPhoto" />
                     </div>
                     <div className="d-flex flex-column gap-3">

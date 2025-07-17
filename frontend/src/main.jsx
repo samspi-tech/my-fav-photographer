@@ -14,27 +14,30 @@ import { AddressProvider } from './contexts/AddressContext.jsx';
 import { WorkshopProvider } from './contexts/WorkshopContext.jsx';
 import { FollowerProvider } from './contexts/FollowerContext.jsx';
 import { EquipmentProvider } from './contexts/EquipmentContext.jsx';
+import { ShoppingCartProvider } from './contexts/ShoppingCartContext.jsx';
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <UserProvider>
-            <AddressProvider>
-                <FollowerProvider>
-                    <PostProvider>
-                        <CommentProvider>
-                            <PhotoProvider>
-                                <EquipmentProvider>
-                                    <WorkshopProvider>
-                                        <PrimeReactProvider>
-                                            <App />
-                                        </PrimeReactProvider>
-                                    </WorkshopProvider>
-                                </EquipmentProvider>
-                            </PhotoProvider>
-                        </CommentProvider>
-                    </PostProvider>
-                </FollowerProvider>
-            </AddressProvider>
+            <ShoppingCartProvider>
+                <AddressProvider>
+                    <FollowerProvider>
+                        <PostProvider>
+                            <CommentProvider>
+                                <PhotoProvider>
+                                    <EquipmentProvider>
+                                        <WorkshopProvider>
+                                            <PrimeReactProvider>
+                                                <App />
+                                            </PrimeReactProvider>
+                                        </WorkshopProvider>
+                                    </EquipmentProvider>
+                                </PhotoProvider>
+                            </CommentProvider>
+                        </PostProvider>
+                    </FollowerProvider>
+                </AddressProvider>
+            </ShoppingCartProvider>
         </UserProvider>
     </StrictMode>,
 );
