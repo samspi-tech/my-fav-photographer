@@ -51,7 +51,7 @@ const EquipmentForm = ({ equipmentId, userId, initialValues, submitFn }) => {
                     value={formik.values.camera}
                     onChange={formik.handleChange}
                     placeholder="Camera"
-                    className="w-100 bg-dark-subtle shadow-none"
+                    className="w-100 custom-input shadow-none mt-1"
                 />
                 {formik.touched.camera && formik.errors.camera ? (
                     <div className="ms-2 mb-2">
@@ -68,7 +68,7 @@ const EquipmentForm = ({ equipmentId, userId, initialValues, submitFn }) => {
                     value={formik.values.lens}
                     onChange={formik.handleChange}
                     placeholder="Lens"
-                    className="w-100 bg-dark-subtle shadow-none"
+                    className="w-100 custom-input shadow-none mt-1"
                 />
                 {formik.touched.lens && formik.errors.lens ? (
                     <div className="ms-2 mb-2">
@@ -85,7 +85,7 @@ const EquipmentForm = ({ equipmentId, userId, initialValues, submitFn }) => {
                     value={formik.values.bag}
                     onChange={formik.handleChange}
                     placeholder="Bag"
-                    className="w-100 bg-dark-subtle shadow-none"
+                    className="w-100 custom-input shadow-none mt-1"
                 />
                 {formik.touched.bag && formik.errors.bag ? (
                     <div className="ms-2 mb-2">
@@ -104,7 +104,7 @@ const EquipmentForm = ({ equipmentId, userId, initialValues, submitFn }) => {
                     value={formik.values.tripod}
                     onChange={formik.handleChange}
                     placeholder="Tripod"
-                    className="w-100 bg-dark-subtle shadow-none"
+                    className="w-100 custom-input shadow-none mt-1"
                 />
                 {formik.touched.tripod && formik.errors.tripod ? (
                     <div className="ms-2 mb-2">
@@ -123,7 +123,7 @@ const EquipmentForm = ({ equipmentId, userId, initialValues, submitFn }) => {
                     value={formik.values.other}
                     onChange={formik.handleChange}
                     placeholder="Other"
-                    className="w-100 bg-dark-subtle shadow-none"
+                    className="w-100 custom-input shadow-none mt-1"
                 />
                 {formik.touched.other && formik.errors.other ? (
                     <div className="ms-2 mb-2">

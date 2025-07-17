@@ -50,7 +50,7 @@ const EquipmentMenu = ({ equipment }) => {
 
     return (
         <>
-            <div className="equipment-menu">
+            <div>
                 <Menu
                     model={items}
                     popup
@@ -59,7 +59,7 @@ const EquipmentMenu = ({ equipment }) => {
                     className="custom-menu"
                 />
                 <button
-                    className="p-panel-header-icon p-link mr-2"
+                    className="post-menu p-panel-header-icon p-link mr-2"
                     onClick={(e) => configMenu?.current?.toggle(e)}
                 >
                     <span className="pi pi-ellipsis-v"></span>
@@ -69,6 +69,7 @@ const EquipmentMenu = ({ equipment }) => {
                 visible={isVisible}
                 onHide={handleVisibility}
                 header="Edit your equipment"
+                className="custom-dialog"
             >
                 <EquipmentForm
                     userId={userId}

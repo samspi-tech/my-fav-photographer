@@ -47,7 +47,7 @@ const PhotoDescriptionForm = ({ photo }) => {
                     id="photo-tag"
                     value={formik.values.tag}
                     onChange={formik.handleChange}
-                    className="photo-tags-input shadow-none py-1 rounded"
+                    className="custom-input shadow-none py-1 rounded"
                 />
                 {formik.touched.tag && formik.errors.tag ? (
                     <ErrorMessage error={formik.errors.tag} />
@@ -66,7 +66,7 @@ const PhotoDescriptionForm = ({ photo }) => {
                     id="photo-description"
                     value={formik.values.body}
                     onChange={formik.handleChange}
-                    className="photo-tags-input shadow-none py-1 rounded"
+                    className="custom-input shadow-none py-1 rounded"
                 />
                 {formik.touched.body && formik.errors.body ? (
                     <ErrorMessage error={formik.errors.body} />

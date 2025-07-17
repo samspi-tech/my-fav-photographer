@@ -22,6 +22,10 @@
     background-color: transparent;
 }
 
+.post-comment-btn button {
+    background-color: var(--primary);
+}
+
 .post-comment-btn span {
     font-weight: 600;
     color: var(--text-secondary);

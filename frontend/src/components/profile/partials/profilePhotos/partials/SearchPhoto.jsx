@@ -38,11 +38,11 @@ const SearchPhoto = () => {
                 />
                 <InputText
                     type="text"
-                    className="py-2"
                     name="photoQuery"
                     value={photoQuery}
                     onChange={handlePhotoQuery}
                     placeholder="Search by tag"
+                    className="search-photo-input custom-input py-2"
                 />
                 <Button
                     type="button"

@@ -46,7 +46,7 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                     placeholder="Title"
                     value={formik.values.title}
                     onChange={formik.handleChange}
-                    className="w-100 shadow-none border"
+                    className="custom-input w-100 shadow-none border"
                 />
                 {formik.touched.title && formik.errors.title ? (
                     <ErrorMessage error={formik.errors.title} />
@@ -60,7 +60,7 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                     value={formik.values.body}
                     onChange={formik.handleChange}
                     placeholder="Share your story..."
-                    className="w-100 shadow-none border mt-3"
+                    className="custom-input w-100 shadow-none border mt-3"
                 />
                 {formik.touched.body && formik.errors.body ? (
                     <ErrorMessage error={formik.errors.body} />

@@ -74,6 +74,7 @@
 .photo-container {
     width: 100%;
     height: 300px;
+    border-radius: 6px;
 }
 
 @media (min-width: 768px) {
@@ -87,6 +88,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 6px;
 }
 
 .profile-gallery-grid {
@@ -143,23 +145,6 @@
     display: block;
 }
 
-.dialog-photo-upload .p-dialog-header,
-.dialog-photo-upload .p-dialog-content {
-    color: var(--text-primary);
-    background-color: var(--secondary);
-}
-
-.dialog-photo-upload .p-dialog-header-icon {
-    color: var(--text-primary);
-
-    transition: all 100ms ease-in-out;
-}
-
-.dialog-photo-upload .p-dialog-header-icon:hover {
-    color: var(--text-secondary);
-    background-color: var(--accent);
-}
-
 .custom-file-upload .p-fileupload-buttonbar,
 .custom-file-upload .p-fileupload-content {
     color: var(--text-primary);
@@ -167,40 +152,14 @@
 }
 
 .custom-file-upload .p-fileupload-buttonbar .p-button {
-    background-color: var(--secondary);
-}
-
-.photo-tags-input {
-    color: var(--text-primary);
-    background-color: var(--primary);
-    border: 1px solid var(--text-primary);
-}
-
-.form-edit-photo,
-.form-edit-photo .p-dialog-content,
-.form-edit-photo .p-dialog-header {
-    color: var(--text-primary);
-    background-color: var(--secondary);
-}
-
-.form-edit-photo .p-dialog-header-icon {
-    color: var(--text-primary);
-
-    transition: all 100ms ease-in-out;
-}
-
-.form-edit-photo .p-dialog-header-icon:hover {
     color: var(--text-secondary);
     background-color: var(--accent);
-}
-
-.equipment-list {
-    width: fit-content;
+    border-color: var(--accent);
 }
 
 .equipment-list .p-card-body {
-    padding: 0 30px;
-    width: 265px;
+    width: 250px;
+    padding: 0 15px;
     color: var(--text-primary);
     background-color: var(--secondary);
 }
@@ -211,25 +170,11 @@
     background-color: var(--primary);
 }
 
-.equipment-menu {
-    position: absolute;
-    right: 7px;
-    top: 7px;
-}
-
-.equipment-menu .pi {
-    visibility: hidden;
-    color: var(--text-primary);
-
-    transition: all 100ms ease-in-out;
-}
-
-.equipment-list:hover .pi {
-    visibility: visible;
-}
-
-.equipment-menu .pi:hover {
-    transform: scale(1.1);
+.equipment-title {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-family: "Bebas neue", sans-serif;
 }
 
 .workshop-card .p-card-content {
@@ -263,4 +208,13 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.search-photo-input {
+    border-color: var(--accent);
+    background-color: var(--primary);
+}
+
+.search-photo-input::placeholder {
+    color: #c5e6e4;
 }
