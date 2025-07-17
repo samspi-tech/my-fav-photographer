@@ -6,7 +6,7 @@ import CreatePost from './createPost/CreatePost.jsx';
 import { useLogin } from '../../../hooks/useLogin.js';
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/UserContext.jsx';
-import ShoppingCart from './shoppingCart/ShoppingCart.jsx';
+import ShoppingCart from '../../shoppingCart/ShoppingCart.jsx';
 
 const NavEnd = ({ user, isRoleUser }) => {
     const { setUser } = useContext(UserContext);

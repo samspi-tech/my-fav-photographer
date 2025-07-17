@@ -5,10 +5,14 @@ import { Dialog } from 'primereact/dialog';
 import { ListGroup } from 'react-bootstrap';
 import { useContext, useState } from 'react';
 import CartSingleItem from './partials/CartSingleItem.jsx';
-import CustomMessage from '../../../customMessage/CustomMessage.jsx';
-import { ShoppingCartContext } from '../../../../contexts/ShoppingCartContext.jsx';
+import CustomMessage from '../customMessage/CustomMessage.jsx';
+import { ShoppingCartContext } from '../../contexts/ShoppingCartContext.jsx';
+import { useNavigate } from 'react-router-dom';
+import { totalCheckout } from '../../utils/shoppingCart.js';
 
 const ShoppingCart = () => {
+    const navigate = useNavigate();
+
     const { cartItems, setCartItems } = useContext(ShoppingCartContext);
 
     const isEmptyCart = cartItems.length === 0;
@@ -23,11 +27,6 @@ const ShoppingCart = () => {
         setCartItems([]);
         localStorage.removeItem('cart');
     };
-
-    const totalCheckout = cartItems.reduce((acc, item) => {
-        const price = Number(item.price);
-        return acc + price;
-    }, 0);
 
     return (
         <>
@@ -50,7 +49,7 @@ const ShoppingCart = () => {
                 {!isEmptyCart && (
                     <p>
                         <span className="fw-bold">Total checkout:</span> €
-                        {totalCheckout}
+                        {totalCheckout(cartItems)}
                     </p>
                 )}
                 {!isEmptyCart && (
@@ -58,6 +57,7 @@ const ShoppingCart = () => {
                         <Button
                             className="custom-btn"
                             label="Proceed to checkout"
+                            onClick={() => navigate('/checkout')}
                         />
                         <Button
                             severity="danger"
