@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
+import { useNavigate } from 'react-router-dom';
 import Logo from '../components/logo/Logo.jsx';
 import Login from '../components/login/Login.jsx';
 import Signup from '../components/signup/Signup.jsx';
 import { Col, Container, Row } from 'react-bootstrap';
-import LoginCover from '../components/loginCover/LoginCover.jsx';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../contexts/UserContext.jsx';
-import { useNavigate } from 'react-router-dom';
+import LoginCover from '../components/loginCover/LoginCover.jsx';
 
 const LoginPage = () => {
     const { getMe, user } = useContext(UserContext);
@@ -25,6 +25,8 @@ const LoginPage = () => {
         setTimeout(() => {
             if (user) navigate('success', { replace: true });
         }, 600);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navigate, user]);
 
     return (

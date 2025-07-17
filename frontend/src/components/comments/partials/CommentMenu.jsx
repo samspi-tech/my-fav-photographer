@@ -35,7 +35,7 @@ const CommentMenu = ({ postId, commentId, handleUpdate }) => {
                 className="custom-menu"
             />
             <button
-                className="p-panel-header-icon p-link mr-2 text-secondary"
+                className="post-menu p-panel-header-icon p-link"
                 onClick={(e) => configMenu?.current?.toggle(e)}
             >
                 <span className="pi pi-ellipsis-v"></span>

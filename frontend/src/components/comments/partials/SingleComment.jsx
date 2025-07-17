@@ -27,15 +27,15 @@ const SingleComment = ({ comment }) => {
     };
 
     return (
-        <div className="bg-body-secondary p-2">
+        <div className="single-comment-container rounded p-2">
             <div className="d-flex align-items-center justify-content-between">
-                <div className="d-flex align-items-center gap-2">
+                <div className="comment-header d-flex align-items-center gap-2">
                     <Avatar
                         image={avatar}
                         shape="circle"
                         className="comment-avatar"
                     />
-                    <small className="text-secondary fw-medium">
+                    <small className="fw-medium">
                         <span className="text-capitalize">{commentAuthor}</span>
                     </small>
                 </div>

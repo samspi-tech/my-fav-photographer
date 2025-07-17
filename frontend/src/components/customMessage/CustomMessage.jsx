@@ -1,9 +1,19 @@
-const CustomMessage = ({ error }) => {
+import './customMessage.css';
+import { ProgressSpinner } from 'primereact/progressspinner';
+
+const CustomMessage = ({ error, loading }) => {
     return (
-        <div className="bg-white">
-            <div className="bg-body-secondary py-5 px-3">
-                <p className="mb-0 text-center text-secondary">{error}.</p>
-            </div>
+        <div className="custom-message-container py-5 d-flex flex-column justify-content-center align-items-center gap-2">
+            {loading ? (
+                <ProgressSpinner
+                    strokeWidth="8"
+                    animationDuration=".5s"
+                    className="custom-message-spinner"
+                />
+            ) : (
+                <span className="pi pi-exclamation-triangle fs-4"></span>
+            )}
+            <p className="mb-0 text-center fs-5">{error}</p>
         </div>
     );
 };

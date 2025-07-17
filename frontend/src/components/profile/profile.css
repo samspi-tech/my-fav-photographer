@@ -1,7 +1,7 @@
 .profile-avatar {
-    width: 200px;
-    height: 200px;
-    border: 1px solid var(--accent);
+    width: 300px;
+    height: 300px;
+    box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 1);
 }
 
 .profile-avatar img {
@@ -10,24 +10,57 @@
     object-fit: cover;
 }
 
+.profile-hero {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.25)),
+        url('../../assets/images/unsplashLoginPage.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 100%;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+}
+
+.profile-name {
+    font-weight: 600;
+    font-family: 'Bebas Neue', sans-serif;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.p-tabview-nav-content {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: var(--secondary);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+.p-tabview-nav {
+    margin: 0;
+}
+
 .profile-tabview .p-tabview-nav {
     padding: 0;
 }
 
 .profile-tabview .p-tabview-nav,
 .profile-tabview .p-tabview-nav a {
+    color: #8c8c8c;
+    border-color: #8c8c8c;
     text-decoration: none;
-    color: #8C8C8C;
     background-color: var(--secondary);
+
+    transition: all 100ms ease-in-out;
 }
 
 .profile-tabview .p-tabview-nav a:hover {
-    color: #FFF;
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
 .profile-tabview .p-tabview-selected a {
-    color: var(--accent) !important;
-    border-color: var(--accent);
+    color: var(--text-primary) !important;
+    border-color: var(--text-primary) !important;
 }
 
 .profile-tabview .p-tabview-panels {

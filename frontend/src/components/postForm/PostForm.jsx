@@ -7,20 +7,12 @@ import { InputText } from 'primereact/inputtext';
 import { CascadeSelect } from 'primereact/cascadeselect';
 import { InputTextarea } from 'primereact/inputtextarea';
 import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
-import { UserContext } from '../../contexts/UserContext.jsx';
 import { PostContext } from '../../contexts/PostContext.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 
 const PostForm = ({ initialValues, submitFn, postId }) => {
-    const { user } = useContext(UserContext);
-
-    const {
-        isLoading,
-        createPost,
-        updatePost,
-        getAllPosts,
-        getPhotographerPosts,
-    } = useContext(PostContext);
+    const { isLoading, createPost, updatePost, getPhotographerPosts } =
+        useContext(PostContext);
 
     const loggedInUserId = getFromSessionStorage('userId');
 
@@ -37,13 +29,11 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
         initialValues,
         validationSchema: yupPostSchema,
         onSubmit: async (values) => {
-            const userId = user && user._id;
             submitFn === 'create'
-                ? await createPost(userId, values)
-                : await updatePost(userId, postId, values);
+                ? await createPost(loggedInUserId, values)
+                : await updatePost(loggedInUserId, postId, values);
 
-            await getAllPosts(loggedInUserId);
-            await getPhotographerPosts(userId);
+            await getPhotographerPosts(loggedInUserId);
         },
     });
 

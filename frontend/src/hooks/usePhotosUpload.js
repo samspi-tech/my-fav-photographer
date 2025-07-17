@@ -21,7 +21,7 @@ export const usePhotosUpload = (files, getPhotographerPhotos) => {
                 },
             );
 
-            const data = res.json();
+            const data = await res.json();
             if (!res.ok) throw new Error(data.message);
 
             return data;

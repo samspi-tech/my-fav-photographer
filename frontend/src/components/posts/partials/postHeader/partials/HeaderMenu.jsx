@@ -5,8 +5,9 @@ import PostForm from '../../../../postForm/PostForm.jsx';
 import { Dialog } from 'primereact/dialog';
 
 const HeaderMenu = ({ userId, post }) => {
-    const { title, body, _id: postId } = post;
-    const { deletePost } = useContext(PostContext);
+    const { title, body, _id: postId, user } = post;
+    const { _id: postAuthorId } = user;
+    const { deletePost, getPhotographerPosts } = useContext(PostContext);
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -20,6 +21,7 @@ const HeaderMenu = ({ userId, post }) => {
     };
 
     const configMenu = useRef(null);
+
     const items = [
         {
             label: 'Edit',
@@ -29,7 +31,10 @@ const HeaderMenu = ({ userId, post }) => {
         {
             label: 'Delete',
             icon: 'pi pi-trash',
-            command: () => deletePost(userId, postId),
+            command: async () => {
+                await deletePost(userId, postId);
+                await getPhotographerPosts(postAuthorId);
+            },
         },
     ];
 
@@ -43,17 +48,17 @@ const HeaderMenu = ({ userId, post }) => {
                 className="custom-menu"
             />
             <button
-                className="p-panel-header-icon p-link mr-2"
+                className="post-menu p-panel-header-icon p-link"
                 onClick={(e) => configMenu?.current?.toggle(e)}
             >
                 <span className="pi pi-ellipsis-v"></span>
             </button>
             <Dialog
-                position="top"
                 visible={isVisible}
                 focusOnShow={false}
                 header="Update your post"
                 onHide={handleIsVisible}
+                className="custom-dialog"
             >
                 <PostForm
                     postId={postId}

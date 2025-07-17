@@ -2,21 +2,22 @@
 
 :root {
     --primary: #111827;
-    --secondary: #2C3D63;
-    --accent: #E7B236;
-    --text-primary: #DCFFFD;
+    --secondary: #2c3d63;
+    --accent: #e7b236;
+    --text-primary: #dcfffd;
     --text-secondary: #131515;
 }
 
 body {
     color: var(--text-primary);
     background-color: var(--primary);
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .custom-btn {
-    border: none;
     color: #131515;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
     background-color: var(--accent);
 
     transition: all 150ms linear;
@@ -24,24 +25,27 @@ body {
 
 .custom-btn:hover,
 .custom-btn:focus {
-    border-radius: 5px;
-    background-color: #ECC05B;
+    background-color: hsl(42, 68%, 73%);
 }
 
-.loading-btn span, .p-cascadeselect-trigger {
+.loading-btn span,
+.p-cascadeselect-trigger {
     color: #131515;
     font-weight: 500;
 }
 
 .p-button:focus {
-    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #ECC05B, 0 1px 2px 0 rgba(0, 0, 0, 0);
+    box-shadow:
+        0 0 0 2px #ffffff,
+        0 0 0 4px #ecc05b,
+        0 1px 2px 0 rgba(0, 0, 0, 0);
 }
 
 .p-inputtext:enabled:focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 1px #ECC05B;
-    border-color: #ECC05B;
+    box-shadow: 0 0 0 1px #ecc05b;
+    border-color: #ecc05b;
 }
 
 @media (max-width: 768px) {
@@ -54,24 +58,33 @@ textarea {
     resize: none;
 }
 
-.custom-menu > .p-menu-list {
+.custom-menu .p-menu-list {
     margin: 0;
     padding: 0;
 }
 
 .custom-menu .p-menuitem-text,
 .custom-menu .p-menuitem-icon {
-    color: #111827 !important;
     font-size: 14px;
+    color: #111827 !important;
+}
+
+.custom-menu .p-menuitem-link {
+    transition: all 100ms linear;
 }
 
 .custom-menu .p-menuitem-link:hover {
-    background-color: #DCFFFD;
+    background-color: var(--accent);
 }
 
 .custom-menu .p-contextmenu-root-list {
     margin: 0;
     padding: 0;
+}
+
+.custom-dialog .p-dialog-title {
+    font-size: 40px;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 .custom-dialog .p-dialog-header,
@@ -84,7 +97,28 @@ textarea {
     transition: all 100ms ease-in-out;
 }
 
-.custom-dialog .p-dialog-header-icon:hover {
+.custom-dialog .p-dialog-header-icon {
+    border-radius: 50%;
     color: var(--accent);
-    border-color: var(--accent);
+    stroke: var(--accent);
+}
+
+.custom-dialog .p-dialog-header-icon:hover {
+    border-radius: 50%;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+}
+
+.p-avatar {
+    box-shadow: 0.5px 1px var(--accent);
+}
+
+.post-menu {
+    color: var(--text-primary);
+
+    transition: all 150ms linear;
+}
+
+.post-menu:hover {
+    color: var(--accent);
 }

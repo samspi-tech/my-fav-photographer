@@ -9,9 +9,9 @@ const PostHeader = ({ post }) => {
     const loggedInUserId = getFromSessionStorage('userId');
 
     return (
-        <div className="d-flex align-items-center justify-content-between pt-2 px-3">
-            <div className="post-header d-flex align-items-center gap-2">
-                {<Avatar image={avatar} shape="circle" />}
+        <div className="d-flex align-items-center justify-content-between py-2 px-3">
+            <div className="post-header d-flex align-items-center gap-3">
+                {<Avatar image={avatar} shape="circle" className="" />}
                 <p className="text-capitalize mb-0">
                     {firstName} {lastName}
                 </p>

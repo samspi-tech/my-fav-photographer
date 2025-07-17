@@ -4,9 +4,9 @@ import { Dialog } from 'primereact/dialog';
 import { ListGroup } from 'react-bootstrap';
 import ParticipantsList from './partials/ParticipantsList.jsx';
 import CustomMessage from '../../../customMessage/CustomMessage.jsx';
-import { useParticipateWorkshop } from '../../../../hooks/useParticipateWorkshop.js';
 import { WorkshopContext } from '../../../../contexts/WorkshopContext.jsx';
 import { getFromSessionStorage } from '../../../../utils/sessionStorage.js';
+import { useParticipateWorkshop } from '../../../../hooks/useParticipateWorkshop.js';
 
 const WorkshopParticipants = ({ workshop }) => {
     const { participateWorkshop, unsubscribeFromWorkshop } =

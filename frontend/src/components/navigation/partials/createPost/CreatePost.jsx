@@ -20,17 +20,17 @@ const CreatePost = () => {
             <Button
                 text
                 tooltip="New post"
-                icon="pi pi-file-plus"
+                icon="pi pi-pen-to-square"
                 onClick={handleIsVisible}
                 tooltipOptions={{ position: 'bottom' }}
                 className="text-white shadow-none me-3"
             />
             <Dialog
-                position="top"
                 visible={isVisible}
                 focusOnShow={false}
                 header="Create new post"
                 onHide={handleIsVisible}
+                className="custom-dialog"
             >
                 <PostForm initialValues={initialValues} submitFn="create" />
             </Dialog>
