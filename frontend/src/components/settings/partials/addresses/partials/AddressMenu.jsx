@@ -4,7 +4,7 @@ import AddressForm from './AddressForm.jsx';
 import { useContext, useRef, useState } from 'react';
 import { AddressContext } from '../../../../../contexts/AddressContext.jsx';
 
-const AddressMenu = ({ title, userId, address }) => {
+const AddressMenu = ({ title, userId, address, showMenu }) => {
     const { deleteAddress, getAddresses } = useContext(AddressContext);
 
     const { street, city, province, cap, contact, _id: addressId } = address;
@@ -51,12 +51,14 @@ const AddressMenu = ({ title, userId, address }) => {
                     id="config_menu"
                     className="custom-menu"
                 />
-                <button
-                    className="p-panel-header-icon p-link mr-2"
-                    onClick={(e) => configMenu?.current?.toggle(e)}
-                >
-                    <span className="pi pi-ellipsis-v"></span>
-                </button>
+                {showMenu && (
+                    <button
+                        className="p-panel-header-icon p-link mr-2"
+                        onClick={(e) => configMenu?.current?.toggle(e)}
+                    >
+                        <span className="pi pi-ellipsis-v"></span>
+                    </button>
+                )}
             </div>
             <Dialog
                 visible={isVisible}

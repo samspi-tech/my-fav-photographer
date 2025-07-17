@@ -62,9 +62,6 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
         },
     });
 
-    console.log(formik.values.cap);
-    console.log(formik.values.contact);
-
     return (
         <Form
             className="d-flex flex-column gap-2"

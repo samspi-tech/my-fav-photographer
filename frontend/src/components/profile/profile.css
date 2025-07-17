@@ -206,3 +206,28 @@
 .custom-calendar-input .p-component {
     box-shadow: none;
 }
+
+.shop-photo-print-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+    opacity: 0;
+
+    transition: all 100ms ease-in-out;
+}
+
+.photo-container:hover .shop-photo-print-btn {
+    opacity: 1;
+}
+
+.shop-photo-print-container {
+    width: 300px;
+    height: 250px;
+}
+
+.shop-photo-print-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

@@ -70,7 +70,9 @@ const Addresses = () => {
                             <SingleAddress
                                 key={key}
                                 index={index}
+                                showMenu={true}
                                 address={address}
+                                addressTitle={`Address ${index + 1}`}
                             />
                         );
                     })}

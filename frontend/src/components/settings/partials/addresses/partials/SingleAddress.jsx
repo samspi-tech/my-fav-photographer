@@ -2,7 +2,7 @@ import { Col } from 'react-bootstrap';
 import { Panel } from 'primereact/panel';
 import AddressMenu from './AddressMenu.jsx';
 
-const SingleAddress = ({ address, index }) => {
+const SingleAddress = ({ address, addressTitle, showMenu }) => {
     const { street, province, city, cap, contact, user: userId } = address;
 
     return (
@@ -12,7 +12,8 @@ const SingleAddress = ({ address, index }) => {
                     <AddressMenu
                         userId={userId}
                         address={address}
-                        title={`Address ${index + 1}`}
+                        title={addressTitle}
+                        showMenu={showMenu}
                     />
                 }
             >
