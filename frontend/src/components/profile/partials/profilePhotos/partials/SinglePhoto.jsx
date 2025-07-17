@@ -1,8 +1,10 @@
 import { Dialog } from 'primereact/dialog';
+import ShopPhotoPrint from './ShopPhotoPrint.jsx';
 import { useContext, useRef, useState } from 'react';
 import { ContextMenu } from 'primereact/contextmenu';
 import PhotoDescriptionForm from './PhotoDescriptionForm.jsx';
 import { PhotoContext } from '../../../../../contexts/PhotoContext.jsx';
+import { getFromSessionStorage } from '../../../../../utils/sessionStorage.js';
 
 const SinglePhoto = ({
     photo,
@@ -16,6 +18,9 @@ const SinglePhoto = ({
     const handleEditPhotoVisibility = () => {
         setIsVisible((prevState) => !prevState);
     };
+
+    const loggedInUserRole = getFromSessionStorage('role');
+    const isRoleUser = loggedInUserRole === 'user';
 
     const contextMenu = useRef(null);
 
@@ -53,7 +58,7 @@ const SinglePhoto = ({
     );
     return (
         <>
-            <div className="photo-container">
+            <div className="photo-container position-relative">
                 {photoEl}
                 {isActionAllowed && (
                     <ContextMenu
@@ -62,12 +67,13 @@ const SinglePhoto = ({
                         className="custom-menu"
                     />
                 )}
+                {isRoleUser && <ShopPhotoPrint photo={photo} />}
             </div>
             <Dialog
                 visible={isVisible}
+                className="form-edit-photo"
                 onHide={handleEditPhotoVisibility}
                 header="Edit tags and description."
-                className="form-edit-photo"
             >
                 <PhotoDescriptionForm formik={formik} photo={photo} />
             </Dialog>
