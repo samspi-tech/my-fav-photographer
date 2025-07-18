@@ -36,7 +36,7 @@ const ProfileEquipment = ({ userId }) => {
 
     return (
         <Container className="mb-5">
-            <Row className="justify-content-center mb-5">
+            <Row className="flex-column align-items-center justify-content-center gap-3 mb-5">
                 {isActionAllowed && (
                     <Col xs={12} lg={6}>
                         <Button
@@ -59,8 +59,15 @@ const ProfileEquipment = ({ userId }) => {
                         </Dialog>
                     </Col>
                 )}
-                {isLoading && <CustomMessage error="Loading..." />}
-                {!isLoading && error && <CustomMessage error={error} />}
+                <Col lg={6}>
+                    {isLoading && (
+                        <CustomMessage
+                            loading={true}
+                            error="Loading equipments..."
+                        />
+                    )}
+                    {!isLoading && error && <CustomMessage error={error} />}
+                </Col>
             </Row>
             <Row className="justify-content-center">
                 <Col md={10} lg={7} xl={5}>

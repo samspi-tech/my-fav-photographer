@@ -17,13 +17,23 @@ const About = () => {
                 tooltip="About"
                 icon="pi pi-info-circle"
                 onClick={handleIsVisible}
-                className="text-white shadow-none ms-2"
+                className="nav-end-icon shadow-none ms-2"
                 tooltipOptions={{ position: 'bottom' }}
             />
-            <Dialog visible={isVisible} onHide={handleIsVisible} header="About">
-                <h6 className="fw-bold">
+            <Dialog
+                header={
+                    <div className="d-flex align-items-center gap-2">
+                        <span className="pi pi-info-circle fs-4"></span>
+                        About
+                    </div>
+                }
+                visible={isVisible}
+                onHide={handleIsVisible}
+                className="custom-dialog"
+            >
+                <h4 className="fw-bold">
                     Thank you for visiting this website!
-                </h6>
+                </h4>
                 <p>
                     The purpose of this project is to showcase the skills I
                     acquired during my time at the{' '}

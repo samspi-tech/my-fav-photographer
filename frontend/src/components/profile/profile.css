@@ -157,11 +157,21 @@
     border-color: var(--accent);
 }
 
-.equipment-list .p-card-body {
+.equipment-list.card {
     width: 250px;
-    padding: 0 15px;
+    padding-top: 15px;
+}
+
+.equipment-list.card,
+.workshop-card.card {
+    border-radius: 6px;
     color: var(--text-primary);
+    border: 1px solid var(--accent);
     background-color: var(--secondary);
+}
+
+.equipment-list .p-card-body {
+    padding: 0 15px;
 }
 
 .equipment-list .list-group-item {
@@ -170,7 +180,8 @@
     background-color: var(--primary);
 }
 
-.equipment-title {
+.equipment-title,
+.workshop-title {
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -181,8 +192,28 @@
     padding: 0;
 }
 
+.participants-btn-container button{
+    color: var(--text-primary);
+
+    transition: all 100ms ease-in-out;
+}
+
+.participants-btn-container button:hover {
+    color: var(--accent);
+}
+
+.workshop-details small span {
+    color: var(--accent);
+}
+
 .custom-calendar-input .p-component {
     box-shadow: none;
+}
+
+.custom-calendar-input .p-inputtext {
+    border: none;
+    color: var(--text-primary);
+    background-color: var(--primary);
 }
 
 .shop-photo-print-btn {

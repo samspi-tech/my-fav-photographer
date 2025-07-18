@@ -34,7 +34,7 @@ const ShoppingCart = () => {
                 text
                 icon="pi pi-shopping-cart"
                 onClick={handleVisibility}
-                className="text-white p-overlay-badge p-1 overflow-visible shadow-none ms-1 me-4"
+                className="nav-end-icon p-overlay-badge p-1 overflow-visible shadow-none ms-1 me-4"
             >
                 <Badge value={cartItems.length} severity="warning"></Badge>
             </Button>

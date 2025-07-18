@@ -33,25 +33,26 @@ const WorkshopParticipants = ({ workshop }) => {
 
     return (
         <>
-            <div className="d-flex flex-column align-items-center">
+            <div className="participants-btn-container d-flex flex-column align-items-center">
                 <Button
                     link
                     icon="pi pi-users"
                     onClick={handleVisibility}
-                    className="shadow-none rounded-circle text-secondary p-0"
+                    className="shadow-none p-0"
                 />
-                <small className="text-secondary">
+                <small>
                     {participantsNum} {isSingular}
                 </small>
             </div>
             <Dialog
+                focusOnShow={false}
                 visible={isVisible}
                 onHide={handleVisibility}
                 className="custom-dialog"
                 header="Whorkshop's participants"
             >
                 {participantsNum === 0 && (
-                    <CustomMessage error="No participants yet" />
+                    <CustomMessage error="No participants yet." />
                 )}
                 <div>
                     {isRoleUser && (

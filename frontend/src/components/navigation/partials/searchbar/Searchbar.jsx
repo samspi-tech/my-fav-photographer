@@ -18,7 +18,7 @@ const Searchbar = () => {
                 onClick={handleIsVisible}
                 tooltip="Search photographers"
                 tooltipOptions={{ position: 'bottom' }}
-                className="text-white shadow-none"
+                className="nav-end-icon shadow-none"
             />
             <Dialog
                 position="top"

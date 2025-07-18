@@ -38,21 +38,27 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
     });
 
     return (
-        <Form onSubmit={formik.handleSubmit}>
+        <Form
+            onSubmit={formik.handleSubmit}
+            className="d-flex flex-column gap-3"
+        >
             <Form.Group>
+                <label htmlFor="post-title">Title</label>
                 <InputText
                     type="text"
                     name="title"
+                    id="post-title"
                     placeholder="Title"
                     value={formik.values.title}
                     onChange={formik.handleChange}
-                    className="custom-input w-100 shadow-none border"
+                    className="custom-input w-100 shadow-none mt-1"
                 />
                 {formik.touched.title && formik.errors.title ? (
                     <ErrorMessage error={formik.errors.title} />
                 ) : null}
             </Form.Group>
             <Form.Group>
+                <label htmlFor="post-body">Share your story...</label>
                 <InputTextarea
                     autoResize
                     type="text"
@@ -60,7 +66,7 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                     value={formik.values.body}
                     onChange={formik.handleChange}
                     placeholder="Share your story..."
-                    className="custom-input w-100 shadow-none border mt-3"
+                    className="custom-input w-100 shadow-none mt-1"
                 />
                 {formik.touched.body && formik.errors.body ? (
                     <ErrorMessage error={formik.errors.body} />
@@ -76,7 +82,7 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                 <Button
                     type="submit"
                     label="Post"
-                    className="custom-btn w-100 mt-3"
+                    className="custom-btn w-100"
                 />
             )}
         </Form>

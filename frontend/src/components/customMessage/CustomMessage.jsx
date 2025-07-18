@@ -13,7 +13,7 @@ const CustomMessage = ({ error, loading }) => {
             ) : (
                 <span className="pi pi-exclamation-triangle fs-4"></span>
             )}
-            <p className="mb-0 text-center fs-5">{error}</p>
+            <h2 className="custom-message-text mb-0 text-center">{error}</h2>
         </div>
     );
 };

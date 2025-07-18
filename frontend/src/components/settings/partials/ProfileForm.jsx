@@ -11,7 +11,7 @@ import { UserContext } from '../../../contexts/UserContext.jsx';
 import { useAvatarUpload } from '../../../hooks/useAvatarUpload.js';
 import { getFromSessionStorage } from '../../../utils/sessionStorage.js';
 
-const UpdateProfile = ({ user }) => {
+const ProfileForm = ({ user }) => {
     const { getMe } = useContext(UserContext);
     const { firstName, lastName, email, dob } = user;
 
@@ -41,7 +41,7 @@ const UpdateProfile = ({ user }) => {
             firstName,
             lastName,
             email,
-            dob,
+            dob: new Date(dob),
         },
         validationSchema: yupUserSchema,
         onSubmit: async (values) => {
@@ -64,22 +64,33 @@ const UpdateProfile = ({ user }) => {
 
     return (
         <Row className="justify-content-center">
-            <Col lg={3}>
+            <Col lg={4}>
                 <Form
                     encType="multipart/form-data"
                     onSubmit={formik.handleSubmit}
-                    className="d-flex flex-column gap-3"
+                    className="settings-profile-form d-flex flex-column gap-3"
                 >
-                    <h4 className="text-center fw-bold">
-                        Update your profile details
-                    </h4>
+                    <h1 className="settings-profile-form-title text-center mb-0">
+                        Update your profile
+                    </h1>
                     <Form.Group className="d-flex flex-column gap-1">
-                        <label htmlFor="update-avatar">Profile image</label>
-                        <Form.Control
+                        <label
+                            htmlFor="update-avatar"
+                            className="custom-input file-input rounded"
+                        >
+                            {file ? (
+                                <>
+                                    <span>Photo:</span> {file.name}
+                                </>
+                            ) : (
+                                'Click here to upload your profile image'
+                            )}
+                        </label>
+                        <input
                             type="file"
                             name="avatar"
+                            id="update-avatar"
                             onChange={handleFile}
-                            className="rounded-0 py-2"
                         />
                     </Form.Group>
                     <Form.Group className="d-flex flex-column gap-1">
@@ -89,6 +100,7 @@ const UpdateProfile = ({ user }) => {
                             id="update-first-name"
                             value={formik.values.firstName}
                             onChange={formik.handleChange}
+                            className="custom-input"
                         />
                         {formik.touched.firstName && formik.errors.firstName ? (
                             <ErrorMessage error={formik.errors.firstName} />
@@ -101,6 +113,7 @@ const UpdateProfile = ({ user }) => {
                             id="update-last-name"
                             value={formik.values.lastName}
                             onChange={formik.handleChange}
+                            className="custom-input"
                         />
                         {formik.touched.lastName && formik.errors.lastName ? (
                             <ErrorMessage error={formik.errors.lastName} />
@@ -113,6 +126,7 @@ const UpdateProfile = ({ user }) => {
                             id="update-email"
                             value={formik.values.email}
                             onChange={formik.handleChange}
+                            className="custom-input"
                         />
                     </Form.Group>
                     <Form.Group className="d-flex flex-column gap-1">
@@ -124,6 +138,8 @@ const UpdateProfile = ({ user }) => {
                             id="update-dob"
                             value={formik.values.dob}
                             onChange={formik.handleChange}
+                            placeholder={new Date(formik.values.dob)}
+                            className="custom-input custom-calendar-input rounded"
                         />
                     </Form.Group>
                     {isLoading ? (
@@ -145,4 +161,4 @@ const UpdateProfile = ({ user }) => {
     );
 };
 
-export default UpdateProfile;
+export default ProfileForm;
