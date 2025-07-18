@@ -15,6 +15,7 @@ const loginAuth = async (req, res, next) => {
         const cookieOptions = {
             expires: COOKIE_EXPIRES_IN,
             httpOnly: true,
+            sameSite: 'none',
         };
         if (process.env.NODE_ENV === 'prod') cookieOptions.secure = true;
 
@@ -37,6 +38,7 @@ const logoutAuth = async (req, res, next) => {
         const cookieOptions = {
             expires: COOKIE_EXPIRES_IN,
             httpOnly: true,
+            sameSite: 'none',
         };
 
         res.cookie('token', 'loggedOut', cookieOptions);
