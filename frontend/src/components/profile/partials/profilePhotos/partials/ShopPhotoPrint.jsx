@@ -1,12 +1,15 @@
-import { useContext, useState } from 'react';
+import { Toast } from 'primereact/toast';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { RadioButton } from 'primereact/radiobutton';
+import { useContext, useRef, useState } from 'react';
 import { ShoppingCartContext } from '../../../../../contexts/ShoppingCartContext.jsx';
 
 const ShopPhotoPrint = ({ photo }) => {
     const { photo: singlePhoto } = photo;
     const { setCartItems } = useContext(ShoppingCartContext);
+
+    const toast = useRef(null);
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -28,10 +31,18 @@ const ShopPhotoPrint = ({ photo }) => {
 
         setCartItems(newCart);
         localStorage.setItem('cart', JSON.stringify(newCart));
+
+        toast.current.show({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Item added to cart',
+            life: 3000,
+        });
     };
 
     return (
         <>
+            <Toast ref={toast} />
             <Button
                 onClick={handleVisibility}
                 icon="pi pi-cart-arrow-down"
