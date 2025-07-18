@@ -39,7 +39,9 @@ const Profile = ({ user }) => {
     }, [photographerId]);
 
     return (
-        <div className="profile-hero">
+        <div
+            className={`profile-hero ${isRoleUser ? 'profile-hero-user' : 'profile-hero-photographer'}`}
+        >
             <div className="d-flex flex-column gap-3 align-items-center py-5">
                 <Avatar
                     image={avatar}
@@ -57,7 +59,7 @@ const Profile = ({ user }) => {
                                 ? 'Unfollow'
                                 : 'Follow'
                         }
-                        className="custom-btn"
+                        className="custom-btn shadow"
                         onClick={async () => {
                             followingList &&
                             followingList.includes(photographerId)

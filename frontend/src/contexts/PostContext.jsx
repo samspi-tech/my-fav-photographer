@@ -5,6 +5,9 @@ import { Requests } from '../utils/Requests.js';
 export const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(null);
+
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [posts, setPosts] = useState(null);
@@ -20,8 +23,11 @@ export const PostProvider = ({ children }) => {
     };
 
     const getPhotographerPosts = async (userId) => {
-        const data = await PostReq.get(`post/${userId}/posts`);
+        const data = await PostReq.get(
+            `post/${userId}/posts?page=${page}&pageSize=3`,
+        );
         setPhotographerPosts(data);
+        setTotalPages(data.totalPages);
 
         return data;
     };
@@ -58,6 +64,9 @@ export const PostProvider = ({ children }) => {
                 isLoading,
                 posts,
                 photographerPosts,
+                page,
+                setPage,
+                totalPages,
                 getAllPosts,
                 getPhotographerPosts,
                 createPost,

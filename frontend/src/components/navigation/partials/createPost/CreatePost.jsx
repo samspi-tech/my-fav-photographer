@@ -23,7 +23,7 @@ const CreatePost = () => {
                 icon="pi pi-pen-to-square"
                 onClick={handleIsVisible}
                 tooltipOptions={{ position: 'bottom' }}
-                className="nav-end-icon shadow-none me-3"
+                className="nav-end-icon shadow-none bg-transparent me-3"
             />
             <Dialog
                 visible={isVisible}
