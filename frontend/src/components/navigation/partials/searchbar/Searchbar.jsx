@@ -18,13 +18,14 @@ const Searchbar = () => {
                 onClick={handleIsVisible}
                 tooltip="Search photographers"
                 tooltipOptions={{ position: 'bottom' }}
-                className="text-white shadow-none"
+                className="nav-end-icon shadow-none"
             />
             <Dialog
                 position="top"
                 visible={isVisible}
                 focusOnShow={false}
                 onHide={handleIsVisible}
+                className="custom-dialog"
                 content={<SearchDialog handleHide={handleIsVisible} />}
             />
         </>

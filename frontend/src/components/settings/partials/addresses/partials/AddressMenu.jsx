@@ -42,8 +42,8 @@ const AddressMenu = ({ title, userId, address, showMenu }) => {
 
     return (
         <>
-            <div className="d-flex align-items-center justify-content-between p-3">
-                <h5 className="text-black fw-medium">{title}</h5>
+            <div className="d-flex align-items-center justify-content-between">
+                <h3 className="address-card-title fw-medium mb-0">{title}</h3>
                 <Menu
                     model={items}
                     popup
@@ -53,7 +53,7 @@ const AddressMenu = ({ title, userId, address, showMenu }) => {
                 />
                 {showMenu && (
                     <button
-                        className="p-panel-header-icon p-link mr-2"
+                        className="post-menu p-panel-header-icon p-link mr-2"
                         onClick={(e) => configMenu?.current?.toggle(e)}
                     >
                         <span className="pi pi-ellipsis-v"></span>

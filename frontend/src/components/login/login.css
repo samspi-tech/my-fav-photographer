@@ -1,9 +1,3 @@
-.p-inputtext {
-    border: none;
-    border-radius: 0;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.6);
-}
-
 .p-float-label:focus-within label {
     color: var(--text-primary);
 }
@@ -19,7 +13,8 @@
 }
 
 .login-cover-container {
-    background: center/cover no-repeat url('../../assets/images/unsplashLoginPage.jpg');
+    background: center/cover no-repeat
+        url('../../assets/images/unsplashLoginPage.jpg');
 
     width: 100%;
     height: 100vh;

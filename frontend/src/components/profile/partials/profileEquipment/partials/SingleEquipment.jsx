@@ -5,26 +5,38 @@ import EquipmentMenu from './EquipmentMenu.jsx';
 const SingleEquipment = ({ equipment, index, isActionAllowed }) => {
     const { camera, lens, bag, tripod, other } = equipment;
 
+    const equipmentTitle = (
+        <div className="d-flex justify-content-between align-items-center mb-3">
+            <h5 className="equipment-title mb-0">Equipment {index + 1}</h5>
+            {isActionAllowed && <EquipmentMenu equipment={equipment} />}
+        </div>
+    );
+
     return (
-        <Col md={6} lg={4} xl={3} className="d-flex justify-content-center">
-            <Card className="equipment-list shadow position-relative">
-                <h5 className="fw-bold mb-3">Equipment {index + 1}</h5>
-                {isActionAllowed && <EquipmentMenu equipment={equipment} />}
+        <Col md={6} className="d-flex justify-content-center">
+            <Card
+                className="equipment-list custom-card card"
+                title={equipmentTitle}
+            >
                 <ListGroup className="shadow">
-                    <ListGroup.Item>
-                        <span className="fw-bold">Camera:</span> {camera}
+                    <ListGroup.Item className="d-flex justify-content-between">
+                        <span className="fw-bold text-warning">Camera:</span>{' '}
+                        {camera}
                     </ListGroup.Item>
-                    <ListGroup.Item>
-                        <span className="fw-bold">Lens:</span> {lens}
+                    <ListGroup.Item className="d-flex justify-content-between">
+                        <span className="fw-bold text-warning">Lens:</span>{' '}
+                        {lens}
                     </ListGroup.Item>
-                    <ListGroup.Item>
-                        <span className="fw-bold">Bag:</span> {bag}
+                    <ListGroup.Item className="d-flex justify-content-between">
+                        <span className="fw-bold text-warning">Bag:</span> {bag}
                     </ListGroup.Item>
-                    <ListGroup.Item>
-                        <span className="fw-bold">Tripod:</span> {tripod}
+                    <ListGroup.Item className="d-flex justify-content-between">
+                        <span className="fw-bold text-warning">Tripod:</span>{' '}
+                        {tripod}
                     </ListGroup.Item>
-                    <ListGroup.Item>
-                        <span className="fw-bold">Other:</span> {other}
+                    <ListGroup.Item className="d-flex justify-content-between">
+                        <span className="fw-bold text-warning">Other:</span>{' '}
+                        {other}
                     </ListGroup.Item>
                 </ListGroup>
             </Card>

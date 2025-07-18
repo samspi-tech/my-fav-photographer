@@ -71,7 +71,7 @@ const SinglePhoto = ({
             </div>
             <Dialog
                 visible={isVisible}
-                className="form-edit-photo"
+                className="custom-dialog"
                 onHide={handleEditPhotoVisibility}
                 header="Edit tags and description."
             >

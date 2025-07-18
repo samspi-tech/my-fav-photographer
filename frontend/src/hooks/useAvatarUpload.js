@@ -11,6 +11,7 @@ export const useAvatarUpload = () => {
         const fileData = new FormData();
         fileData.append('avatar', file);
 
+        setIsLoading(true);
         try {
             const res = await fetch(
                 `${import.meta.env.VITE_SERVER_BASE_URL}/user/cloud-upload/avatar`,
@@ -26,7 +27,9 @@ export const useAvatarUpload = () => {
 
             return data;
         } catch (err) {
-            console.error(err.message);
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 

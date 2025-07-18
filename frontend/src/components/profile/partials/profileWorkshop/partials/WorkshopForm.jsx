@@ -49,7 +49,7 @@ const WorkshopForm = ({ initialValues, submitFn, userId, workshopId }) => {
                     value={formik.values.title}
                     onChange={formik.handleChange}
                     placeholder="Title of your workshop"
-                    className="w-100 border shadow-none"
+                    className="custom-input w-100 shadow-none mt-1"
                 />
                 {formik.touched.title && formik.errors.title ? (
                     <div className="ms-2 mb-2">
@@ -67,7 +67,7 @@ const WorkshopForm = ({ initialValues, submitFn, userId, workshopId }) => {
                     value={formik.values.body}
                     onChange={formik.handleChange}
                     placeholder="Workshop description"
-                    className="w-100 shadow-none border"
+                    className="custom-input w-100 shadow-none mt-1"
                 />
                 {formik.touched.body && formik.errors.body ? (
                     <div className="ms-2 mb-2">
@@ -84,8 +84,13 @@ const WorkshopForm = ({ initialValues, submitFn, userId, workshopId }) => {
                     hourFormat="24"
                     id="workshop-date"
                     value={formik.values.date}
+                    placeholder={
+                        formik.values.date
+                            ? new Date(formik.values.date)
+                            : new Date()
+                    }
                     onChange={formik.handleChange}
-                    className="w-100 custom-calendar-input border"
+                    className="custom-input custom-calendar-input w-100 rounded mt-1"
                 />
                 {formik.touched.date && formik.errors.date ? (
                     <div className="ms-2 mb-2">

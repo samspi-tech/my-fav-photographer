@@ -1,7 +1,7 @@
 .profile-avatar {
-    width: 200px;
-    height: 200px;
-    border: 1px solid var(--accent);
+    width: 300px;
+    height: 300px;
+    box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 1);
 }
 
 .profile-avatar img {
@@ -10,24 +10,57 @@
     object-fit: cover;
 }
 
+.profile-hero {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.25)),
+        url('../../assets/images/unsplashLoginPage.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 100%;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+}
+
+.profile-name {
+    font-weight: 600;
+    font-family: 'Bebas Neue', sans-serif;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.p-tabview-nav-content {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: var(--secondary);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+.p-tabview-nav {
+    margin: 0;
+}
+
 .profile-tabview .p-tabview-nav {
     padding: 0;
 }
 
 .profile-tabview .p-tabview-nav,
 .profile-tabview .p-tabview-nav a {
+    color: #8c8c8c;
+    border-color: #8c8c8c;
     text-decoration: none;
-    color: #8C8C8C;
     background-color: var(--secondary);
+
+    transition: all 100ms ease-in-out;
 }
 
 .profile-tabview .p-tabview-nav a:hover {
-    color: #FFF;
+    color: var(--accent);
+    border-color: var(--accent);
 }
 
 .profile-tabview .p-tabview-selected a {
-    color: var(--accent) !important;
-    border-color: var(--accent);
+    color: var(--text-primary) !important;
+    border-color: var(--text-primary) !important;
 }
 
 .profile-tabview .p-tabview-panels {
@@ -41,6 +74,7 @@
 .photo-container {
     width: 100%;
     height: 300px;
+    border-radius: 6px;
 }
 
 @media (min-width: 768px) {
@@ -54,6 +88,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 6px;
 }
 
 .profile-gallery-grid {
@@ -110,23 +145,6 @@
     display: block;
 }
 
-.dialog-photo-upload .p-dialog-header,
-.dialog-photo-upload .p-dialog-content {
-    color: var(--text-primary);
-    background-color: var(--secondary);
-}
-
-.dialog-photo-upload .p-dialog-header-icon {
-    color: var(--text-primary);
-
-    transition: all 100ms ease-in-out;
-}
-
-.dialog-photo-upload .p-dialog-header-icon:hover {
-    color: var(--text-secondary);
-    background-color: var(--accent);
-}
-
 .custom-file-upload .p-fileupload-buttonbar,
 .custom-file-upload .p-fileupload-content {
     color: var(--text-primary);
@@ -134,42 +152,18 @@
 }
 
 .custom-file-upload .p-fileupload-buttonbar .p-button {
-    background-color: var(--secondary);
-}
-
-.photo-tags-input {
-    color: var(--text-primary);
-    background-color: var(--primary);
-    border: 1px solid var(--text-primary);
-}
-
-.form-edit-photo,
-.form-edit-photo .p-dialog-content,
-.form-edit-photo .p-dialog-header {
-    color: var(--text-primary);
-    background-color: var(--secondary);
-}
-
-.form-edit-photo .p-dialog-header-icon {
-    color: var(--text-primary);
-
-    transition: all 100ms ease-in-out;
-}
-
-.form-edit-photo .p-dialog-header-icon:hover {
     color: var(--text-secondary);
     background-color: var(--accent);
+    border-color: var(--accent);
 }
 
-.equipment-list {
-    width: fit-content;
+.equipment-list.card {
+    width: 250px;
+    padding-top: 15px;
 }
 
 .equipment-list .p-card-body {
-    padding: 0 30px;
-    width: 265px;
-    color: var(--text-primary);
-    background-color: var(--secondary);
+    padding: 0 15px;
 }
 
 .equipment-list .list-group-item {
@@ -178,33 +172,40 @@
     background-color: var(--primary);
 }
 
-.equipment-menu {
-    position: absolute;
-    right: 7px;
-    top: 7px;
-}
-
-.equipment-menu .pi {
-    visibility: hidden;
-    color: var(--text-primary);
-
-    transition: all 100ms ease-in-out;
-}
-
-.equipment-list:hover .pi {
-    visibility: visible;
-}
-
-.equipment-menu .pi:hover {
-    transform: scale(1.1);
+.equipment-title,
+.workshop-title {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-family: "Bebas neue", sans-serif;
 }
 
 .workshop-card .p-card-content {
     padding: 0;
 }
 
+.participants-btn-container button{
+    color: var(--text-primary);
+
+    transition: all 100ms ease-in-out;
+}
+
+.participants-btn-container button:hover {
+    color: var(--accent);
+}
+
+.workshop-details small span {
+    color: var(--accent);
+}
+
 .custom-calendar-input .p-component {
     box-shadow: none;
+}
+
+.custom-calendar-input .p-inputtext {
+    border: none;
+    color: var(--text-primary);
+    background-color: var(--primary);
 }
 
 .shop-photo-print-btn {
@@ -212,9 +213,13 @@
     bottom: 10px;
     right: 10px;
 
-    opacity: 0;
-
     transition: all 100ms ease-in-out;
+}
+
+@media (min-width: 1024px) {
+    .shop-photo-print-btn {
+        opacity: 0;
+    }
 }
 
 .photo-container:hover .shop-photo-print-btn {
@@ -230,4 +235,19 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.search-photo-input {
+    border-color: var(--accent);
+    background-color: var(--primary);
+}
+
+.search-photo-input::placeholder {
+    color: #c5e6e4;
+}
+
+.participant-item {
+    color: var(--text-primary);
+    border-color: var(--accent);
+    background-color: var(--primary);
 }

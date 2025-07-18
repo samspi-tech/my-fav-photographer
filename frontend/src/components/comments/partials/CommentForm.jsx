@@ -39,9 +39,9 @@ const CommentForm = ({ initialValues, submitFn, postId, commentId }) => {
     return (
         <Form
             onSubmit={formik.handleSubmit}
-            className="d-flex bg-dark-subtle mt-3"
+            className="d-flex bg-white rounded mt-3"
         >
-            <Form.Group className="w-100">
+            <Form.Group className="w-100 custom-input rounded-start border-end-0">
                 <InputTextarea
                     rows={1}
                     autoFocus
@@ -50,7 +50,7 @@ const CommentForm = ({ initialValues, submitFn, postId, commentId }) => {
                     value={formik.values.comment}
                     onChange={formik.handleChange}
                     placeholder="Add a comment..."
-                    className="w-100 bg-dark-subtle shadow-none"
+                    className="custom-input w-100 border-0 shadow-none"
                 />
                 {formik.touched.comment && formik.errors.comment ? (
                     <div className="ms-2 mb-2">
@@ -66,10 +66,11 @@ const CommentForm = ({ initialValues, submitFn, postId, commentId }) => {
             ) : (
                 <Button
                     link
+                    disabled={formik.values.comment.trim() === ''}
                     label="Post"
                     size="small"
                     type="submit"
-                    className="ms-auto text-black-50 shadow-none"
+                    className="ms-auto custom-btn rounded-start-0 shadow-none"
                 />
             )}
         </Form>

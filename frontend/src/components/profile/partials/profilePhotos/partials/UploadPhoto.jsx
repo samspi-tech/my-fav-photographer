@@ -8,9 +8,9 @@ import { InputText } from 'primereact/inputtext';
 import { FileUpload } from 'primereact/fileupload';
 import { InputTextarea } from 'primereact/inputtextarea';
 import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
-import { usePhotosUpload } from '../../../../../hooks/usePhotosUpload.js';
-import { UserContext } from '../../../../../contexts/UserContext.jsx';
 import { PhotoContext } from '../../../../../contexts/PhotoContext.jsx';
+import { usePhotosUpload } from '../../../../../hooks/usePhotosUpload.js';
+import { getFromSessionStorage } from '../../../../../utils/sessionStorage.js';
 
 const UploadPhoto = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -18,10 +18,12 @@ const UploadPhoto = () => {
         setIsVisible((prevState) => !prevState);
     };
 
-    const { user } = useContext(UserContext);
+    const loggedInUserId = getFromSessionStorage('userId');
+
     const { getPhotographerPhotos } = useContext(PhotoContext);
 
     const [files, setFiles] = useState(null);
+
     const { handlePhotosUpload } = usePhotosUpload(
         files,
         getPhotographerPhotos,
@@ -41,12 +43,8 @@ const UploadPhoto = () => {
         },
         validationSchema: yupPhotoSchema,
         onSubmit: async (values) => {
-            if (user) {
-                const userId = user._id;
-
-                await handlePhotosUpload(userId, values);
-                await getPhotographerPhotos(userId);
-            }
+            await handlePhotosUpload(loggedInUserId, values);
+            await getPhotographerPhotos(loggedInUserId, '');
         },
     });
 
@@ -54,16 +52,19 @@ const UploadPhoto = () => {
         <>
             <Button
                 size="small"
-                label="Upload"
                 icon="pi pi-image"
                 onClick={handleIsVisible}
+                label="Upload"
                 className="custom-btn align-self-end"
             />
             <Dialog
                 visible={isVisible}
-                onHide={handleIsVisible}
+                onHide={async () => {
+                    handleIsVisible();
+                    await getPhotographerPhotos(loggedInUserId);
+                }}
                 header="Upload your photos"
-                className="dialog-photo-upload"
+                className="dialog-photo-upload custom-dialog"
             >
                 <div className="card">
                     <div className="card">
@@ -74,9 +75,7 @@ const UploadPhoto = () => {
                             accept="image/*"
                             maxFileSize={50000000}
                             className="custom-file-upload"
-                            onUpload={async () => {
-                                await formik.handleSubmit();
-                            }}
+                            onUpload={formik.handleSubmit}
                             onSelect={(e) => setFiles([...e.files])}
                             url={`${import.meta.env.VITE_SERVER_BASE_URL}/photo/cloud-upload/photos`}
                             emptyTemplate={
@@ -100,7 +99,7 @@ const UploadPhoto = () => {
                         id="photo-tag"
                         value={formik.values.tag}
                         onChange={formik.handleChange}
-                        className="photo-tags-input shadow-none py-1 rounded"
+                        className="custom-input shadow-none py-1 rounded"
                     />
                     {formik.touched.tag && formik.errors.tag ? (
                         <ErrorMessage error={formik.errors.tag} />
@@ -119,7 +118,7 @@ const UploadPhoto = () => {
                         id="photo-description"
                         value={formik.values.body}
                         onChange={formik.handleChange}
-                        className="photo-tags-input shadow-none py-1 rounded"
+                        className="custom-input shadow-none py-1 rounded"
                     />
                     {formik.touched.body && formik.errors.body ? (
                         <ErrorMessage error={formik.errors.body} />

@@ -21,7 +21,7 @@ export const usePhotosUpload = (files, getPhotographerPhotos) => {
                 },
             );
 
-            const data = res.json();
+            const data = await res.json();
             if (!res.ok) throw new Error(data.message);
 
             return data;
@@ -48,7 +48,7 @@ export const usePhotosUpload = (files, getPhotographerPhotos) => {
         } catch (err) {
             setError(err.message);
         } finally {
-            await getPhotographerPhotos(userId);
+            await getPhotographerPhotos(userId, '');
         }
     };
 

@@ -12,3 +12,29 @@
     max-height: 378px;
     overflow-y: auto;
 }
+
+.comment-btn-container button {
+    color: var(--text-primary);
+}
+
+.comment-btn-container button:hover {
+    color: var(--accent) !important;
+    background-color: transparent;
+}
+
+.post-comment-btn button {
+    background-color: var(--primary);
+}
+
+.post-comment-btn span {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.single-comment-container {
+    border: 1px solid var(--accent);
+}
+
+.comment-header {
+    color: var(--text-primary);
+}

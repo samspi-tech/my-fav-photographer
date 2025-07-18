@@ -9,20 +9,22 @@ const Photographers = ({ photographer }) => {
 
     return (
         <Link
-            to={`/photographer/${photographerId}`}
             className="text-decoration-none"
+            to={`/photographer/${photographerId}`}
         >
             <ListGroup.Item
                 onMouseEnter={() => setIsHover(true)}
                 onMouseLeave={() => setIsHover(false)}
-                className="d-flex align-items-center gap-3 border-bottom-0 py-3"
+                className="search-bar-item d-flex align-items-center gap-3 border-bottom-0 py-3"
             >
                 <Avatar image={avatar} shape="circle" size="large" />
-                <span className="text-capitalize fw-medium">
+                <span className="photographer-name text-capitalize fw-bold">
                     {firstName} {lastName}
                 </span>
                 {isHover && (
-                    <small className="text-secondary">Visit profile</small>
+                    <small className="visit-text fw-bold ms-auto">
+                        Visit profile
+                    </small>
                 )}
             </ListGroup.Item>
         </Link>

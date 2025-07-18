@@ -4,6 +4,7 @@ const isArrayEmpty = require('../utils/isArrayEmpty');
 const { calcTotalPages, calcSkipPages } = require('../utils/pagination');
 const UserNotFoundException = require('../exceptions/user/UserNotFoundException');
 const NotFollowingException = require('../exceptions/follower/NotFollowingException');
+const FollowNotFoundException = require('../exceptions/follower/FollowNotFoundException');
 const AlreadyFollowingException = require('../exceptions/follower/AlreadyFollowingException');
 
 const findAllFollowers = async (photographerId, page = 1, pageSize = 10) => {
@@ -49,7 +50,7 @@ const findAllFollowing = async (followerId, page = 1, pageSize = 10) => {
                 },
             },
         });
-    if (isArrayEmpty(following)) throw new UserNotFoundException();
+    if (isArrayEmpty(following)) throw new FollowNotFoundException();
 
     return { following, totalPages, totalFollowing };
 };

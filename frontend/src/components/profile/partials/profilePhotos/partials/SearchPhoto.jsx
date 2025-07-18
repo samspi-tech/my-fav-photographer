@@ -31,19 +31,24 @@ const SearchPhoto = () => {
     return (
         <Form onSubmit={handleSubmit} className="d-flex">
             <div className="p-inputgroup">
-                <Button icon="pi pi-search" className="custom-btn py-2" />
+                <Button
+                    type="submit"
+                    icon="pi pi-search"
+                    className="custom-btn py-2 rounded-end-0"
+                />
                 <InputText
                     type="text"
-                    className="py-2"
                     name="photoQuery"
                     value={photoQuery}
                     onChange={handlePhotoQuery}
                     placeholder="Search by tag"
+                    className="search-photo-input custom-input py-2"
                 />
                 <Button
+                    type="button"
                     icon="pi pi-refresh"
                     onClick={resetPhotoSearch}
-                    className="custom-btn p-y2"
+                    className="custom-btn p-y2 rounded-start-0"
                 />
             </div>
         </Form>

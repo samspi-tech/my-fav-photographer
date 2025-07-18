@@ -18,6 +18,9 @@ const Comments = ({ post }) => {
 
     const loggedInUserId = getFromSessionStorage('userId');
 
+    const loggedInUserRole = getFromSessionStorage('role');
+    const isRoleUser = loggedInUserRole === 'user';
+
     const { _id: postId, comments: postComments, user } = post;
     const commentsNum = postComments.length;
 
@@ -33,7 +36,7 @@ const Comments = ({ post }) => {
 
     return (
         <>
-            <div className="d-flex flex-column justify-content-center align-items-center">
+            <div className="comment-btn-container d-flex flex-column justify-content-center align-items-center">
                 <Button
                     link
                     icon="pi pi-comments"
@@ -41,23 +44,26 @@ const Comments = ({ post }) => {
                         handleIsVisible();
                         await getPostComments(postId);
                     }}
-                    className="shadow-none rounded-circle text-secondary"
+                    className="shadow-none rounded-circle"
                 />
-                <small className="text-secondary">
+                <small>
                     {commentsNum} {commentsNum === 1 ? 'Comment' : 'Comments'}
                 </small>
             </div>
             <Dialog
                 header="Comments"
+                className="custom-dialog"
                 visible={isVisible}
                 onHide={async () => {
                     handleIsVisible();
-                    await getAllPosts(loggedInUserId);
+                    isRoleUser && (await getAllPosts(loggedInUserId));
                     await getPhotographerPosts(userId);
                 }}
             >
                 <div className="comments-container d-flex flex-column gap-2">
-                    {isLoading && <CustomMessage error="Loading..." />}
+                    {isLoading && (
+                        <CustomMessage loading={true} error="Loading..." />
+                    )}
                     {!isLoading && error && (
                         <CustomMessage error="No comments yet." />
                     )}
@@ -75,9 +81,9 @@ const Comments = ({ post }) => {
                         })}
                 </div>
                 <CommentForm
-                    initialValues={initialValues}
-                    submitFn="create"
                     postId={postId}
+                    submitFn="create"
+                    initialValues={initialValues}
                 />
             </Dialog>
         </>

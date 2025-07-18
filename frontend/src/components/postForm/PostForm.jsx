@@ -7,20 +7,12 @@ import { InputText } from 'primereact/inputtext';
 import { CascadeSelect } from 'primereact/cascadeselect';
 import { InputTextarea } from 'primereact/inputtextarea';
 import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
-import { UserContext } from '../../contexts/UserContext.jsx';
 import { PostContext } from '../../contexts/PostContext.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 
 const PostForm = ({ initialValues, submitFn, postId }) => {
-    const { user } = useContext(UserContext);
-
-    const {
-        isLoading,
-        createPost,
-        updatePost,
-        getAllPosts,
-        getPhotographerPosts,
-    } = useContext(PostContext);
+    const { isLoading, createPost, updatePost, getPhotographerPosts } =
+        useContext(PostContext);
 
     const loggedInUserId = getFromSessionStorage('userId');
 
@@ -37,32 +29,36 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
         initialValues,
         validationSchema: yupPostSchema,
         onSubmit: async (values) => {
-            const userId = user && user._id;
             submitFn === 'create'
-                ? await createPost(userId, values)
-                : await updatePost(userId, postId, values);
+                ? await createPost(loggedInUserId, values)
+                : await updatePost(loggedInUserId, postId, values);
 
-            await getAllPosts(loggedInUserId);
-            await getPhotographerPosts(userId);
+            await getPhotographerPosts(loggedInUserId);
         },
     });
 
     return (
-        <Form onSubmit={formik.handleSubmit}>
+        <Form
+            onSubmit={formik.handleSubmit}
+            className="d-flex flex-column gap-3"
+        >
             <Form.Group>
+                <label htmlFor="post-title">Title</label>
                 <InputText
                     type="text"
                     name="title"
+                    id="post-title"
                     placeholder="Title"
                     value={formik.values.title}
                     onChange={formik.handleChange}
-                    className="w-100 shadow-none border"
+                    className="custom-input w-100 shadow-none mt-1"
                 />
                 {formik.touched.title && formik.errors.title ? (
                     <ErrorMessage error={formik.errors.title} />
                 ) : null}
             </Form.Group>
             <Form.Group>
+                <label htmlFor="post-body">Share your story...</label>
                 <InputTextarea
                     autoResize
                     type="text"
@@ -70,7 +66,7 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                     value={formik.values.body}
                     onChange={formik.handleChange}
                     placeholder="Share your story..."
-                    className="w-100 shadow-none border mt-3"
+                    className="custom-input w-100 shadow-none mt-1"
                 />
                 {formik.touched.body && formik.errors.body ? (
                     <ErrorMessage error={formik.errors.body} />
@@ -86,7 +82,7 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                 <Button
                     type="submit"
                     label="Post"
-                    className="custom-btn w-100 mt-3"
+                    className="custom-btn w-100"
                 />
             )}
         </Form>

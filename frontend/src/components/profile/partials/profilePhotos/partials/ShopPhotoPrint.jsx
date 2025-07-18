@@ -43,9 +43,13 @@ const ShopPhotoPrint = ({ photo }) => {
                 header="Choose your print size"
                 onHide={handleVisibility}
             >
-                <div className="d-flex flex-column flex-md-row gap-3">
+                <div className="d-flex flex-column flex-md-row gap-3 border rounded p-2">
                     <div className="shop-photo-print-container w-100">
-                        <img src={singlePhoto} alt="photographerPhoto" />
+                        <img
+                            src={singlePhoto}
+                            className="border"
+                            alt="photographerPhoto"
+                        />
                     </div>
                     <div className="d-flex flex-column gap-3">
                         {photoSizes.map((size) => {

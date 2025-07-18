@@ -15,8 +15,8 @@ const Profile = ({ user }) => {
     const { firstName, lastName, avatar, _id: userId } = user;
 
     const {
-        getFollowing,
         following,
+        getFollowing,
         followPhotographer,
         unfollowPhotographer,
     } = useContext(FollowerContext);
@@ -34,17 +34,19 @@ const Profile = ({ user }) => {
 
     useEffect(() => {
         getFollowing(loggedInUserId);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [photographerId]);
 
     return (
-        <div>
+        <div className="profile-hero">
             <div className="d-flex flex-column gap-3 align-items-center py-5">
                 <Avatar
                     image={avatar}
                     shape="circle"
                     className="profile-avatar"
                 />
-                <h2 className="fw-medium text-capitalize">
+                <h2 className="profile-name text-capitalize display-1">
                     {firstName} {lastName}
                 </h2>
                 {isRoleUser && (

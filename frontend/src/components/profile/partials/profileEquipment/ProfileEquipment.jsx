@@ -17,6 +17,8 @@ const ProfileEquipment = ({ userId }) => {
 
     useEffect(() => {
         getEquipment(userId);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [isVisible, setIsVisible] = useState(false);
@@ -34,18 +36,20 @@ const ProfileEquipment = ({ userId }) => {
 
     return (
         <Container className="mb-5">
-            <Row className="justify-content-center mb-5">
+            <Row className="flex-column align-items-center justify-content-center gap-3 mb-5">
                 {isActionAllowed && (
                     <Col xs={12} lg={6}>
                         <Button
                             icon="pi pi-plus"
+                            className="custom-btn"
+                            label="Add new equipment"
                             onClick={handleVisibility}
-                            className="custom-btn small"
                         />
                         <Dialog
                             visible={isVisible}
                             header="Post a new set"
                             onHide={handleVisibility}
+                            className="custom-dialog"
                         >
                             <EquipmentForm
                                 userId={userId}
@@ -55,25 +59,36 @@ const ProfileEquipment = ({ userId }) => {
                         </Dialog>
                     </Col>
                 )}
-                {isLoading && <CustomMessage error="Loading..." />}
-                {!isLoading && error && <CustomMessage error={error} />}
+                <Col lg={6}>
+                    {isLoading && (
+                        <CustomMessage
+                            loading={true}
+                            error="Loading equipments..."
+                        />
+                    )}
+                    {!isLoading && error && <CustomMessage error={error} />}
+                </Col>
             </Row>
-            <Row className="justify-content-center gy-5">
-                {!isLoading &&
-                    !error &&
-                    equipments &&
-                    equipments.map((equipment, index) => {
-                        const { _id: equipmentId } = equipment;
+            <Row className="justify-content-center">
+                <Col md={10} lg={7} xl={5}>
+                    <Row className="gy-4">
+                        {!isLoading &&
+                            !error &&
+                            equipments &&
+                            equipments.map((equipment, index) => {
+                                const { _id: equipmentId } = equipment;
 
-                        return (
-                            <SingleEquipment
-                                index={index}
-                                key={equipmentId}
-                                equipment={equipment}
-                                isActionAllowed={isActionAllowed}
-                            />
-                        );
-                    })}
+                                return (
+                                    <SingleEquipment
+                                        index={index}
+                                        key={equipmentId}
+                                        equipment={equipment}
+                                        isActionAllowed={isActionAllowed}
+                                    />
+                                );
+                            })}
+                    </Row>
+                </Col>
             </Row>
         </Container>
     );

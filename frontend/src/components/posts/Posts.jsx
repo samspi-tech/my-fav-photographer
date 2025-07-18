@@ -29,11 +29,15 @@ const Posts = ({ isHomePage }) => {
         isHomePage
             ? getAllPosts(loggedInUserId)
             : getPhotographerPosts(postsPhotographerId);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loggedInUserId]);
 
     return (
         <Row className="justify-content-center gy-5">
-            {isLoading && <CustomMessage error="Loading posts..." />}
+            {isLoading && (
+                <CustomMessage loading={true} error="Loading posts..." />
+            )}
             {!isLoading && error && <CustomMessage error={error} />}
             {isHomePage
                 ? posts &&

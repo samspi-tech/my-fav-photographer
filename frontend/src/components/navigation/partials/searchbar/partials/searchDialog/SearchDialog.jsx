@@ -32,15 +32,20 @@ const SearchDialog = ({ handleHide }) => {
 
     useEffect(() => {
         getAllPhotographers();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <>
-            <Form onSubmit={handleSubmit} className="p-inputgroup flex-1">
+            <Form
+                onSubmit={handleSubmit}
+                className="search-bar-form p-inputgroup flex-1"
+            >
                 <Button
                     type="submit"
                     icon="pi pi-search"
-                    className="search-btn px-4 shadow-none"
+                    className="custom-btn px-4 rounded-end-0 shadow-none"
                 />
                 <div className="d-flex flex-column flex-md-row w-100">
                     <InputText
@@ -49,7 +54,7 @@ const SearchDialog = ({ handleHide }) => {
                         value={fullName.first}
                         onChange={handleName}
                         placeholder="First Name (optional)"
-                        className="w-100 border shadow-none border-bottom-0"
+                        className="custom-input w-100 rounded-0 shadow-none"
                     />
                     <InputText
                         autoFocus={true}
@@ -57,18 +62,18 @@ const SearchDialog = ({ handleHide }) => {
                         value={fullName.last}
                         onChange={handleName}
                         placeholder="Last Name (optional)"
-                        className="w-100 border shadow-none border-bottom-0"
+                        className="custom-input w-100 rounded-0 shadow-none"
                     />
                 </div>
                 <Button
                     type="button"
                     icon="pi pi-times"
                     onClick={handleHide}
-                    className="close-btn px-4 shadow-none"
+                    className="custom-btn px-4 rounded-start-0 shadow-none"
                 />
             </Form>
             <div>
-                <ListGroup className="rounded-top-0">
+                <ListGroup className="border rounded-0">
                     {isLoading && <p>loading...</p>}
                     {!isLoading && error && <CustomMessage error={error} />}
                     {!isLoading &&

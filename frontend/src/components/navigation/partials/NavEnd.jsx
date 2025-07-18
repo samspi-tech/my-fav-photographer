@@ -17,21 +17,14 @@ const NavEnd = ({ user, isRoleUser }) => {
             {isRoleUser && <Searchbar />}
             {isRoleUser && <ShoppingCart />}
             {!isRoleUser && <CreatePost />}
-            {user && (
-                <Avatar
-                    size="large"
-                    shape="circle"
-                    className="border"
-                    image={user.avatar}
-                />
-            )}
+            {user && <Avatar size="large" shape="circle" image={user.avatar} />}
             <About />
             <Button
                 text
                 onClick={logout}
                 tooltip="Logout"
                 icon="pi pi-sign-out"
-                className="text-white"
+                className="nav-end-icon"
                 tooltipOptions={{ position: 'bottom' }}
             />
         </div>

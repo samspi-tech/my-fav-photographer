@@ -74,6 +74,7 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
                     name="street"
                     value={formik.values.street}
                     onChange={formik.handleChange}
+                    className="custom-input"
                 />
                 {formik.touched.street && formik.errors.street ? (
                     <ErrorMessage error={formik.errors.street} />
@@ -86,6 +87,7 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
                     name="city"
                     value={formik.values.city}
                     onChange={formik.handleChange}
+                    className="custom-input"
                 />
                 {formik.touched.city && formik.errors.city ? (
                     <ErrorMessage error={formik.errors.city} />
@@ -98,6 +100,7 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
                     name="province"
                     value={formik.values.province}
                     onChange={formik.handleChange}
+                    className="custom-input"
                 />
                 {formik.touched.province && formik.errors.province ? (
                     <ErrorMessage error={formik.errors.province} />
@@ -111,6 +114,7 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
                     useGrouping={false}
                     value={formik.values.cap}
                     onValueChange={formik.handleChange}
+                    className="custom-input-number"
                 />
                 {formik.touched.cap && formik.errors.cap ? (
                     <ErrorMessage error={formik.errors.cap} />
@@ -124,6 +128,7 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
                     useGrouping={false}
                     value={formik.values.contact}
                     onValueChange={formik.handleChange}
+                    className="custom-input-number"
                 />
                 {formik.touched.contact && formik.errors.contact ? (
                     <ErrorMessage error={formik.errors.contact} />

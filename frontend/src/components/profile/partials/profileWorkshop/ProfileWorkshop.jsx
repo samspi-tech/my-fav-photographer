@@ -24,6 +24,8 @@ const ProfileWorkshop = ({ user }) => {
 
     useEffect(() => {
         getWorkshops(userId);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const initialValues = {
@@ -35,7 +37,7 @@ const ProfileWorkshop = ({ user }) => {
     return (
         <Container className="mb-5">
             {isActionAllowed && (
-                <Row className="justify-content-center mb-5">
+                <Row className="justify-content-center mb-3">
                     <Col xs={6}>
                         <Button
                             icon="pi pi-plus"
@@ -46,6 +48,7 @@ const ProfileWorkshop = ({ user }) => {
                         <Dialog
                             visible={isVisible}
                             onHide={handleVisibility}
+                            className="custom-dialog"
                             header="Create a new workshop"
                         >
                             <WorkshopForm
@@ -60,10 +63,13 @@ const ProfileWorkshop = ({ user }) => {
             <Row className="justify-content-center">
                 <Col lg={6}>
                     {isLoading && (
-                        <CustomMessage error="Loading workshops..." />
+                        <CustomMessage
+                            loading={true}
+                            error="Loading workshops..."
+                        />
                     )}
                     {!isLoading && error && <CustomMessage error={error} />}
-                    <Row className="gy-3">
+                    <Row className="gy-3 mt-3">
                         {!isLoading &&
                             !error &&
                             workshops &&

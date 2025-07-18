@@ -15,10 +15,19 @@ const FollowList = () => {
 
     useEffect(() => {
         getFollowing(loggedInUserId);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const followingListTitle = (
+        <span className="following-list-title fs-2">Following</span>
+    );
+
     return (
-        <Card title="Following" className="rounded-0">
+        <Card
+            title={followingListTitle}
+            className="card following-card custom-card"
+        >
             {isLoading && <CustomMessage error="Loading..." />}
             {!isLoading && error && <CustomMessage error={error} />}
             <ListGroup>
