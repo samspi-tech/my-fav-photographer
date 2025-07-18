@@ -5,7 +5,13 @@
     background-color: var(--secondary);
 }
 
-.nav-container .p-menuitem-text, .p-menuitem-icon {
+.nav-container .p-menuitem-text {
+    font-size: 20px;
+    font-family: "Bebas neue", sans-serif;
+}
+
+.nav-container .p-menuitem-text,
+.nav-container .p-menuitem-icon {
     color: #DCFFFD;
 }
 
@@ -21,6 +27,10 @@
     border-radius: 5px;
     transform: translateY(-2px);
     background-color: var(--secondary);
+}
+
+.nav-container .p-menuitem-text {
+    margin-top: 4px;
 }
 
 .nav-container .p-menuitem-link:hover .p-menuitem-text,
@@ -63,4 +73,21 @@
 .nav-end-icon:hover {
     color: var(--accent);
     transform: translateY(-2px);
+}
+
+.search-bar-form .custom-input::placeholder {
+    color: #c5e6e4;
+}
+
+.search-bar-item {
+    color: var(--text-primary);
+    background-color: var(--secondary);
+}
+
+.search-bar-item:hover .photographer-name {
+    color: var(--accent);
+}
+
+.search-bar-item .visit-text {
+    color: var(--accent);
 }

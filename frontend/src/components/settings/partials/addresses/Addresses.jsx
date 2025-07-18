@@ -34,10 +34,11 @@ const Addresses = () => {
     return (
         <>
             <Row className="justify-content-center mb-5">
-                <Col lg={6}>
+                <Col lg={4}>
                     <Button
                         icon="pi pi-plus"
                         className="custom-btn"
+                        label="Add a new address"
                         onClick={handleVisibility}
                     />
                     <Dialog
@@ -54,28 +55,35 @@ const Addresses = () => {
                 </Col>
             </Row>
             <Row className="justify-content-center">
-                <Col lg={6}>
-                    {isLoading && <CustomMessage error="Loading..." />}
-                    {!isLoading && error && <CustomMessage error={error} />}
-                </Col>
-            </Row>
-            <Row className="gy-5">
-                {!isLoading &&
-                    !error &&
-                    addresses &&
-                    addresses.map((address, index) => {
-                        const { _id: key } = address;
-
-                        return (
-                            <SingleAddress
-                                key={key}
-                                index={index}
-                                showMenu={true}
-                                address={address}
-                                addressTitle={`Address ${index + 1}`}
+                <Col lg={6} className="mb-5">
+                    {isLoading && (
+                        <div className="mb-5">
+                            <CustomMessage
+                                loading={true}
+                                error="Loading addresses..."
                             />
-                        );
-                    })}
+                        </div>
+                    )}
+                    {!isLoading && error && <CustomMessage error={error} />}
+                    <Row className="justify-content-center">
+                        {!isLoading &&
+                            !error &&
+                            addresses &&
+                            addresses.map((address, index) => {
+                                const { _id: key } = address;
+
+                                return (
+                                    <SingleAddress
+                                        key={key}
+                                        index={index}
+                                        showMenu={true}
+                                        address={address}
+                                        addressTitle={`Address ${index + 1}`}
+                                    />
+                                );
+                            })}
+                    </Row>
+                </Col>
             </Row>
         </>
     );

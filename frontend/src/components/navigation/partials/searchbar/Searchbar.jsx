@@ -25,6 +25,7 @@ const Searchbar = () => {
                 visible={isVisible}
                 focusOnShow={false}
                 onHide={handleIsVisible}
+                className="custom-dialog"
                 content={<SearchDialog handleHide={handleIsVisible} />}
             />
         </>

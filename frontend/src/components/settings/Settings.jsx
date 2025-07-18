@@ -27,14 +27,14 @@ const Settings = () => {
                     <TabView className="profile-tabview d-flex flex-column align-items-center">
                         <TabPanel
                             header="Profile Details"
-                            leftIcon="pi pi-user me-2"
+                            leftIcon="pi pi-user"
                         >
                             {user && <ProfileForm user={user} />}
                         </TabPanel>
                         {isRoleUser && (
                             <TabPanel
                                 header="Addresses"
-                                leftIcon="pi pi-address-book me-2"
+                                leftIcon="pi pi-address-book"
                             >
                                 <Addresses />
                             </TabPanel>
@@ -42,10 +42,10 @@ const Settings = () => {
                         {isRoleUser && (
                             <TabPanel
                                 header="Following"
-                                leftIcon="pi pi-camera me-2"
+                                leftIcon="pi pi-camera"
                             >
                                 <Row className="justify-content-center">
-                                    <Col lg={6}>
+                                    <Col lg={4}>
                                         <FollowList />
                                     </Col>
                                 </Row>

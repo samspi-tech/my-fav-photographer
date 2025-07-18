@@ -1,14 +1,15 @@
 import { Col } from 'react-bootstrap';
-import { Panel } from 'primereact/panel';
+import { Card } from 'primereact/card';
 import AddressMenu from './AddressMenu.jsx';
 
 const SingleAddress = ({ address, addressTitle, showMenu }) => {
     const { street, province, city, cap, contact, user: userId } = address;
 
     return (
-        <Col lg={4} className="mx-auto">
-            <Panel
-                headerTemplate={
+        <Col lg={6}>
+            <Card
+                className="custom-card card"
+                title={
                     <AddressMenu
                         userId={userId}
                         address={address}
@@ -25,7 +26,7 @@ const SingleAddress = ({ address, addressTitle, showMenu }) => {
                     </p>
                     <p className="mb-0">{contact}</p>
                 </div>
-            </Panel>
+            </Card>
         </Col>
     );
 };

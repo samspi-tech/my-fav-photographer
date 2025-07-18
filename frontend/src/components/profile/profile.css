@@ -162,14 +162,6 @@
     padding-top: 15px;
 }
 
-.equipment-list.card,
-.workshop-card.card {
-    border-radius: 6px;
-    color: var(--text-primary);
-    border: 1px solid var(--accent);
-    background-color: var(--secondary);
-}
-
 .equipment-list .p-card-body {
     padding: 0 15px;
 }

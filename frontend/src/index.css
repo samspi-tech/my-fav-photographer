@@ -118,10 +118,6 @@ textarea {
     width: 500px;
 }
 
-.p-avatar {
-    box-shadow: 0 0 1px 1px var(--accent);
-}
-
 .post-menu {
     color: var(--text-primary);
 
@@ -132,8 +128,19 @@ textarea {
     color: var(--accent);
 }
 
+.p-menuitem-link {
+    text-decoration: none;
+}
+
 .custom-input {
     color: var(--text-primary);
     background-color: var(--primary);
     border: 1px solid var(--text-primary);
+}
+
+.custom-card.card {
+    border-radius: 6px;
+    color: var(--text-primary);
+    border: 1px solid var(--accent);
+    background-color: var(--secondary);
 }

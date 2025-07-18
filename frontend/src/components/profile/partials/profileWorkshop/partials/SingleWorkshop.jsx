@@ -36,7 +36,7 @@ const SingleWorkshop = ({ workshop, isActionAllowed }) => {
             <Card
                 title={workshopTitle}
                 footer={workshopFooter}
-                className="workshop-card card"
+                className="workshop-card custom-card card"
             >
                 <div className="border-bottom border-top py-4">
                     <p className="mb-0">{body}</p>

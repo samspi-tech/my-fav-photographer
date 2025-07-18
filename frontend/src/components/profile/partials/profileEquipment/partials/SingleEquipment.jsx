@@ -14,7 +14,10 @@ const SingleEquipment = ({ equipment, index, isActionAllowed }) => {
 
     return (
         <Col md={6} className="d-flex justify-content-center">
-            <Card className="equipment-list card" title={equipmentTitle}>
+            <Card
+                className="equipment-list custom-card card"
+                title={equipmentTitle}
+            >
                 <ListGroup className="shadow">
                     <ListGroup.Item className="d-flex justify-content-between">
                         <span className="fw-bold text-warning">Camera:</span>{' '}

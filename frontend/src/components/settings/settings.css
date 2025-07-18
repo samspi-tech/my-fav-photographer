@@ -1,4 +1,5 @@
-.settings-profile-form-title {
+.settings-profile-form-title,
+.address-card-title {
     font-weight: 600;
     font-family: "Bebas neue", sans-serif;
 }
@@ -22,4 +23,16 @@ input[type="file"] {
 .file-input span {
     font-weight: 600;
     color: var(--accent);
+}
+
+.p-tabview-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.custom-input-number .p-inputnumber-input {
+    color: var(--text-primary);
+    background-color: var(--primary);
+    border: 1px solid var(--text-primary);
 }
