@@ -47,24 +47,24 @@ const ShoppingCart = () => {
             >
                 {isEmptyCart && <CustomMessage error="Your cart is empty" />}
                 {!isEmptyCart && (
-                    <p>
-                        <span className="fw-bold">Total checkout:</span> €
-                        {totalCheckout(cartItems)}
-                    </p>
-                )}
-                {!isEmptyCart && (
                     <div className="d-flex justify-content-between mt-2 mb-3">
                         <Button
-                            className="custom-btn"
-                            label="Proceed to checkout"
+                            label="Checkout"
+                            className="custom-btn checkout-btn"
                             onClick={() => navigate('/checkout')}
                         />
                         <Button
-                            severity="danger"
                             label="Clear cart"
                             onClick={handleEmptyCart}
+                            className="clear-cart-btn"
                         />
                     </div>
+                )}
+                {!isEmptyCart && (
+                    <p>
+                        <span className="cart-total">Total checkout:</span> €
+                        {totalCheckout(cartItems)}
+                    </p>
                 )}
                 <ListGroup>
                     {!isEmptyCart &&

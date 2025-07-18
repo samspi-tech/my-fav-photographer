@@ -16,22 +16,22 @@ const CartSingleItem = ({ item }) => {
     };
 
     return (
-        <ListGroup.Item className="d-flex gap-3">
+        <ListGroup.Item className="cart-item d-flex gap-3">
             <div className="shop-cart-photo-container w-50">
                 <img src={photo} alt="cart-photo" />
             </div>
-            <div className="d-flex flex-column justify-content-between w-75">
-                <p>
+            <div className="cart-item-body d-flex flex-column justify-content-between w-75">
+                <p className="d-flex justify-content-between">
                     <span className="fw-bold">Photo size:</span> {size}
                 </p>
-                <p>
+                <p className="d-flex justify-content-between">
                     <span className="fw-bold">Price:</span> €{price}
                 </p>
                 <Button
-                    text
-                    onClick={() => handleRemoveCartItem(photo)}
+                    label="Remove item"
                     icon="pi pi-trash"
-                    className="text-black d-block ms-auto shadow-none border-0 bg-transparent"
+                    onClick={() => handleRemoveCartItem(photo)}
+                    className="d-block me-auto px-1 py-0 shadow-none bg-transparent"
                 />
             </div>
         </ListGroup.Item>
