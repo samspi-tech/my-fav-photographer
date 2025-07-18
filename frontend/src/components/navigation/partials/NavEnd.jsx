@@ -24,7 +24,7 @@ const NavEnd = ({ user, isRoleUser }) => {
                 onClick={logout}
                 tooltip="Logout"
                 icon="pi pi-sign-out"
-                className="nav-end-icon"
+                className="nav-end-icon shadow-none bg-transparent"
                 tooltipOptions={{ position: 'bottom' }}
             />
         </div>

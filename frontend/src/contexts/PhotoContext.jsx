@@ -5,6 +5,9 @@ import { createContext, useState } from 'react';
 export const PhotoContext = createContext();
 
 export const PhotoProvider = ({ children }) => {
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(null);
+
     const [error, setError] = useState('');
     const [photos, setPhotos] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -13,9 +16,10 @@ export const PhotoProvider = ({ children }) => {
 
     const getPhotographerPhotos = async (userId, tag = '') => {
         const data = await PhotoRequests.get(
-            `photo/${userId}/photos?tag=${tag}`,
+            `photo/${userId}/photos?tag=${tag}&page=${page}&pageSize=6`,
         );
         setPhotos(data.photos);
+        setTotalPages(data.totalPages);
 
         return data;
     };
@@ -39,6 +43,9 @@ export const PhotoProvider = ({ children }) => {
                 error,
                 photos,
                 isLoading,
+                setPage,
+                page,
+                totalPages,
                 getPhotographerPhotos,
                 updatePhoto,
                 deletePhoto,

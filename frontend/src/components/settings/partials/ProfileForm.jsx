@@ -59,6 +59,7 @@ const ProfileForm = ({ user }) => {
             }
 
             await getMe();
+            window.location.reload();
         },
     });
 

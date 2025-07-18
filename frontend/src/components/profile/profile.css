@@ -22,6 +22,14 @@
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
 }
 
+.profile-hero-photographer {
+    height: 584px;
+}
+
+.profile-hero-user {
+    height: 650px;
+}
+
 .profile-name {
     font-weight: 600;
     font-family: 'Bebas Neue', sans-serif;

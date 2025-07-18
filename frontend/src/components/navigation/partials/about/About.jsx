@@ -17,7 +17,7 @@ const About = () => {
                 tooltip="About"
                 icon="pi pi-info-circle"
                 onClick={handleIsVisible}
-                className="nav-end-icon shadow-none ms-2"
+                className="nav-end-icon shadow-none bg-transparent ms-2"
                 tooltipOptions={{ position: 'bottom' }}
             />
             <Dialog
