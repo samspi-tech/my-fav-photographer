@@ -9,8 +9,7 @@ import { getFromSessionStorage } from '../../../../utils/sessionStorage.js';
 import { useParticipateWorkshop } from '../../../../hooks/useParticipateWorkshop.js';
 
 const WorkshopParticipants = ({ workshop }) => {
-    const { participateWorkshop, unsubscribeFromWorkshop } =
-        useParticipateWorkshop();
+    const { participateWorkshop } = useParticipateWorkshop();
 
     const { getWorkshops } = useContext(WorkshopContext);
 
@@ -47,16 +46,13 @@ const WorkshopParticipants = ({ workshop }) => {
             <Dialog
                 focusOnShow={false}
                 visible={isVisible}
-                onHide={handleVisibility}
                 className="custom-dialog"
+                onHide={handleVisibility}
                 header="Whorkshop's participants"
             >
-                {participantsNum === 0 && (
-                    <CustomMessage error="No participants yet." />
-                )}
                 <div>
                     {isRoleUser && (
-                        <div className="d-flex justify-content-between mb-3 mt-2">
+                        <div className="d-flex justify-content-between mb-3">
                             {isParticipant.length === 0 && (
                                 <Button
                                     label="Participate"
@@ -69,22 +65,12 @@ const WorkshopParticipants = ({ workshop }) => {
                                     }}
                                 />
                             )}
-                            {isParticipant.length > 0 && (
-                                <Button
-                                    label="Unsubscribe"
-                                    className="custom-btn p-1"
-                                    onClick={async () => {
-                                        await unsubscribeFromWorkshop(
-                                            workshopId,
-                                            loggedInUserId,
-                                        );
-                                        await getWorkshops(workshopAuthor);
-                                    }}
-                                />
-                            )}
                         </div>
                     )}
                 </div>
+                {participantsNum === 0 && (
+                    <CustomMessage error="No participants yet." />
+                )}
                 <ListGroup>
                     {participants.map((participant) => {
                         const { _id: key, participantId } = participant;
@@ -92,7 +78,9 @@ const WorkshopParticipants = ({ workshop }) => {
                         return (
                             <ParticipantsList
                                 key={key}
+                                workshopId={workshopId}
                                 participant={participantId}
+                                workshopAuthor={workshopAuthor}
                             />
                         );
                     })}

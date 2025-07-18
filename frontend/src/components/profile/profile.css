@@ -245,3 +245,9 @@
 .search-photo-input::placeholder {
     color: #c5e6e4;
 }
+
+.participant-item {
+    color: var(--text-primary);
+    border-color: var(--accent);
+    background-color: var(--primary);
+}

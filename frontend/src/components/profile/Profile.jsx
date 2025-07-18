@@ -15,8 +15,8 @@ const Profile = ({ user }) => {
     const { firstName, lastName, avatar, _id: userId } = user;
 
     const {
-        getFollowing,
         following,
+        getFollowing,
         followPhotographer,
         unfollowPhotographer,
     } = useContext(FollowerContext);

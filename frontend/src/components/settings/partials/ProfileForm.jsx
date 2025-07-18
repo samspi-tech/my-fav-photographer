@@ -15,7 +15,7 @@ const ProfileForm = ({ user }) => {
     const { getMe } = useContext(UserContext);
     const { firstName, lastName, email, dob } = user;
 
-    const { isLoading, uploadAvatarOnCloudinary, handleProfileUpdate } =
+    const { error, isLoading, uploadAvatarOnCloudinary, handleProfileUpdate } =
         useAvatarUpload();
 
     const loggedInUserId = getFromSessionStorage('userId');
@@ -156,6 +156,11 @@ const ProfileForm = ({ user }) => {
                         />
                     )}
                 </Form>
+                {error && (
+                    <div className="d-flex justify-content-center mt-3">
+                        <ErrorMessage error={error} />
+                    </div>
+                )}
             </Col>
         </Row>
     );
