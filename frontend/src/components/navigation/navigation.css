@@ -1,0 +1,93 @@
+.nav-container .p-menubar {
+    border: none;
+    border-radius: 0;
+    color: var(--text-primary);
+    background-color: var(--secondary);
+}
+
+.nav-container .p-menuitem-text {
+    font-size: 20px;
+    font-family: "Bebas neue", sans-serif;
+}
+
+.nav-container .p-menuitem-text,
+.nav-container .p-menuitem-icon {
+    color: #DCFFFD;
+}
+
+.nav-container .p-menuitem-content {
+    background-color: var(--secondary);
+}
+
+.nav-container .p-menuitem-link {
+    transition: all 150ms ease-in-out;
+}
+
+.nav-container .p-menuitem-link:hover {
+    border-radius: 5px;
+    transform: translateY(-2px);
+    background-color: var(--secondary);
+}
+
+.nav-container .p-menuitem-text {
+    margin-top: 4px;
+}
+
+.nav-container .p-menuitem-link:hover .p-menuitem-text,
+.nav-container .p-menuitem-link:hover .p-menuitem-icon {
+    color: var(--accent);
+}
+
+.nav-container ul.p-menubar-root-list {
+    margin: 0;
+    padding-left: 0;
+    background-color: var(--secondary);
+}
+
+.nav-container a.p-menubar-button .p-icon {
+    color: #FFF;
+}
+
+.nav-container a.p-menubar-button:hover {
+    background-color: #111827;
+}
+
+.nav-container .p-menuitem-link {
+    text-decoration: none;
+}
+
+.nav-container .p-tooltip-text {
+    font-size: 14px;
+}
+
+.nav-container {
+    background-color: var(--secondary);
+}
+
+.nav-end-icon {
+    color: var(--text-primary);
+
+    transition: all 150ms ease-in-out;
+}
+
+.nav-end-icon:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.search-bar-form .custom-input::placeholder {
+    color: #c5e6e4;
+}
+
+.search-bar-item {
+    color: var(--text-primary);
+    background-color: var(--secondary);
+}
+
+.search-bar-item:hover .photographer-name {
+    color: var(--accent);
+}
+
+.search-bar-item .visit-text {
+    color: var(--accent);
+}

@@ -1,0 +1,57 @@
+.checkout-input .p-placeholder,
+.checkout-input .p-dropdown-label {
+    color: #c5e6e4;
+}
+
+.checkout-container h1,
+.checkout-container h3 {
+    font-family: "Bebas neue", sans-serif;
+}
+
+.p-dropdown-panel ul {
+    margin: 0;
+    padding: 0;
+}
+
+.p-dropdown-items-wrapper {
+    border-radius: 6px;
+    box-shadow: 0 10px 50px 10px rgba(0, 0, 0, 1);
+}
+
+.p-dropdown-panel .p-dropdown-item {
+    border-radius: 6px;
+    color: var(--text-primary);
+    background-color: var(--secondary);
+    border: 1px solid var(--text-primary);
+}
+
+.p-dropdown-panel .p-dropdown-item:hover {
+    background-color: var(--primary);
+}
+
+.checkout-buy-container,
+.order-total {
+    color: var(--text-secondary);
+    border-right: 1px dashed var(--primary);
+    border-bottom: 1px dashed var(--primary);
+    background-color: var(--text-primary);
+    box-shadow: 1px 1px 0 1px var(--accent);
+}
+
+.checkout-buy-container {
+    padding: 10px;
+    margin-left: auto;
+    width: fit-content;
+}
+
+.order-total {
+    padding: 6px 10px;
+    width: fit-content;
+}
+
+.purchase-success-dialog {
+    border-radius: 6px;
+    color: var(--text-secondary);
+    background-color: var(--text-primary);
+    font-family: "Bebas neue", sans-serif;
+}

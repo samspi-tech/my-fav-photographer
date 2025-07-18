@@ -1,0 +1,41 @@
+{
+  "name": "my-fav-photographer",
+  "version": "1.0.0",
+  "description": "Backend for Epicode Capstone Project",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samspi-tech/my-fav-photographer.git"
+  },
+  "author": "Andrea Facco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samspi-tech/my-fav-photographer/issues"
+  },
+  "homepage": "https://github.com/samspi-tech/my-fav-photographer#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.7.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.0",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.29.0",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.0",
+    "globals": "^16.2.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.0"
+  }
+}

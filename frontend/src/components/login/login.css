@@ -1,0 +1,22 @@
+.p-float-label:focus-within label {
+    color: var(--text-primary);
+}
+
+.login-page-photo-container {
+    height: 100vh;
+}
+
+.login-page-photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-cover-container {
+    background: center/cover no-repeat
+        url('../../assets/images/unsplashLoginPage.jpg');
+
+    width: 100%;
+    height: 100vh;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+}
