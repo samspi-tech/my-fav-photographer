@@ -13,10 +13,12 @@ const FollowItem = ({ followItem }) => {
 
     const loggedInUserId = getFromSessionStorage('userId');
 
-    const handleUnfollow = (e) => {
-        e.stopPropagation();
+    const handleUnfollow = () => {
         unfollowPhotographer(loggedInUserId, photographerId);
-        window.location.reload();
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 600);
     };
 
     return (
