@@ -51,8 +51,10 @@ export const useLogin = (getMe, setUser) => {
 
             if (res.ok) {
                 setUser(null);
-                sessionStorage.clear();
-                navigate('/', { replace: true });
+                
+                setTimeout(() => {
+                    navigate('/success', { replace: true });
+                }, 600);
             }
 
             return await res.json();
