@@ -41,6 +41,10 @@ const logoutAuth = async (req, res, next) => {
             expires: COOKIE_EXPIRES_IN,
             httpOnly: true,
         };
+        if (process.env.NODE_ENV === 'prod') {
+            cookieOptions.secure = true;
+            cookieOptions.sameSite = 'none';
+        }
 
         res.cookie('token', 'loggedOut', cookieOptions);
 
