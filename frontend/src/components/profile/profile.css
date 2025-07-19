@@ -11,9 +11,8 @@
 }
 
 .profile-hero {
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.25)),
-        url('../../assets/images/unsplashLoginPage.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.25)),
+    url('../../assets/images/unsplashLoginPage.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -43,12 +42,19 @@
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6);
 }
 
-.p-tabview-nav {
+.profile-tabview .p-tabview-nav {
     margin: 0;
+    padding: 0;
 }
 
-.profile-tabview .p-tabview-nav {
-    padding: 0;
+.profile-tabview .p-tabview-nav .p-tabview-nav-link {
+    padding: 20px 10px;
+}
+
+@media (min-width: 768px) {
+    .profile-tabview .p-tabview-nav .p-tabview-nav-link {
+        padding: 20px;
+    }
 }
 
 .profile-tabview .p-tabview-nav,
@@ -192,7 +198,7 @@
     padding: 0;
 }
 
-.participants-btn-container button{
+.participants-btn-container button {
     color: var(--text-primary);
 
     transition: all 100ms ease-in-out;
