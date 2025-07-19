@@ -6,7 +6,7 @@ import { saveToSessionStorage } from '../utils/sessionStorage.js';
 
 const SuccessPage = () => {
     const navigate = useNavigate();
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
 
     useEffect(() => {
         if (user) {
@@ -18,13 +18,25 @@ const SuccessPage = () => {
                     ? navigate('/homepage', { replace: true })
                     : navigate('/profile', { replace: true });
             }, 2000);
+        } else {
+            sessionStorage.clear();
+            localStorage.clear();
+            setUser(null);
+
+            setTimeout(() => {
+                navigate('/', { replace: true });
+            }, 2000);
         }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navigate, user]);
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100">
             <div className="d-flex flex-column">
-                <p className="mb-0 fw-medium">Logging in...</p>
+                <p className="mb-0 fw-medium">
+                    {user ? 'Logging in...' : 'Logging out...'}
+                </p>
                 <ProgressSpinner
                     strokeWidth="8"
                     className="w-50"
