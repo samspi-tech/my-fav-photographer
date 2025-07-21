@@ -16,6 +16,7 @@ const ProfilePhotos = ({ user }) => {
     const isActionAllowed = loggedInUserRole === 'photographer';
 
     const [isVisible, setIsVisible] = useState(true);
+    
     const handleCaptionVisibility = () => {
         setIsVisible((prevState) => !prevState);
     };

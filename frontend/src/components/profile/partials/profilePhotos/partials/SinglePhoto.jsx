@@ -75,7 +75,11 @@ const SinglePhoto = ({
                 onHide={handleEditPhotoVisibility}
                 header="Edit tags and description."
             >
-                <PhotoDescriptionForm formik={formik} photo={photo} />
+                <PhotoDescriptionForm
+                    formik={formik}
+                    photo={photo}
+                    handleEdit={handleEditPhotoVisibility}
+                />
             </Dialog>
         </>
     );

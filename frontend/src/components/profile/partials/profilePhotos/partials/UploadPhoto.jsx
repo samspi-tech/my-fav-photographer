@@ -14,6 +14,7 @@ import { getFromSessionStorage } from '../../../../../utils/sessionStorage.js';
 
 const UploadPhoto = () => {
     const [isVisible, setIsVisible] = useState(false);
+
     const handleIsVisible = () => {
         setIsVisible((prevState) => !prevState);
     };
@@ -30,10 +31,11 @@ const UploadPhoto = () => {
     );
 
     const yupPhotoSchema = object({
-        body: string().max(2550, 'Must be 2550 characters or less'),
+        body: string().max(2550, 'Must be 2550 characters or less').trim(),
         tag: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
     });
 
     const formik = useFormik({
@@ -45,6 +47,7 @@ const UploadPhoto = () => {
         onSubmit: async (values) => {
             await handlePhotosUpload(loggedInUserId, values);
             await getPhotographerPhotos(loggedInUserId, '');
+            handleIsVisible();
         },
     });
 
@@ -52,9 +55,9 @@ const UploadPhoto = () => {
         <>
             <Button
                 size="small"
+                label="Upload"
                 icon="pi pi-image"
                 onClick={handleIsVisible}
-                label="Upload"
                 className="custom-btn align-self-end"
             />
             <Dialog
@@ -66,8 +69,12 @@ const UploadPhoto = () => {
                 header="Upload your photos"
                 className="dialog-photo-upload custom-dialog"
             >
-                <div className="card">
-                    <div className="card">
+                <>
+                    <p className="ps-2 d-flex align-items-center gap-2">
+                        <span className="pi pi-info-circle"></span>
+                        Please provide tags before choosing your photos.
+                    </p>
+                    <div className="card custom-card">
                         <FileUpload
                             multiple
                             name="photos"
@@ -76,6 +83,7 @@ const UploadPhoto = () => {
                             maxFileSize={50000000}
                             className="custom-file-upload"
                             onUpload={formik.handleSubmit}
+                            disabled={formik.values.tag.trim() === ''}
                             onSelect={(e) => setFiles([...e.files])}
                             url={`${import.meta.env.VITE_SERVER_BASE_URL}/photo/cloud-upload/photos`}
                             emptyTemplate={
@@ -85,7 +93,7 @@ const UploadPhoto = () => {
                             }
                         />
                     </div>
-                </div>
+                </>
                 <Form.Group className="d-flex flex-column mt-3 gap-1">
                     <label
                         id="photo-tag"
