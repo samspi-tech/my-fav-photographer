@@ -25,10 +25,6 @@ export const useLogin = (getMe, setUser) => {
 
             if (res.ok) {
                 await getMe();
-
-                setTimeout(() => {
-                    navigate('/success', { replace: true });
-                }, 600);
             } else {
                 throw new Error(data.message);
             }
@@ -37,7 +33,11 @@ export const useLogin = (getMe, setUser) => {
         } catch (err) {
             setError(err.message);
         } finally {
-            setIsLoading(false);
+            navigate('/success', { replace: true });
+
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 600);
         }
     };
 
@@ -51,10 +51,10 @@ export const useLogin = (getMe, setUser) => {
 
             if (res.ok) {
                 setUser(null);
-                
+
                 setTimeout(() => {
                     navigate('/success', { replace: true });
-                }, 600);
+                }, 0);
             }
 
             return await res.json();
@@ -82,13 +82,15 @@ export const useLogin = (getMe, setUser) => {
             const data = await res.json();
             if (!res.ok) throw new Error(data.message);
 
-            await login({ email: payload.email, password: payload.password });
-
             return data;
         } catch (err) {
             setError(err.message);
         } finally {
-            setIsLoading(false);
+            await login({ email: payload.email, password: payload.password });
+
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 600);
         }
     };
 
