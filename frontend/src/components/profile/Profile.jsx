@@ -4,7 +4,7 @@ import { Avatar } from 'primereact/avatar';
 import { useParams } from 'react-router-dom';
 import { TabPanel, TabView } from 'primereact/tabview';
 import { useContext, useEffect, useMemo } from 'react';
-import ProfilePosts from './partials/ProfilePosts.jsx';
+import ProfilePosts from './partials/profilePosts/ProfilePosts.jsx';
 import { FollowerContext } from '../../contexts/FollowerContext.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 import ProfilePhotos from './partials/profilePhotos/ProfilePhotos.jsx';

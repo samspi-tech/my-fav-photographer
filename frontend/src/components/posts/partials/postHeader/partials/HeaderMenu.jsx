@@ -64,6 +64,7 @@ const HeaderMenu = ({ userId, post }) => {
                     postId={postId}
                     submitFn="update"
                     initialValues={initialValues}
+                    handleVisibility={handleIsVisible}
                 />
             </Dialog>
         </div>

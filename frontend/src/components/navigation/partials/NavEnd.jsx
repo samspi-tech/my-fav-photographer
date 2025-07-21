@@ -1,12 +1,11 @@
+import { useContext } from 'react';
 import About from './about/About.jsx';
 import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 import Searchbar from './searchbar/Searchbar.jsx';
-import CreatePost from './createPost/CreatePost.jsx';
 import { useLogin } from '../../../hooks/useLogin.js';
-import { useContext } from 'react';
-import { UserContext } from '../../../contexts/UserContext.jsx';
 import ShoppingCart from '../../shoppingCart/ShoppingCart.jsx';
+import { UserContext } from '../../../contexts/UserContext.jsx';
 
 const NavEnd = ({ user, isRoleUser }) => {
     const { setUser } = useContext(UserContext);
@@ -16,7 +15,6 @@ const NavEnd = ({ user, isRoleUser }) => {
         <div className="d-flex align-items-center">
             {isRoleUser && <Searchbar />}
             {isRoleUser && <ShoppingCart />}
-            {!isRoleUser && <CreatePost />}
             {user && <Avatar size="large" shape="circle" image={user.avatar} />}
             <About />
             <Button
