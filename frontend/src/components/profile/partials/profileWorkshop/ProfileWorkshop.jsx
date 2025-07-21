@@ -13,6 +13,7 @@ const ProfileWorkshop = ({ user }) => {
     const isActionAllowed = loggedInUserRole === 'photographer';
 
     const [isVisible, setIsVisible] = useState(false);
+
     const handleVisibility = () => {
         setIsVisible((prevState) => !prevState);
     };
@@ -55,6 +56,7 @@ const ProfileWorkshop = ({ user }) => {
                                 userId={userId}
                                 submitFn="create"
                                 initialValues={initialValues}
+                                handleVisibility={handleVisibility}
                             />
                         </Dialog>
                     </Col>
