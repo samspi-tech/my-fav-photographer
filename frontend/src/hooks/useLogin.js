@@ -23,18 +23,18 @@ export const useLogin = (getMe, setUser) => {
 
             const data = await res.json();
 
-            if (res.ok) {
-                await getMe();
-            } else {
+            if (!res.ok) {
+                setIsLoading(false);
                 throw new Error(data.message);
             }
+
+            await getMe();
+            navigate('/success', { replace: true });
 
             return data;
         } catch (err) {
             setError(err.message);
         } finally {
-            navigate('/success', { replace: true });
-
             setTimeout(() => {
                 setIsLoading(false);
             }, 600);
@@ -80,14 +80,18 @@ export const useLogin = (getMe, setUser) => {
             );
 
             const data = await res.json();
-            if (!res.ok) throw new Error(data.message);
+
+            if (!res.ok) {
+                setIsLoading(false);
+                throw new Error(data.message);
+            }
+
+            await login({ email: payload.email, password: payload.password });
 
             return data;
         } catch (err) {
             setError(err.message);
         } finally {
-            await login({ email: payload.email, password: payload.password });
-
             setTimeout(() => {
                 setIsLoading(false);
             }, 600);
