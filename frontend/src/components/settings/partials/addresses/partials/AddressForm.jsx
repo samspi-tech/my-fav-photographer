@@ -4,13 +4,19 @@ import { Form } from 'react-bootstrap';
 import { Button } from 'primereact/button';
 import { object, string, number } from 'yup';
 import { InputText } from 'primereact/inputtext';
+import { InputNumber } from 'primereact/inputnumber';
 import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
 import { AddressContext } from '../../../../../contexts/AddressContext.jsx';
 import { getFromSessionStorage } from '../../../../../utils/sessionStorage.js';
-import { InputNumber } from 'primereact/inputnumber';
+import LoadingButton from '../../../../loadingButton/LoadingButton.jsx';
 
-const AddressForm = ({ initialValues, addressId, submitFn }) => {
-    const { getAddresses, createAddress, updateAddress } =
+const AddressForm = ({
+    submitFn,
+    addressId,
+    initialValues,
+    handleVisibility,
+}) => {
+    const { isLoading, getAddresses, createAddress, updateAddress } =
         useContext(AddressContext);
 
     const loggedInUserId = getFromSessionStorage('userId');
@@ -18,13 +24,16 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
     const yupAddressSchema = object({
         street: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         city: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         province: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         cap: number()
             .required('Required')
             .positive()
@@ -59,6 +68,7 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
                 : await updateAddress(loggedInUserId, addressId, values);
 
             await getAddresses(loggedInUserId);
+            handleVisibility();
         },
     });
 
@@ -134,11 +144,15 @@ const AddressForm = ({ initialValues, addressId, submitFn }) => {
                     <ErrorMessage error={formik.errors.contact} />
                 ) : null}
             </Form.Group>
-            <Button
-                type="submit"
-                className="custom-btn mt-2"
-                label={submitFn === 'create' ? 'Add' : 'Edit'}
-            />
+            {isLoading ? (
+                <LoadingButton />
+            ) : (
+                <Button
+                    type="submit"
+                    className="custom-btn mt-2"
+                    label={submitFn === 'create' ? 'Add' : 'Edit'}
+                />
+            )}
         </Form>
     );
 };
