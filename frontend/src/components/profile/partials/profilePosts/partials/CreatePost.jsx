@@ -21,7 +21,7 @@ const CreatePost = () => {
                 icon="pi pi-plus"
                 label="Create a new post"
                 onClick={handleIsVisible}
-                className="custom-btn mb-5"
+                className="custom-btn mb-3"
             />
             <Dialog
                 visible={isVisible}

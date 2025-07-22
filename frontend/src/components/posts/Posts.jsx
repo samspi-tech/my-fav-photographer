@@ -62,7 +62,7 @@ const Posts = ({ isHomePage }) => {
                           return <SinglePost key={postId} post={post} />;
                       })}
             </Row>
-            {!isHomePage && (
+            {!isHomePage && totalPages > 1 && (
                 <CustomPagination
                     page={page}
                     setPage={setPage}
