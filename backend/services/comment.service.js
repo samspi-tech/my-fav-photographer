@@ -8,7 +8,7 @@ const { calcTotalPages, calcSkipPages } = require('../utils/pagination');
 const CommentNotFoundException = require('../exceptions/comment/CommentNotFoundException');
 
 const findAllComments = async (postId, page = 1, pageSize = 10) => {
-    const totalComments = await CommentSchema.countDocuments();
+    const totalComments = await CommentSchema.countDocuments({ post: postId });
     const totalPages = calcTotalPages(totalComments, pageSize);
     const skipPages = calcSkipPages(page, pageSize);
 
