@@ -6,16 +6,19 @@ const AddressSchema = new mongoose.Schema(
             type: String,
             maxLength: 255,
             required: true,
+            trim: true,
         },
         city: {
             type: String,
             maxLength: 255,
             required: true,
+            trim: true,
         },
         province: {
             type: String,
             maxLength: 255,
             required: true,
+            trim: true,
         },
         cap: {
             type: Number,

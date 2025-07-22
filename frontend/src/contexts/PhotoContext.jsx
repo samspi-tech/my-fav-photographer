@@ -16,7 +16,7 @@ export const PhotoProvider = ({ children }) => {
 
     const getPhotographerPhotos = async (userId, tag = '') => {
         const data = await PhotoRequests.get(
-            `photo/${userId}/photos?tag=${tag}&page=${page}&pageSize=6`,
+            `photo/${userId}/photos?tag=${tag}&page=${page}`,
         );
         setPhotos(data.photos);
         setTotalPages(data.totalPages);

@@ -1,23 +1,26 @@
+import { useFormik } from 'formik';
+import { useContext } from 'react';
+import { object, string } from 'yup';
 import { Form } from 'react-bootstrap';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
-import { object, string } from 'yup';
-import { useFormik } from 'formik';
-import { useContext } from 'react';
 import { PhotoContext } from '../../../../../contexts/PhotoContext.jsx';
+import LoadingButton from '../../../../loadingButton/LoadingButton.jsx';
 
-const PhotoDescriptionForm = ({ photo }) => {
+const PhotoDescriptionForm = ({ photo, handleEdit }) => {
     const { tag, body, user: userId, _id: photoId } = photo;
 
-    const { updatePhoto, getPhotographerPhotos } = useContext(PhotoContext);
+    const { isLoading, updatePhoto, getPhotographerPhotos } =
+        useContext(PhotoContext);
 
     const yupPhotoSchema = object({
-        body: string().max(2550, 'Must be 2550 characters or less'),
+        body: string().max(2550, 'Must be 2550 characters or less').trim(),
         tag: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
     });
 
     const formik = useFormik({
@@ -29,6 +32,7 @@ const PhotoDescriptionForm = ({ photo }) => {
         onSubmit: async (values) => {
             await updatePhoto(userId, photoId, values);
             await getPhotographerPhotos(userId);
+            handleEdit();
         },
     });
 
@@ -72,11 +76,15 @@ const PhotoDescriptionForm = ({ photo }) => {
                     <ErrorMessage error={formik.errors.body} />
                 ) : null}
             </Form.Group>
-            <Button
-                label="Post"
-                type="submit"
-                className="custom-btn mt-3 w-100"
-            />
+            {isLoading ? (
+                <LoadingButton />
+            ) : (
+                <Button
+                    label="Post"
+                    type="submit"
+                    className="custom-btn mt-2 w-100"
+                />
+            )}
         </Form>
     );
 };

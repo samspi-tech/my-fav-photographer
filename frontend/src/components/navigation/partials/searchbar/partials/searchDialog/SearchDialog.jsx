@@ -1,8 +1,8 @@
 import './searchDialog.css';
 import { Button } from 'primereact/button';
+import { useContext, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Form, ListGroup } from 'react-bootstrap';
-import { useContext, useEffect, useState } from 'react';
 import Photographers from './partials/Photographers.jsx';
 import { UserContext } from '../../../../../../contexts/UserContext.jsx';
 import CustomMessage from '../../../../../customMessage/CustomMessage.jsx';
@@ -11,30 +11,19 @@ const SearchDialog = ({ handleHide }) => {
     const { error, isLoading, getAllPhotographers, photographers } =
         useContext(UserContext);
 
-    const [fullName, setFullName] = useState({
-        first: '',
-        last: '',
-    });
+    const [fullName, setFullName] = useState('');
 
-    const handleName = (e) => {
-        const { name, value } = e.target;
-
-        setFullName({
-            ...fullName,
-            [name]: value,
-        });
+    const handleFullName = (e) => {
+        setFullName(e.target.value);
     };
+
+    const isQueryPhotographer = fullName !== '';
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        getAllPhotographers(fullName.first, fullName.last);
+
+        isQueryPhotographer && getAllPhotographers(fullName);
     };
-
-    useEffect(() => {
-        getAllPhotographers();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     return (
         <>
@@ -49,19 +38,11 @@ const SearchDialog = ({ handleHide }) => {
                 />
                 <div className="d-flex flex-column flex-md-row w-100">
                     <InputText
-                        autoFocus={true}
                         name="first"
-                        value={fullName.first}
-                        onChange={handleName}
-                        placeholder="First Name (optional)"
-                        className="custom-input w-100 rounded-0 shadow-none"
-                    />
-                    <InputText
                         autoFocus={true}
-                        name="last"
-                        value={fullName.last}
-                        onChange={handleName}
-                        placeholder="Last Name (optional)"
+                        onChange={handleFullName}
+                        value={fullName.trimStart()}
+                        placeholder="Search photographer"
                         className="custom-input w-100 rounded-0 shadow-none"
                     />
                 </div>
@@ -72,7 +53,7 @@ const SearchDialog = ({ handleHide }) => {
                     className="custom-btn px-4 rounded-start-0 shadow-none"
                 />
             </Form>
-            <div>
+            {isQueryPhotographer && (
                 <ListGroup className="border rounded-0">
                     {isLoading && <p>loading...</p>}
                     {!isLoading && error && <CustomMessage error={error} />}
@@ -86,11 +67,12 @@ const SearchDialog = ({ handleHide }) => {
                                 <Photographers
                                     key={photographerId}
                                     photographer={photographer}
+                                    handleSearchbarVisibility={handleHide}
                                 />
                             );
                         })}
                 </ListGroup>
-            </div>
+            )}
         </>
     );
 };

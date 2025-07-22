@@ -3,14 +3,15 @@ import { useContext } from 'react';
 import { useFormik } from 'formik';
 import { Form } from 'react-bootstrap';
 import { Button } from 'primereact/button';
+import { Password } from 'primereact/password';
 import { Calendar } from 'primereact/calendar';
 import { ref, object, string, date } from 'yup';
 import { InputText } from 'primereact/inputtext';
 import { useLogin } from '../../hooks/useLogin.js';
 import { RadioButton } from 'primereact/radiobutton';
-import { CascadeSelect } from 'primereact/cascadeselect';
 import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
 import { UserContext } from '../../contexts/UserContext.jsx';
+import LoadingButton from '../loadingButton/LoadingButton.jsx';
 
 const Signup = ({ isVisible, handleIsVisible }) => {
     const { getMe } = useContext(UserContext);
@@ -19,19 +20,25 @@ const Signup = ({ isVisible, handleIsVisible }) => {
     const yupSignupSchema = object({
         firstName: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         lastName: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
-        email: string().email('Invalid email').required('Required'),
-        dob: date().required('Required'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
+        email: string().email('Invalid email').required('Required').trim(),
+        dob: date()
+            .max(new Date(), 'You are not born yet, wait a little longer 😃')
+            .required('Required'),
         password: string()
             .required('Required')
             .min(8, 'Password is too short')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         confirmPassword: string()
             .required('Required')
-            .oneOf([ref('password'), null], 'Password must match'),
+            .oneOf([ref('password'), null], 'Password must match')
+            .trim(),
     });
 
     const formik = useFormik({
@@ -144,12 +151,14 @@ const Signup = ({ isVisible, handleIsVisible }) => {
                 <div className="d-flex flex-column flex-md-row gap-3">
                     <Form.Group className="d-flex flex-column">
                         <label htmlFor="email">Password</label>
-                        <InputText
-                            type="password"
+                        <Password
+                            toggleMask
                             id="password"
                             name="password"
+                            type="password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
+                            className="custom-password-input"
                         />
                         {formik.touched.password && formik.errors.password ? (
                             <ErrorMessage error={formik.errors.password} />
@@ -157,12 +166,14 @@ const Signup = ({ isVisible, handleIsVisible }) => {
                     </Form.Group>
                     <Form.Group className="d-flex flex-column">
                         <label htmlFor="email">Confirm Password</label>
-                        <InputText
+                        <Password
+                            toggleMask
                             type="password"
                             id="confirmPassword"
                             name="confirmPassword"
                             value={formik.values.confirmPassword}
                             onChange={formik.handleChange}
+                            className="custom-password-input"
                         />
                         {formik.touched.confirmPassword &&
                         formik.errors.confirmPassword ? (
@@ -174,11 +185,7 @@ const Signup = ({ isVisible, handleIsVisible }) => {
                 </div>
                 <div className="d-flex flex-column flex-md-row gap-3 w-100">
                     {isLoading ? (
-                        <CascadeSelect
-                            loading
-                            placeholder="Logging in..."
-                            className="custom-btn loading-btn w-100"
-                        />
+                        <LoadingButton />
                     ) : (
                         <Button
                             type="submit"
@@ -190,7 +197,10 @@ const Signup = ({ isVisible, handleIsVisible }) => {
                         <Button
                             type="button"
                             label="Cancel"
-                            onClick={handleIsVisible}
+                            onClick={() => {
+                                handleIsVisible();
+                                formik.handleReset();
+                            }}
                             className="cancel-btn w-100"
                         />
                     )}

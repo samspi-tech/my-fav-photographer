@@ -1,17 +1,20 @@
 import { useFormik } from 'formik';
+import { Toast } from 'primereact/toast';
 import { object, string, date } from 'yup';
 import { Button } from 'primereact/button';
-import { useContext, useState } from 'react';
 import { Calendar } from 'primereact/calendar';
 import { Col, Form, Row } from 'react-bootstrap';
 import { InputText } from 'primereact/inputtext';
-import { CascadeSelect } from 'primereact/cascadeselect';
+import { useContext, useRef, useState } from 'react';
 import ErrorMessage from '../../errorMessage/ErrorMessage.jsx';
 import { UserContext } from '../../../contexts/UserContext.jsx';
+import LoadingButton from '../../loadingButton/LoadingButton.jsx';
 import { useAvatarUpload } from '../../../hooks/useAvatarUpload.js';
 import { getFromSessionStorage } from '../../../utils/sessionStorage.js';
 
 const ProfileForm = ({ user }) => {
+    const toast = useRef(null);
+
     const { getMe } = useContext(UserContext);
     const { firstName, lastName, email, dob } = user;
 
@@ -21,6 +24,7 @@ const ProfileForm = ({ user }) => {
     const loggedInUserId = getFromSessionStorage('userId');
 
     const [file, setFile] = useState(null);
+
     const handleFile = (e) => {
         setFile(e.target.files[0]);
     };
@@ -28,12 +32,17 @@ const ProfileForm = ({ user }) => {
     const yupUserSchema = object({
         firstName: string()
             .required('Cannot be empty')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         lastName: string()
             .required('Cannot be empty')
-            .max(255, 'Must be 255 characters or less'),
-        email: string().required('Cannot be empty').email('Invalid email'),
-        dob: date(),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
+        email: string()
+            .required('Cannot be empty')
+            .email('Invalid email')
+            .trim(),
+        dob: date().max(new Date(), 'Cannot jump to the future'),
     });
 
     const formik = useFormik({
@@ -59,13 +68,20 @@ const ProfileForm = ({ user }) => {
             }
 
             await getMe();
-            window.location.reload();
+
+            toast.current.show({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Details updated successfully',
+                life: 3000,
+            });
         },
     });
 
     return (
         <Row className="justify-content-center">
-            <Col lg={4}>
+            <Col md={6} xl={4}>
+                <Toast ref={toast} position="top-center" />
                 <Form
                     encType="multipart/form-data"
                     onSubmit={formik.handleSubmit}
@@ -129,6 +145,9 @@ const ProfileForm = ({ user }) => {
                             onChange={formik.handleChange}
                             className="custom-input"
                         />
+                        {formik.touched.email && formik.errors.email ? (
+                            <ErrorMessage error={formik.errors.email} />
+                        ) : null}
                     </Form.Group>
                     <Form.Group className="d-flex flex-column gap-1">
                         <label htmlFor="update-dob" className="d-flex">
@@ -142,13 +161,12 @@ const ProfileForm = ({ user }) => {
                             placeholder={new Date(formik.values.dob)}
                             className="custom-input custom-calendar-input rounded"
                         />
+                        {formik.touched.dob && formik.errors.dob ? (
+                            <ErrorMessage error={formik.errors.dob} />
+                        ) : null}
                     </Form.Group>
                     {isLoading ? (
-                        <CascadeSelect
-                            loading
-                            placeholder="Updating your details..."
-                            className="custom-btn loading-btn w-100"
-                        />
+                        <LoadingButton />
                     ) : (
                         <Button
                             type="submit"

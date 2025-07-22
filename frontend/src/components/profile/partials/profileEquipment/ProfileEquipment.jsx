@@ -22,6 +22,7 @@ const ProfileEquipment = ({ userId }) => {
     }, []);
 
     const [isVisible, setIsVisible] = useState(false);
+
     const handleVisibility = () => {
         setIsVisible((prevState) => !prevState);
     };
@@ -38,7 +39,7 @@ const ProfileEquipment = ({ userId }) => {
         <Container className="mb-5">
             <Row className="flex-column align-items-center justify-content-center gap-3 mb-5">
                 {isActionAllowed && (
-                    <Col xs={12} lg={6}>
+                    <Col xs={12} lg={5}>
                         <Button
                             icon="pi pi-plus"
                             className="custom-btn"
@@ -55,6 +56,7 @@ const ProfileEquipment = ({ userId }) => {
                                 userId={userId}
                                 submitFn="create"
                                 initialValues={initialValues}
+                                handleVisibility={handleVisibility}
                             />
                         </Dialog>
                     </Col>

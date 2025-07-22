@@ -7,11 +7,17 @@ const UserSchema = new mongoose.Schema(
             type: String,
             maxLength: 255,
             required: true,
+            trim: true,
         },
         lastName: {
             type: String,
             maxLength: 255,
             required: true,
+            trim: true,
+        },
+        fullName: {
+            type: String,
+            trim: true,
         },
         avatar: {
             type: String,

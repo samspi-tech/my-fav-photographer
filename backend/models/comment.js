@@ -6,6 +6,7 @@ const CommentSchema = new mongoose.Schema(
             type: String,
             maxLength: 2550,
             required: true,
+            trim: true,
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,

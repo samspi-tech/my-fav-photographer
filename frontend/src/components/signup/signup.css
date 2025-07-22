@@ -21,8 +21,8 @@
 
 .cancel-btn {
     border-radius: 6px;
-    border: 1px solid #0d3b66;
-    background-color: #0d3b66;
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
 
     transition: all 150ms linear;
 }
@@ -34,6 +34,7 @@
 
 .signup-form {
     margin-top: 200px;
+    max-width: 428px;
 }
 
 @media (min-width: 768px) {
@@ -44,4 +45,13 @@
     .signup-form {
         margin: 0;
     }
+}
+
+.custom-password-input .p-password-input {
+    max-width: 206px;
+}
+
+.custom-password-input .p-input-icon {
+    display: flex;
+    align-items: center;
 }

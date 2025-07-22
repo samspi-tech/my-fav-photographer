@@ -8,19 +8,33 @@ import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
 import { WorkshopContext } from '../../../../../contexts/WorkshopContext.jsx';
+import LoadingButton from '../../../../loadingButton/LoadingButton.jsx';
 
-const WorkshopForm = ({ initialValues, submitFn, userId, workshopId }) => {
-    const { createWorkshop, updateWorkshop, getWorkshops } =
+const WorkshopForm = ({
+    userId,
+    submitFn,
+    workshopId,
+    initialValues,
+    handleVisibility,
+}) => {
+    const { isLoading, createWorkshop, updateWorkshop, getWorkshops } =
         useContext(WorkshopContext);
+
+    const todayDate = new Date();
+    todayDate.setDate(todayDate.getDate() + 7);
 
     const yupWorkshopSchema = object({
         title: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         body: string()
             .required('Required')
-            .max(2550, 'Must be 2550 characters or less'),
-        date: date().required('Required'),
+            .max(2550, 'Must be 2550 characters or less')
+            .trim(),
+        date: date()
+            .min(todayDate, 'Minimum 7 days from today.')
+            .required('Required'),
     });
 
     const formik = useFormik({
@@ -32,6 +46,7 @@ const WorkshopForm = ({ initialValues, submitFn, userId, workshopId }) => {
                 : await updateWorkshop(userId, workshopId, values);
 
             await getWorkshops(userId);
+            handleVisibility();
         },
     });
 
@@ -98,7 +113,15 @@ const WorkshopForm = ({ initialValues, submitFn, userId, workshopId }) => {
                     </div>
                 ) : null}
             </Form.Group>
-            <Button type="submit" className="custom-btn" label="Post" />
+            {isLoading ? (
+                <LoadingButton />
+            ) : (
+                <Button
+                    type="submit"
+                    className="custom-btn mt-2"
+                    label="Post"
+                />
+            )}
         </Form>
     );
 };

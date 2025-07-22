@@ -4,13 +4,13 @@ import { object, string } from 'yup';
 import { Form } from 'react-bootstrap';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import { CascadeSelect } from 'primereact/cascadeselect';
 import { InputTextarea } from 'primereact/inputtextarea';
 import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
 import { PostContext } from '../../contexts/PostContext.jsx';
+import LoadingButton from '../loadingButton/LoadingButton.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 
-const PostForm = ({ initialValues, submitFn, postId }) => {
+const PostForm = ({ initialValues, submitFn, postId, handleVisibility }) => {
     const { isLoading, createPost, updatePost, getPhotographerPosts } =
         useContext(PostContext);
 
@@ -19,10 +19,12 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
     const yupPostSchema = object({
         title: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         body: string()
             .required('Required')
-            .max(2550, 'Must be 2550 characters or less'),
+            .max(2550, 'Must be 2550 characters or less')
+            .trim(),
     });
 
     const formik = useFormik({
@@ -34,6 +36,7 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                 : await updatePost(loggedInUserId, postId, values);
 
             await getPhotographerPosts(loggedInUserId);
+            handleVisibility();
         },
     });
 
@@ -73,16 +76,12 @@ const PostForm = ({ initialValues, submitFn, postId }) => {
                 ) : null}
             </Form.Group>
             {isLoading ? (
-                <CascadeSelect
-                    loading
-                    placeholder="Posting..."
-                    className="custom-btn loading-btn w-100"
-                />
+                <LoadingButton />
             ) : (
                 <Button
                     type="submit"
                     label="Post"
-                    className="custom-btn w-100"
+                    className="custom-btn w-100 mt-2"
                 />
             )}
         </Form>
