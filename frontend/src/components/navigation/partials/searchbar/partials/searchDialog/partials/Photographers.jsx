@@ -3,13 +3,14 @@ import { Avatar } from 'primereact/avatar';
 import { ListGroup } from 'react-bootstrap';
 import { useState } from 'react';
 
-const Photographers = ({ photographer }) => {
+const Photographers = ({ photographer, handleSearchbarVisibility }) => {
     const [isHover, setIsHover] = useState(false);
     const { _id: photographerId, firstName, lastName, avatar } = photographer;
 
     return (
         <Link
             className="text-decoration-none"
+            onClick={handleSearchbarVisibility}
             to={`/photographer/${photographerId}`}
         >
             <ListGroup.Item

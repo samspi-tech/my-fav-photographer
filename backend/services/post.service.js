@@ -37,7 +37,7 @@ const findAllPosts = async (page = 1, pageSize = 10) => {
 };
 
 const findAllUserPosts = async (userId, page = 1, pageSize = 10) => {
-    const totalPosts = await PostSchema.countDocuments();
+    const totalPosts = await PostSchema.countDocuments({ user: userId });
     const totalPages = calcTotalPages(totalPosts, pageSize);
     const skipPages = calcSkipPages(page, pageSize);
 

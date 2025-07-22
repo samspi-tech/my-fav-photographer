@@ -18,12 +18,7 @@ const findAllUsers = async () => {
     return users;
 };
 
-const findAllPhotographers = async (
-    firstName = '',
-    lastName = '',
-    page = 1,
-    pageSize = 10,
-) => {
+const findAllPhotographers = async (fullName = '', page = 1, pageSize = 10) => {
     const totalPhotographers = await UserSchema.countDocuments({
         role: 'photographer',
     });
@@ -32,18 +27,14 @@ const findAllPhotographers = async (
 
     const photographers = await UserSchema.find({
         role: 'photographer',
-        firstName: {
-            $regex: `${firstName}`,
-            $options: 'i',
-        },
-        lastName: {
-            $regex: `${lastName}`,
+        fullName: {
+            $regex: `${fullName}`,
             $options: 'i',
         },
     })
         .limit(pageSize)
         .skip(skipPages)
-        .select(['firstName', 'lastName', 'avatar']);
+        .select(['fullName', 'firstName', 'lastName', 'avatar']);
     if (isArrayEmpty(photographers)) throw new PhotographerNotFoundException();
 
     return { photographers, totalPages, totalPhotographers };

@@ -6,7 +6,7 @@ const SingleAddress = ({ address, addressTitle, showMenu }) => {
     const { street, province, city, cap, contact, user: userId } = address;
 
     return (
-        <Col lg={6}>
+        <Col md={6}>
             <Card
                 className="custom-card card"
                 title={

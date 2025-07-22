@@ -15,6 +15,7 @@ const Addresses = () => {
     const loggedInUserId = getFromSessionStorage('userId');
 
     const [isVisible, setIsVisible] = useState(false);
+
     const handleVisibility = () => {
         setIsVisible((prevState) => !prevState);
     };
@@ -34,7 +35,7 @@ const Addresses = () => {
     return (
         <>
             <Row className="justify-content-center mb-5">
-                <Col lg={4}>
+                <Col lg={8}>
                     <Button
                         icon="pi pi-plus"
                         className="custom-btn"
@@ -50,12 +51,13 @@ const Addresses = () => {
                         <AddressForm
                             submitFn="create"
                             initialValues={initialValues}
+                            handleVisibility={handleVisibility}
                         />
                     </Dialog>
                 </Col>
             </Row>
             <Row className="justify-content-center">
-                <Col lg={6} className="mb-5">
+                <Col lg={8} className="mb-5">
                     {isLoading && (
                         <div className="mb-5">
                             <CustomMessage
@@ -65,7 +67,7 @@ const Addresses = () => {
                         </div>
                     )}
                     {!isLoading && error && <CustomMessage error={error} />}
-                    <Row className="justify-content-center">
+                    <Row className="justify-content-center gy-3">
                         {!isLoading &&
                             !error &&
                             addresses &&

@@ -5,8 +5,8 @@ const userService = require('../services/user.service');
 const { calcTotalPages, calcSkipPages } = require('../utils/pagination');
 const PhotoNotFoundException = require('../exceptions/photo/PhotoNotFoundException');
 
-const findAllPhotos = async (userId, tag = '', page = 1, pageSize = 9) => {
-    const totalPhotos = await PhotoSchema.countDocuments();
+const findAllPhotos = async (userId, tag = '', page = 1, pageSize = 6) => {
+    const totalPhotos = await PhotoSchema.countDocuments({ user: userId });
     const totalPages = calcTotalPages(totalPhotos, pageSize);
     const skipPages = calcSkipPages(page, pageSize);
 

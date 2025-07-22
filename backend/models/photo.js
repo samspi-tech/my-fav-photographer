@@ -11,11 +11,13 @@ const PhotoSchema = new mongoose.Schema(
             type: String,
             maxLength: 2550,
             default: '',
+            trim: true,
         },
         tag: {
             type: String,
             maxLength: 255,
             required: true,
+            trim: true,
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,

@@ -28,17 +28,10 @@ body {
     background-color: hsl(42, 68%, 73%);
 }
 
-.loading-btn span,
-.p-cascadeselect-trigger {
-    color: #131515;
-    font-weight: 500;
-}
-
 .p-button:focus {
-    box-shadow:
-        0 0 0 2px #ffffff,
-        0 0 0 4px #ecc05b,
-        0 1px 2px 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 2px #ffffff,
+    0 0 0 4px #ecc05b,
+    0 1px 2px 0 rgba(0, 0, 0, 0);
 }
 
 .p-inputtext:enabled:focus {
@@ -83,7 +76,7 @@ textarea {
 }
 
 .custom-dialog {
-    box-shadow: 0 10px 20px 5px rgba(0,0,0,0.8);
+    box-shadow: 0 10px 20px 5px rgba(0, 0, 0, 0.8);
 }
 
 .custom-dialog .p-dialog-title {

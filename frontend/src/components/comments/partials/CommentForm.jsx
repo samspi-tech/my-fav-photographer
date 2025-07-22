@@ -17,7 +17,8 @@ const CommentForm = ({ initialValues, submitFn, postId, commentId }) => {
     const yupCommentSchema = object({
         comment: string()
             .required('Required')
-            .max(2550, 'Must be 2550 characters or less'),
+            .max(2550, 'Must be 2550 characters or less')
+            .trim(),
     });
 
     const formik = useFormik({
@@ -60,16 +61,16 @@ const CommentForm = ({ initialValues, submitFn, postId, commentId }) => {
             </Form.Group>
             {isLoading ? (
                 <ProgressSpinner
-                    strokeWidth="5"
-                    className="comment-loading-spinner my-auto me-3"
+                    strokeWidth="8"
+                    className="comment-loading-spinner my-auto mx-3"
                 />
             ) : (
                 <Button
                     link
-                    disabled={formik.values.comment.trim() === ''}
                     label="Post"
                     size="small"
                     type="submit"
+                    disabled={formik.values.comment.trim() === ''}
                     className="ms-auto custom-btn rounded-start-0 shadow-none"
                 />
             )}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import PostForm from '../../../postForm/PostForm.jsx';
+import PostForm from '../../../../postForm/PostForm.jsx';
 
 const CreatePost = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -18,12 +18,10 @@ const CreatePost = () => {
     return (
         <>
             <Button
-                text
-                tooltip="New post"
-                icon="pi pi-pen-to-square"
+                icon="pi pi-plus"
+                label="Create a new post"
                 onClick={handleIsVisible}
-                tooltipOptions={{ position: 'bottom' }}
-                className="nav-end-icon shadow-none bg-transparent me-3"
+                className="custom-btn mb-3"
             />
             <Dialog
                 visible={isVisible}
@@ -32,7 +30,11 @@ const CreatePost = () => {
                 onHide={handleIsVisible}
                 className="custom-dialog"
             >
-                <PostForm initialValues={initialValues} submitFn="create" />
+                <PostForm
+                    submitFn="create"
+                    initialValues={initialValues}
+                    handleVisibility={handleIsVisible}
+                />
             </Dialog>
         </>
     );

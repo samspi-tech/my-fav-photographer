@@ -6,23 +6,33 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
 import { EquipmentContext } from '../../../../../contexts/EquipmentContext.jsx';
+import LoadingButton from '../../../../loadingButton/LoadingButton.jsx';
 
-const EquipmentForm = ({ equipmentId, userId, initialValues, submitFn }) => {
-    const { createEquipment, updateEquipment, getEquipment } =
+const EquipmentForm = ({
+    userId,
+    submitFn,
+    equipmentId,
+    initialValues,
+    handleVisibility,
+}) => {
+    const { isLoading, createEquipment, updateEquipment, getEquipment } =
         useContext(EquipmentContext);
 
     const yupEquipmentSchema = object({
         camera: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         lens: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
         bag: string()
             .required('Required')
-            .max(255, 'Must be 255 characters or less'),
-        tripod: string().max(255, 'Must be 255 characters or less'),
-        other: string().max(255, 'Must be 255 characters or less'),
+            .max(255, 'Must be 255 characters or less')
+            .trim(),
+        tripod: string().max(255, 'Must be 255 characters or less').trim(),
+        other: string().max(255, 'Must be 255 characters or less').trim(),
     });
 
     const formik = useFormik({
@@ -34,6 +44,7 @@ const EquipmentForm = ({ equipmentId, userId, initialValues, submitFn }) => {
                 : await updateEquipment(userId, equipmentId, values);
 
             await getEquipment(userId);
+            handleVisibility();
         },
     });
 
@@ -131,7 +142,15 @@ const EquipmentForm = ({ equipmentId, userId, initialValues, submitFn }) => {
                     </div>
                 ) : null}
             </Form.Group>
-            <Button type="submit" label="Post" className="custom-btn w-100" />
+            {isLoading ? (
+                <LoadingButton />
+            ) : (
+                <Button
+                    type="submit"
+                    label="Post"
+                    className="custom-btn w-100 mt-2"
+                />
+            )}
         </Form>
     );
 };

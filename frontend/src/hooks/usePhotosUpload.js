@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Requests } from '../utils/Requests.js';
 
-export const usePhotosUpload = (files, getPhotographerPhotos) => {
+export const usePhotosUpload = (files) => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -47,8 +47,6 @@ export const usePhotosUpload = (files, getPhotographerPhotos) => {
             });
         } catch (err) {
             setError(err.message);
-        } finally {
-            await getPhotographerPhotos(userId, '');
         }
     };
 

@@ -1,15 +1,15 @@
 import './login.css';
 import { useFormik } from 'formik';
+import { useContext } from 'react';
 import { object, string } from 'yup';
 import { Form } from 'react-bootstrap';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { useLogin } from '../../hooks/useLogin.js';
 import { FloatLabel } from 'primereact/floatlabel';
-import { CascadeSelect } from 'primereact/cascadeselect';
 import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
-import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext.jsx';
+import LoadingButton from '../loadingButton/LoadingButton.jsx';
 
 const Login = () => {
     const { getMe } = useContext(UserContext);
@@ -71,11 +71,7 @@ const Login = () => {
                 </Form.Group>
 
                 {isLoading ? (
-                    <CascadeSelect
-                        loading
-                        placeholder="Loading..."
-                        className="custom-btn loading-btn mt-3"
-                    />
+                    <LoadingButton />
                 ) : (
                     <Button
                         type="submit"
