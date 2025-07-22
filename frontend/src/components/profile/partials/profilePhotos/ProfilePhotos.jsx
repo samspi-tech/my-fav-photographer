@@ -16,7 +16,7 @@ const ProfilePhotos = ({ user }) => {
     const isActionAllowed = loggedInUserRole === 'photographer';
 
     const [isVisible, setIsVisible] = useState(true);
-    
+
     const handleCaptionVisibility = () => {
         setIsVisible((prevState) => !prevState);
     };
@@ -35,7 +35,7 @@ const ProfilePhotos = ({ user }) => {
         getPhotographerPhotos(userId);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [page]);
+    }, [page, userId]);
 
     const galleria = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -77,19 +77,21 @@ const ProfilePhotos = ({ user }) => {
             <Container>
                 <Row className="justify-content-center">
                     <Col lg={10} xl={6}>
-                        {!isLoading && isActionAllowed && (
+                        {!isLoading && (
                             <div className="d-flex flex-column gap-5 my-3">
                                 <div className="d-flex flex-column flex-md-row gap-5 gap-md-0 justify-content-between align-items-center">
-                                    <UploadPhoto />
-                                    <SearchPhoto />
+                                    {isActionAllowed && <UploadPhoto />}
+                                    {page === 1 && photos && <SearchPhoto />}
                                 </div>
-                                {photos && photos.length > 0 && (
-                                    <small className="d-flex align-items-center gap-1">
-                                        <span className="pi pi-info-circle"></span>
-                                        Right click or keep pressing to edit or
-                                        delete a photo.
-                                    </small>
-                                )}
+                                {photos &&
+                                    photos.length > 0 &&
+                                    isActionAllowed && (
+                                        <small className="d-flex align-items-center gap-1">
+                                            <span className="pi pi-info-circle"></span>
+                                            Right click or keep pressing to edit
+                                            or delete a photo.
+                                        </small>
+                                    )}
                             </div>
                         )}
                         {isLoading && (

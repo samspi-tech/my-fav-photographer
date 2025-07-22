@@ -13,6 +13,8 @@ import { usePhotosUpload } from '../../../../../hooks/usePhotosUpload.js';
 import { getFromSessionStorage } from '../../../../../utils/sessionStorage.js';
 
 const UploadPhoto = () => {
+    const { getPhotographerPhotos } = useContext(PhotoContext);
+
     const [isVisible, setIsVisible] = useState(false);
 
     const handleIsVisible = () => {
@@ -21,14 +23,8 @@ const UploadPhoto = () => {
 
     const loggedInUserId = getFromSessionStorage('userId');
 
-    const { getPhotographerPhotos } = useContext(PhotoContext);
-
     const [files, setFiles] = useState(null);
-
-    const { handlePhotosUpload } = usePhotosUpload(
-        files,
-        getPhotographerPhotos,
-    );
+    const { handlePhotosUpload } = usePhotosUpload(files);
 
     const yupPhotoSchema = object({
         body: string().max(2550, 'Must be 2550 characters or less').trim(),
@@ -46,8 +42,6 @@ const UploadPhoto = () => {
         validationSchema: yupPhotoSchema,
         onSubmit: async (values) => {
             await handlePhotosUpload(loggedInUserId, values);
-            await getPhotographerPhotos(loggedInUserId, '');
-            handleIsVisible();
         },
     });
 
@@ -70,10 +64,49 @@ const UploadPhoto = () => {
                 className="dialog-photo-upload custom-dialog"
             >
                 <>
-                    <p className="ps-2 d-flex align-items-center gap-2">
-                        <span className="pi pi-info-circle"></span>
-                        Please provide tags before choosing your photos.
-                    </p>
+                    <Form.Group className="d-flex flex-column mt-3 gap-1">
+                        <label
+                            id="photo-tag"
+                            className="d-flex align-items-center gap-1"
+                        >
+                            <span className="pi pi-tags"></span> Tags:
+                            <small className="fst-italic">
+                                (Please provide tags before choosing your
+                                photos)
+                            </small>
+                        </label>
+                        <InputText
+                            name="tag"
+                            type="text"
+                            id="photo-tag"
+                            value={formik.values.tag}
+                            onChange={formik.handleChange}
+                            className="custom-input shadow-none py-1 rounded"
+                        />
+                        {formik.touched.tag && formik.errors.tag ? (
+                            <ErrorMessage error={formik.errors.tag} />
+                        ) : null}
+                    </Form.Group>
+                    <Form.Group className="d-flex flex-column my-3 gap-1">
+                        <label
+                            id="photo-description"
+                            className="d-flex align-items-center gap-1"
+                        >
+                            Description:{' '}
+                            <span className="small fst-italic">(optional)</span>
+                        </label>
+                        <InputTextarea
+                            type="text"
+                            name="body"
+                            id="photo-description"
+                            value={formik.values.body}
+                            onChange={formik.handleChange}
+                            className="custom-input shadow-none py-1 rounded"
+                        />
+                        {formik.touched.body && formik.errors.body ? (
+                            <ErrorMessage error={formik.errors.body} />
+                        ) : null}
+                    </Form.Group>
                     <div className="card custom-card">
                         <FileUpload
                             multiple
@@ -94,44 +127,6 @@ const UploadPhoto = () => {
                         />
                     </div>
                 </>
-                <Form.Group className="d-flex flex-column mt-3 gap-1">
-                    <label
-                        id="photo-tag"
-                        className="d-flex align-items-center gap-1"
-                    >
-                        <span className="pi pi-tags"></span> Tags:
-                    </label>
-                    <InputText
-                        name="tag"
-                        type="text"
-                        id="photo-tag"
-                        value={formik.values.tag}
-                        onChange={formik.handleChange}
-                        className="custom-input shadow-none py-1 rounded"
-                    />
-                    {formik.touched.tag && formik.errors.tag ? (
-                        <ErrorMessage error={formik.errors.tag} />
-                    ) : null}
-                </Form.Group>
-                <Form.Group className="d-flex flex-column mt-3 gap-1">
-                    <label
-                        id="photo-description"
-                        className="d-flex align-items-center gap-1"
-                    >
-                        Description: <span className="small">(optional)</span>
-                    </label>
-                    <InputTextarea
-                        type="text"
-                        name="body"
-                        id="photo-description"
-                        value={formik.values.body}
-                        onChange={formik.handleChange}
-                        className="custom-input shadow-none py-1 rounded"
-                    />
-                    {formik.touched.body && formik.errors.body ? (
-                        <ErrorMessage error={formik.errors.body} />
-                    ) : null}
-                </Form.Group>
             </Dialog>
         </>
     );

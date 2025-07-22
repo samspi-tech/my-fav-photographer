@@ -8,6 +8,8 @@ const ProfilePage = () => {
 
     useEffect(() => {
         getMe();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <BaseLayout>{user && <Profile user={user} />}</BaseLayout>;
