@@ -20,9 +20,9 @@ export const UserProvider = ({ children }) => {
         return data;
     };
 
-    const getAllPhotographers = async (first = '', last = '') => {
+    const getAllPhotographers = async (fullName = '') => {
         const data = await UserReq.get(
-            `user/photographers?firstName=${first}&lastName=${last}`,
+            `user/photographers?fullName=${fullName}`,
         );
         setPhotographers(data.photographers);
 

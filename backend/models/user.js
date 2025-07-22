@@ -13,6 +13,10 @@ const UserSchema = new mongoose.Schema(
             maxLength: 255,
             required: true,
         },
+        fullName: {
+            type: String,
+            trim: true,
+        },
         avatar: {
             type: String,
             maxLength: 255,

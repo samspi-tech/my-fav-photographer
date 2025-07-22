@@ -31,15 +31,10 @@ const getSinglePhotographer = async (req, res, next) => {
 
 const getAllPhotographers = async (req, res, next) => {
     try {
-        const { firstName, lastName, page, pageSize } = req.query;
+        const { fullName, page, pageSize } = req.query;
 
         const { photographers, totalPages, totalPhotographers } =
-            await userService.findAllPhotographers(
-                firstName,
-                lastName,
-                page,
-                pageSize,
-            );
+            await userService.findAllPhotographers(fullName, page, pageSize);
 
         res.status(200).send({
             statusCode: 200,
@@ -54,7 +49,16 @@ const getAllPhotographers = async (req, res, next) => {
 
 const createUser = async (req, res, next) => {
     try {
-        const { body: userBody } = req;
+        const { body } = req;
+
+        const { firstName, lastName } = body;
+        const fullName = `${firstName} ${lastName}`;
+
+        const userBody = {
+            ...body,
+            fullName,
+        };
+
         const newUser = await userService.createUser(userBody);
 
         res.status(201).send({
