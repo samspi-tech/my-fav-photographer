@@ -6,7 +6,7 @@ export const useLogin = (getMe, setUser) => {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    const login = async (payload) => {
+    const login = async (path, payload) => {
         setIsLoading(true);
         try {
             const res = await fetch(
@@ -29,7 +29,7 @@ export const useLogin = (getMe, setUser) => {
             }
 
             await getMe();
-            navigate('/success', { replace: true });
+            navigate(path, { replace: true });
 
             return data;
         } catch (err) {
@@ -86,7 +86,13 @@ export const useLogin = (getMe, setUser) => {
                 throw new Error(data.message);
             }
 
-            await login({ email: payload.email, password: payload.password });
+            const isRoleUser = payload.role === 'user';
+            const signupPath = isRoleUser ? '/welcome' : '/success';
+
+            await login(signupPath, {
+                email: payload.email,
+                password: payload.password,
+            });
 
             return data;
         } catch (err) {

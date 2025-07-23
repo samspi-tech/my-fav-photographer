@@ -8,12 +8,14 @@ import SettingsPage from './pages/SettingsPage.jsx';
 import CheckoutPage from './pages/CheckoutPage.jsx';
 import PhotographerPage from './pages/PhotographerPage.jsx';
 import ProtectedRoutes from './middleware/ProtectedRoutes.jsx';
+import WelcomePage from './pages/WelcomePage.jsx';
 
 const App = () => {
     return (
         <Router>
             <Routes>
                 <Route index path="/" element={<LoginPage />} />
+                <Route path="/welcome" element={<WelcomePage />} />
                 <Route index path="/success" element={<SuccessPage />} />
 
                 <Route element={<ProtectedRoutes role="user" />}>
