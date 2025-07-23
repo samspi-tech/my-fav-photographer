@@ -43,7 +43,7 @@ const ProfileEquipment = ({ userId }) => {
                         <Button
                             icon="pi pi-plus"
                             className="custom-btn"
-                            label="Add new equipment"
+                            label="New equipment"
                             onClick={handleVisibility}
                         />
                         <Dialog

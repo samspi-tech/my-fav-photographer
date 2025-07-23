@@ -78,8 +78,8 @@ const ProfilePhotos = ({ user }) => {
                 <Row className="justify-content-center">
                     <Col lg={10} xl={6}>
                         {!isLoading && (
-                            <div className="d-flex flex-column gap-5 my-3">
-                                <div className="d-flex flex-column flex-md-row gap-5 gap-md-0 justify-content-between align-items-center">
+                            <div className="d-flex flex-column gap-4 mb-3">
+                                <div className="d-flex flex-column flex-md-row gap-4 gap-md-0 justify-content-between align-items-center">
                                     {isActionAllowed && <UploadPhoto />}
                                     {page === 1 && photos && <SearchPhoto />}
                                 </div>
@@ -103,7 +103,7 @@ const ProfilePhotos = ({ user }) => {
                         {!isLoading && error && <CustomMessage error={error} />}
                     </Col>
                 </Row>
-                <div className="d-flex justify-content-center pb-5 pt-4">
+                <div className="d-flex justify-content-center pb-5 pt-3">
                     <Galleria
                         ref={galleria}
                         value={photos}
