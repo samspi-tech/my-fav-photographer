@@ -1,21 +1,13 @@
-import { Menu } from 'primereact/menu';
 import About from './about/About.jsx';
+import { Menu } from 'primereact/menu';
 import { Avatar } from 'primereact/avatar';
-import { Dialog } from 'primereact/dialog';
+import { useContext, useRef } from 'react';
 import Searchbar from './searchbar/Searchbar.jsx';
-import { useContext, useRef, useState } from 'react';
 import { useLogin } from '../../../hooks/useLogin.js';
-import FollowList from '../../followList/FollowList.jsx';
 import ShoppingCart from '../../shoppingCart/ShoppingCart.jsx';
 import { UserContext } from '../../../contexts/UserContext.jsx';
 
 const NavEnd = ({ user, isRoleUser }) => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    const handleVisibility = () => {
-        setIsVisible((prevState) => !prevState);
-    };
-
     const configMenu = useRef(null);
     const { setUser } = useContext(UserContext);
     const { logout } = useLogin(null, setUser);
@@ -37,7 +29,7 @@ const NavEnd = ({ user, isRoleUser }) => {
         {
             label: 'Following',
             icon: 'pi pi-camera',
-            command: handleVisibility,
+            url: '/following',
         },
         ...items,
     ];
@@ -52,42 +44,32 @@ const NavEnd = ({ user, isRoleUser }) => {
     ];
 
     return (
-        <>
-            <div className="d-flex align-items-center">
-                {isRoleUser && <Searchbar />}
-                {isRoleUser && <ShoppingCart />}
-                <div>
-                    <Menu
-                        popup
-                        ref={configMenu}
-                        id="config_menu"
-                        className="custom-menu"
-                        model={isRoleUser ? userItems : photographerItems}
-                    />
-                    <button
-                        className="p-panel-header-icon p-link mx-2"
-                        onClick={(e) => configMenu?.current?.toggle(e)}
-                    >
-                        {user && (
-                            <Avatar
-                                size="large"
-                                shape="circle"
-                                image={user.avatar}
-                            />
-                        )}
-                    </button>
-                </div>
-                <About />
+        <div className="d-flex align-items-center">
+            {isRoleUser && <Searchbar />}
+            {isRoleUser && <ShoppingCart />}
+            <div>
+                <Menu
+                    popup
+                    ref={configMenu}
+                    id="config_menu"
+                    className="custom-menu"
+                    model={isRoleUser ? userItems : photographerItems}
+                />
+                <button
+                    className="p-panel-header-icon p-link mx-2"
+                    onClick={(e) => configMenu?.current?.toggle(e)}
+                >
+                    {user && (
+                        <Avatar
+                            size="large"
+                            shape="circle"
+                            image={user.avatar}
+                        />
+                    )}
+                </button>
             </div>
-            <Dialog
-                visible={isVisible}
-                onHide={handleVisibility}
-                className="custom-dialog"
-                header="Photographers list"
-            >
-                <FollowList />
-            </Dialog>
-        </>
+            <About />
+        </div>
     );
 };
 

@@ -9,22 +9,19 @@ import { getFromSessionStorage } from '../../../utils/sessionStorage.js';
 const FollowItem = ({ followItem }) => {
     const { firstName, lastName, avatar, _id: photographerId } = followItem;
 
-    const { unfollowPhotographer } = useContext(FollowerContext);
+    const { unfollowPhotographer, getFollowing } = useContext(FollowerContext);
 
     const loggedInUserId = getFromSessionStorage('userId');
 
-    const handleUnfollow = () => {
-        unfollowPhotographer(loggedInUserId, photographerId);
-
-        setTimeout(() => {
-            window.location.reload();
-        }, 600);
+    const handleUnfollow = async () => {
+        await unfollowPhotographer(loggedInUserId, photographerId);
+        await getFollowing(loggedInUserId);
     };
 
     return (
         <>
-            <ListGroup.Item className="follow-list-item d-flex flex-column flex-xl-row align-items-center gap-2">
-                <div className="d-flex align-items-center gap-2">
+            <ListGroup.Item className="follow-list-item d-flex align-items-center py-3">
+                <div className="d-flex align-items-center gap-3">
                     <Avatar shape="circle" image={avatar} />
                     <Link
                         className="follow-list-link"
@@ -35,7 +32,7 @@ const FollowItem = ({ followItem }) => {
                         </span>
                     </Link>
                 </div>
-                <div className="ms-xl-auto unfollow-btn">
+                <div className="ms-auto">
                     <Button
                         label="Unfollow"
                         onClick={handleUnfollow}

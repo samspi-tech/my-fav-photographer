@@ -6,7 +6,7 @@ import { UserContext } from '../contexts/UserContext.jsx';
 import FollowList from '../components/followList/FollowList.jsx';
 import { getFromSessionStorage } from '../utils/sessionStorage.js';
 
-const Homepage = () => {
+const HomePage = () => {
     const { getMe } = useContext(UserContext);
 
     const loggedInUserId = getFromSessionStorage('userId');
@@ -16,6 +16,8 @@ const Homepage = () => {
 
     useEffect(() => {
         getMe();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loggedInUserId]);
 
     return (
@@ -23,7 +25,9 @@ const Homepage = () => {
             <Container className="my-5">
                 <Row>
                     <Col lg={3} className="d-none d-lg-block">
-                        {isRoleUser && <FollowList />}
+                        <div className="d-none d-xl-block">
+                            {isRoleUser && <FollowList />}
+                        </div>
                     </Col>
                     <Col xs={12} lg={6}>
                         <Posts isHomePage={true} />
@@ -35,4 +39,4 @@ const Homepage = () => {
     );
 };
 
-export default Homepage;
+export default HomePage;
