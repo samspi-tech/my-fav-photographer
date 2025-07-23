@@ -1,0 +1,16 @@
+.welcome-title {
+    font-family: "Bebas neue", sans-serif;
+}
+
+.welcome-info {
+    padding: 15px;
+    max-width: 401px;
+    border-radius: 6px;
+    background-color: var(--secondary);
+}
+
+.photographer-card {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
+}
