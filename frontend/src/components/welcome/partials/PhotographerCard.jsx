@@ -29,9 +29,11 @@ const PhotographerCard = ({ user, photographer, setIsDisabled }) => {
                     {firstName} {lastName}
                 </p>
                 <Button
+                    disabled={isFollow}
                     onClick={handleFollow}
                     className="custom-btn py-2 ms-auto"
-                    label={isFollow ? 'Unfollow' : 'Follow'}
+                    icon={isFollow && 'pi pi-check-circle'}
+                    label={isFollow ? 'Followed' : 'Follow'}
                 />
             </div>
         </Col>

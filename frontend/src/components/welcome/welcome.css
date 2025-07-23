@@ -1,4 +1,5 @@
 .welcome-title {
+    color: var(--accent);
     font-family: "Bebas neue", sans-serif;
 }
 
