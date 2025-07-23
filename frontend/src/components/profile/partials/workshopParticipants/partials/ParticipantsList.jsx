@@ -1,18 +1,17 @@
-import { useContext } from 'react';
 import { Avatar } from 'primereact/avatar';
 import { Button } from 'primereact/button';
 import { ListGroup } from 'react-bootstrap';
-import { WorkshopContext } from '../../../../../contexts/WorkshopContext.jsx';
 import { getFromSessionStorage } from '../../../../../utils/sessionStorage.js';
-import { useParticipateWorkshop } from '../../../../../hooks/useParticipateWorkshop.js';
 
-const ParticipantsList = ({ participant, workshopId, workshopAuthor }) => {
+const ParticipantsList = ({
+    participant,
+    workshopId,
+    getParticipants,
+    unsubFromWorkshop,
+}) => {
     const { firstName, lastName, avatar, _id: participantId } = participant;
 
     const loggedInUserId = getFromSessionStorage('userId');
-
-    const { getWorkshops } = useContext(WorkshopContext);
-    const { unsubscribeFromWorkshop } = useParticipateWorkshop();
 
     return (
         <ListGroup.Item className="participant-item d-flex align-items-center justify-content-between">
@@ -27,11 +26,8 @@ const ParticipantsList = ({ participant, workshopId, workshopAuthor }) => {
                     label="Unsubscribe"
                     className="custom-btn p-1"
                     onClick={async () => {
-                        await unsubscribeFromWorkshop(
-                            workshopId,
-                            loggedInUserId,
-                        );
-                        await getWorkshops(workshopAuthor);
+                        await unsubFromWorkshop(workshopId, loggedInUserId);
+                        await getParticipants(workshopId);
                     }}
                 />
             )}
