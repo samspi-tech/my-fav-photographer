@@ -38,8 +38,8 @@ const ProfileWorkshop = ({ user }) => {
     return (
         <Container className="mb-5">
             {isActionAllowed && (
-                <Row className="justify-content-center mb-3">
-                    <Col xs={6}>
+                <Row className="justify-content-lg-center mb-3">
+                    <Col xs={12} lg={6}>
                         <Button
                             icon="pi pi-plus"
                             label="New workshop"

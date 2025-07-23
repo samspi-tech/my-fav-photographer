@@ -1,9 +1,3 @@
-@media (max-width: 1024px) {
-    .unfollow-btn {
-        width: 100% !important;
-    }
-}
-
 .following-list-title {
     font-family: "Bebas neue", sans-serif;
 }
@@ -13,12 +7,12 @@
 }
 
 .follow-list-item {
-    border: none;
+    border: 1px solid var(--accent);
     background-color: var(--primary);
     box-shadow: .05rem .05rem var(--accent);
 }
 
-.follow-list-link   {
+.follow-list-link {
     text-decoration: none;
     color: var(--text-primary);
 }

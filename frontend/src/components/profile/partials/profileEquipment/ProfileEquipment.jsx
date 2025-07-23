@@ -39,11 +39,11 @@ const ProfileEquipment = ({ userId }) => {
         <Container className="mb-5">
             <Row className="flex-column align-items-center justify-content-center gap-3 mb-5">
                 {isActionAllowed && (
-                    <Col xs={12} lg={5}>
+                    <Col xs={12} lg={6}>
                         <Button
                             icon="pi pi-plus"
                             className="custom-btn"
-                            label="Add new equipment"
+                            label="New equipment"
                             onClick={handleVisibility}
                         />
                         <Dialog

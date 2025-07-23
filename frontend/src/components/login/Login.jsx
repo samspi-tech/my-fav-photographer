@@ -28,7 +28,7 @@ const Login = () => {
         },
         validationSchema: yupLoginSchema,
         onSubmit: async (values) => {
-            await login(values);
+            await login('/success', values);
         },
     });
 

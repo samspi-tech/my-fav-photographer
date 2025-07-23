@@ -8,7 +8,7 @@ import { PhotoContext } from '../../../../../contexts/PhotoContext.jsx';
 
 const SearchPhoto = () => {
     const { photographerId } = useParams();
-    
+
     const { user } = useContext(UserContext);
     const userId = user && user._id;
 
@@ -35,7 +35,10 @@ const SearchPhoto = () => {
     };
 
     return (
-        <Form onSubmit={handleSubmit} className="d-flex ms-auto">
+        <Form
+            onSubmit={handleSubmit}
+            className="d-flex mx-auto mx-md-0 ms-md-auto"
+        >
             <div className="p-inputgroup">
                 <InputText
                     type="text"

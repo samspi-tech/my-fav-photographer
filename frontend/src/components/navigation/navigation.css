@@ -5,9 +5,20 @@
     background-color: var(--secondary);
 }
 
-.nav-container .p-menuitem-text {
+.nav-container .p-menuitem-text, .nav-btn {
     font-size: 20px;
     font-family: "Bebas neue", sans-serif;
+}
+
+.nav-btn {
+    color: var(--text-primary);
+
+    transition: all 150ms ease-in-out;
+}
+
+.nav-btn:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
 }
 
 .nav-container .p-menuitem-text,
@@ -90,4 +101,8 @@
 
 .search-bar-item .visit-text {
     color: var(--accent);
+}
+
+.p-menubar-button {
+    display: none;
 }

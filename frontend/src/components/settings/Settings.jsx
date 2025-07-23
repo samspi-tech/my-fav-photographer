@@ -2,7 +2,6 @@ import './settings.css';
 import { useContext, useEffect } from 'react';
 import ProfileForm from './partials/ProfileForm.jsx';
 import { Col, Container, Row } from 'react-bootstrap';
-import FollowList from '../followList/FollowList.jsx';
 import { TabPanel, TabView } from 'primereact/tabview';
 import Addresses from './partials/addresses/Addresses.jsx';
 import { UserContext } from '../../contexts/UserContext.jsx';
@@ -37,18 +36,6 @@ const Settings = () => {
                                 leftIcon="pi pi-address-book"
                             >
                                 <Addresses />
-                            </TabPanel>
-                        )}
-                        {isRoleUser && (
-                            <TabPanel
-                                header="Following"
-                                leftIcon="pi pi-camera"
-                            >
-                                <Row className="justify-content-center">
-                                    <Col lg={4}>
-                                        <FollowList />
-                                    </Col>
-                                </Row>
                             </TabPanel>
                         )}
                     </TabView>

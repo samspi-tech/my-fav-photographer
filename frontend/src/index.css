@@ -137,3 +137,8 @@ textarea {
     border: 1px solid var(--accent);
     background-color: var(--secondary);
 }
+
+.p-tabview-title {
+    font-size: 20px;
+    font-family: "Bebas neue", sans-serif;
+}

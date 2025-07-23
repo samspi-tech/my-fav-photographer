@@ -7,8 +7,8 @@ import { Calendar } from 'primereact/calendar';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
-import { WorkshopContext } from '../../../../../contexts/WorkshopContext.jsx';
 import LoadingButton from '../../../../loadingButton/LoadingButton.jsx';
+import { WorkshopContext } from '../../../../../contexts/WorkshopContext.jsx';
 
 const WorkshopForm = ({
     userId,
@@ -91,7 +91,12 @@ const WorkshopForm = ({
                 ) : null}
             </Form.Group>
             <Form.Group>
-                <label id="workshop-date">When is happening?</label>
+                <label id="workshop-date">
+                    When is happening?{' '}
+                    <span className="small fst-italic d-block d-md-inline">
+                        (Date must start at least 7 days from now)
+                    </span>
+                </label>
                 <Calendar
                     showTime
                     type="date"

@@ -9,13 +9,20 @@ const PostHeader = ({ post }) => {
 
     const loggedInUserId = getFromSessionStorage('userId');
 
+    const loggedInUserRole = getFromSessionStorage('role');
+    const isRoleUser = loggedInUserRole === 'user';
+
     return (
         <div className="d-flex align-items-center justify-content-between py-2 px-3">
             <div className="post-header d-flex align-items-center gap-2">
                 {<Avatar image={avatar} shape="circle" className="" />}
                 <Link
                     className="follow-list-link"
-                    to={`/photographer/${postAuthorId}`}
+                    to={
+                        isRoleUser
+                            ? `/photographer/${postAuthorId}`
+                            : '/profile'
+                    }
                 >
                     <p className="text-capitalize mb-0">
                         {firstName} {lastName}

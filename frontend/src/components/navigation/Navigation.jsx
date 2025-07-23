@@ -5,8 +5,9 @@ import NavEnd from './partials/NavEnd.jsx';
 import { Menubar } from 'primereact/menubar';
 import { Col, Container, Row } from 'react-bootstrap';
 import { UserContext } from '../../contexts/UserContext.jsx';
-import { userNavItems, photographerNavItems } from './dataSource.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
+import { Button } from 'primereact/button';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => {
     const { user } = useContext(UserContext);
@@ -21,12 +22,21 @@ const Navigation = () => {
                     <Col>
                         <Menubar
                             end={<NavEnd user={user} isRoleUser={isRoleUser} />}
-                            model={
-                                isRoleUser ? userNavItems : photographerNavItems
-                            }
+                            // model={isRoleUser && items}
                             className="d-flex align-items-center"
                             start={
-                                <Logo cssClass="nav-logo me-5 d-none d-lg-flex" />
+                                <div className="d-flex align-items-center">
+                                    <Logo cssClass="nav-logo me-5 d-none d-md-flex" />
+                                    {isRoleUser && (
+                                        <Link to="/homepage">
+                                            <Button
+                                                text
+                                                label="Home"
+                                                className="nav-btn shadow-none bg-transparent"
+                                            />
+                                        </Link>
+                                    )}
+                                </div>
                             }
                         />
                     </Col>

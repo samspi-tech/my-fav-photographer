@@ -42,7 +42,7 @@ const ShopPhotoPrint = ({ photo }) => {
 
     return (
         <>
-            <Toast ref={toast} />
+            <Toast ref={toast} position="top-center" />
             <Button
                 onClick={handleVisibility}
                 icon="pi pi-cart-arrow-down"

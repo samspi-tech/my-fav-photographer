@@ -1,23 +1,25 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { ListGroup } from 'react-bootstrap';
 import ParticipantsList from './partials/ParticipantsList.jsx';
 import CustomMessage from '../../../customMessage/CustomMessage.jsx';
-import { WorkshopContext } from '../../../../contexts/WorkshopContext.jsx';
 import { getFromSessionStorage } from '../../../../utils/sessionStorage.js';
-import { useParticipateWorkshop } from '../../../../hooks/useParticipateWorkshop.js';
 
-const WorkshopParticipants = ({ workshop }) => {
-    const { participateWorkshop } = useParticipateWorkshop();
+const WorkshopParticipants = ({
+    workshop,
+    participants,
+    getParticipants,
+    participateWorkshop,
+    unsubscribeFromWorkshop,
+}) => {
+    const { _id: workshopId } = workshop;
 
-    const { getWorkshops } = useContext(WorkshopContext);
-
-    const { participants, _id: workshopId, user: workshopAuthor } = workshop;
     const participantsNum = participants.length;
     const isSingular = participantsNum === 1 ? 'Participant' : 'Participants';
 
     const [isVisible, setIsVisible] = useState(false);
+
     const handleVisibility = () => {
         setIsVisible((prevState) => !prevState);
     };
@@ -52,7 +54,7 @@ const WorkshopParticipants = ({ workshop }) => {
             >
                 <div>
                     {isRoleUser && (
-                        <div className="d-flex justify-content-between mb-3">
+                        <div className="d-flex justify-content-between mt-1 mb-3">
                             {isParticipant.length === 0 && (
                                 <Button
                                     label="Participate"
@@ -61,14 +63,14 @@ const WorkshopParticipants = ({ workshop }) => {
                                         await participateWorkshop(workshopId, {
                                             participantId: loggedInUserId,
                                         });
-                                        await getWorkshops(workshopAuthor);
+                                        await getParticipants(workshopId);
                                     }}
                                 />
                             )}
                         </div>
                     )}
                 </div>
-                {participantsNum === 0 && (
+                {participants.length === 0 && (
                     <CustomMessage error="No participants yet." />
                 )}
                 <ListGroup>
@@ -80,7 +82,8 @@ const WorkshopParticipants = ({ workshop }) => {
                                 key={key}
                                 workshopId={workshopId}
                                 participant={participantId}
-                                workshopAuthor={workshopAuthor}
+                                getParticipants={getParticipants}
+                                unsubFromWorkshop={unsubscribeFromWorkshop}
                             />
                         );
                     })}

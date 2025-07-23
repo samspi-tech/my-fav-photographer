@@ -2,10 +2,21 @@ import { useState } from 'react';
 import { Requests } from '../utils/Requests.js';
 
 export const useParticipateWorkshop = () => {
+    const [workshopParticipants, setWorkshopParticipants] = useState([]);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     const ParticipateReq = new Requests(setError, setIsLoading);
+
+    const getParticipants = async (workshopId) => {
+        const data = await ParticipateReq.get(`participant/${workshopId}`);
+
+        data
+            ? setWorkshopParticipants(data.participants)
+            : setWorkshopParticipants([]);
+
+        return data;
+    };
 
     const participateWorkshop = async (workshopId, payload) => {
         return await ParticipateReq.post(
@@ -23,6 +34,8 @@ export const useParticipateWorkshop = () => {
     return {
         error,
         isLoading,
+        workshopParticipants,
+        getParticipants,
         participateWorkshop,
         unsubscribeFromWorkshop,
     };

@@ -19,7 +19,7 @@ const CreatePost = () => {
         <>
             <Button
                 icon="pi pi-plus"
-                label="Create a new post"
+                label="New post"
                 onClick={handleIsVisible}
                 className="custom-btn mb-3"
             />
