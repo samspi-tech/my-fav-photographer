@@ -71,7 +71,7 @@ const ProfileWorkshop = ({ user }) => {
                         />
                     )}
                     {!isLoading && error && <CustomMessage error={error} />}
-                    <Row className="gy-3 mt-3">
+                    <Row className="gy-3">
                         {!isLoading &&
                             !error &&
                             workshops &&

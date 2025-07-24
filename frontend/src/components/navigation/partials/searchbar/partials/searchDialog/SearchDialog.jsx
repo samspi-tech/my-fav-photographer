@@ -27,6 +27,11 @@ const SearchDialog = ({ handleHide }) => {
 
     const isQueryPhotographer = fullName !== '';
 
+    const handleSearchReset = () => {
+        setFullName('');
+        getAllPhotographers();
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -61,6 +66,12 @@ const SearchDialog = ({ handleHide }) => {
                         className="custom-input w-100 rounded-0 shadow-none"
                     />
                 </div>
+                <Button
+                    type="button"
+                    icon="pi pi-refresh"
+                    onClick={handleSearchReset}
+                    className="custom-btn px-4 rounded-0 border-danger border-0 border-end shadow-none"
+                />
                 <Button
                     type="button"
                     icon="pi pi-times"

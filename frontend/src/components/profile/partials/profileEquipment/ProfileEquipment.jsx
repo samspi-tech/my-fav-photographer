@@ -37,7 +37,7 @@ const ProfileEquipment = ({ userId }) => {
 
     return (
         <Container className="mb-5">
-            <Row className="flex-column align-items-center justify-content-center gap-3 mb-5">
+            <Row className="flex-column align-items-center justify-content-center gap-3">
                 {isActionAllowed && (
                     <Col xs={12} lg={6}>
                         <Button
@@ -72,7 +72,7 @@ const ProfileEquipment = ({ userId }) => {
                 </Col>
             </Row>
             <Row className="justify-content-center">
-                <Col md={10} lg={7} xl={5}>
+                <Col md={10} lg={7} xl={6}>
                     <Row className="gy-4">
                         {!isLoading &&
                             !error &&

@@ -51,6 +51,10 @@ textarea {
     resize: none;
 }
 
+.p-avatar img {
+    object-fit: cover;
+}
+
 .custom-menu {
     border: 1px solid var(--accent);
     background-color: var(--primary);

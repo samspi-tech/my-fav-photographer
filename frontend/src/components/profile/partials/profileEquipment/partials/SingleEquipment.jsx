@@ -19,22 +19,22 @@ const SingleEquipment = ({ equipment, index, isActionAllowed }) => {
                 title={equipmentTitle}
             >
                 <ListGroup className="shadow">
-                    <ListGroup.Item className="d-flex justify-content-between">
+                    <ListGroup.Item className="d-flex flex-column justify-content-between">
                         <span className="fw-bold text-warning">Camera:</span>{' '}
                         {camera}
                     </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between">
+                    <ListGroup.Item className="d-flex flex-column justify-content-between">
                         <span className="fw-bold text-warning">Lens:</span>{' '}
                         {lens}
                     </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between">
+                    <ListGroup.Item className="d-flex flex-column justify-content-between">
                         <span className="fw-bold text-warning">Bag:</span> {bag}
                     </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between">
+                    <ListGroup.Item className="d-flex flex-column justify-content-between">
                         <span className="fw-bold text-warning">Tripod:</span>{' '}
                         {tripod}
                     </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between">
+                    <ListGroup.Item className="d-flex flex-column justify-content-between">
                         <span className="fw-bold text-warning">Other:</span>{' '}
                         {other}
                     </ListGroup.Item>

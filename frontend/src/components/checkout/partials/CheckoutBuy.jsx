@@ -3,9 +3,9 @@ import { Col, Row } from 'react-bootstrap';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { useNavigate } from 'react-router-dom';
-import { CascadeSelect } from 'primereact/cascadeselect';
 import { totalCheckout } from '../../../utils/shoppingCart.js';
 import ErrorMessage from '../../errorMessage/ErrorMessage.jsx';
+import LoadingButton from '../../loadingButton/LoadingButton.jsx';
 
 const CheckoutBuy = ({
     address,
@@ -67,17 +67,13 @@ const CheckoutBuy = ({
                         </div>
                         <div className="checkout-buy-container d-flex justify-content-end align-items-center gap-3">
                             <div>
-                                <h3 className="mb-0">
+                                <h3 className="mb-0 mt-2">
                                     Paying with Visa **** 4573
                                 </h3>
                             </div>
                             <div>
                                 {isLoading ? (
-                                    <CascadeSelect
-                                        loading
-                                        placeholder="Processing..."
-                                        className="custom-btn loading-btn w-100"
-                                    />
+                                    <LoadingButton />
                                 ) : (
                                     <Button
                                         label="Buy now"
