@@ -106,7 +106,7 @@ const EquipmentForm = ({
             </Form.Group>
             <Form.Group>
                 <label id="tripod">
-                    Tripod <span className="small">(optional)</span>
+                    Tripod <span className="small fst-italic">(optional)</span>
                 </label>
                 <InputText
                     id="tripod"
@@ -125,7 +125,7 @@ const EquipmentForm = ({
             </Form.Group>
             <Form.Group>
                 <label id="other">
-                    Other <span className="small">(optional)</span>
+                    Other <span className="small fst-italic">(optional)</span>
                 </label>
                 <InputText
                     id="other"

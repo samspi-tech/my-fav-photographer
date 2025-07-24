@@ -6,8 +6,6 @@ import { Menubar } from 'primereact/menubar';
 import { Col, Container, Row } from 'react-bootstrap';
 import { UserContext } from '../../contexts/UserContext.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
-import { Button } from 'primereact/button';
-import { Link } from 'react-router-dom';
 
 const Navigation = () => {
     const { user } = useContext(UserContext);
@@ -26,16 +24,7 @@ const Navigation = () => {
                             className="d-flex align-items-center"
                             start={
                                 <div className="d-flex align-items-center">
-                                    <Logo cssClass="nav-logo me-5 d-none d-md-flex" />
-                                    {isRoleUser && (
-                                        <Link to="/homepage">
-                                            <Button
-                                                text
-                                                label="Home"
-                                                className="nav-btn shadow-none bg-transparent"
-                                            />
-                                        </Link>
-                                    )}
+                                    <Logo cssClass="nav-logo me-5" />
                                 </div>
                             }
                         />

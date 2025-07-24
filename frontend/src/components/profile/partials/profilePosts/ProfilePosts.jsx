@@ -18,7 +18,7 @@ const ProfilePosts = () => {
             )}
             <Row className="justify-content-center">
                 <Col lg={6}>
-                    <Posts isHomePage={false} />
+                    <Posts />
                 </Col>
             </Row>
         </Container>

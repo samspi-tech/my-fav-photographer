@@ -47,7 +47,7 @@ const NavEnd = ({ user, isRoleUser }) => {
         <div className="d-flex align-items-center">
             {isRoleUser && <Searchbar />}
             {isRoleUser && <ShoppingCart />}
-            <div>
+            <div className="d-flex align-items-center">
                 <Menu
                     popup
                     ref={configMenu}
@@ -56,7 +56,7 @@ const NavEnd = ({ user, isRoleUser }) => {
                     model={isRoleUser ? userItems : photographerItems}
                 />
                 <button
-                    className="p-panel-header-icon p-link mx-2"
+                    className="p-panel-header-icon p-link ms-2"
                     onClick={(e) => configMenu?.current?.toggle(e)}
                 >
                     {user && (

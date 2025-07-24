@@ -33,7 +33,7 @@ const CheckoutBuy = ({
             }, 2000);
 
             setTimeout(() => {
-                navigate('/homepage', { replace: true });
+                navigate('/following', { replace: true });
                 localStorage.removeItem('cart');
                 setCartItems([]);
             }, 4000);
@@ -54,6 +54,11 @@ const CheckoutBuy = ({
             <Row className="justify-content-center">
                 {!isEmptyCart && (
                     <Col lg={6} className="d-flex flex-column gap-3">
+                        {isError && (
+                            <div className="mx-auto mb-3">
+                                <ErrorMessage error="Please select an address" />
+                            </div>
+                        )}
                         <div className="order-total ms-auto">
                             <h3 className="mb-0">
                                 <span className="pe-3">Order total:</span>€
@@ -82,11 +87,6 @@ const CheckoutBuy = ({
                                 )}
                             </div>
                         </div>
-                        {isError && (
-                            <div className="mx-auto mt-3">
-                                <ErrorMessage error="Please select an address" />
-                            </div>
-                        )}
                     </Col>
                 )}
             </Row>

@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import SuccessPage from './pages/SuccessPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
@@ -20,7 +19,6 @@ const App = () => {
                 <Route index path="/success" element={<SuccessPage />} />
 
                 <Route element={<ProtectedRoutes role="user" />}>
-                    <Route path="/homepage" element={<HomePage />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/following" element={<FollowingPage />} />
                     <Route
