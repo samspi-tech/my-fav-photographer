@@ -6,7 +6,10 @@ export class Requests {
 
     async get(route) {
         this.setError('');
-        this.setIsLoading(true);
+
+        const loadTimeout = setTimeout(() => {
+            this.setIsLoading(true);
+        }, 600);
 
         try {
             const res = await fetch(
@@ -24,6 +27,7 @@ export class Requests {
             this.setError(err.message);
         } finally {
             this.setIsLoading(false);
+            clearTimeout(loadTimeout);
         }
     }
 

@@ -34,7 +34,7 @@ const FollowList = () => {
                 {!isLoading &&
                     !error &&
                     following &&
-                    following.map((follow) => {
+                    following.following.map((follow) => {
                         const { _id: key, photographerId: followItem } = follow;
                         return <FollowItem key={key} followItem={followItem} />;
                     })}

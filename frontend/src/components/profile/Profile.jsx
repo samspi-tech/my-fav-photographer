@@ -22,7 +22,9 @@ const Profile = ({ user }) => {
     } = useContext(FollowerContext);
 
     const followingList = useMemo(
-        () => following && following.map((follow) => follow.photographerId._id),
+        () =>
+            following &&
+            following.following.map((follow) => follow.photographerId._id),
         [following],
     );
 
@@ -72,7 +74,7 @@ const Profile = ({ user }) => {
                                       photographerId,
                                   );
 
-                            window.location.reload();
+                            getFollowing(loggedInUserId);
                         }}
                     />
                 )}
