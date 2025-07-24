@@ -51,16 +51,26 @@ textarea {
     resize: none;
 }
 
+.custom-menu {
+    border: 1px solid var(--accent);
+    background-color: var(--primary);
+}
+
+.custom-menu a {
+    background-color: var(--primary);
+}
+
+.custom-menu a .p-menuitem-text,
+.custom-menu a .p-menuitem-icon {
+    font-size: 14px;
+    color: var(--accent);
+}
+
 .custom-menu .p-menu-list {
     margin: 0;
     padding: 0;
 }
 
-.custom-menu .p-menuitem-text,
-.custom-menu .p-menuitem-icon {
-    font-size: 14px;
-    color: #111827 !important;
-}
 
 .custom-menu .p-menuitem-link {
     transition: all 100ms linear;
@@ -68,6 +78,11 @@ textarea {
 
 .custom-menu .p-menuitem-link:hover {
     background-color: var(--accent);
+}
+
+.custom-menu .p-menuitem-link:hover .p-menuitem-text,
+.custom-menu .p-menuitem-link:hover .p-menuitem-icon {
+    color: var(--text-secondary);
 }
 
 .custom-menu .p-contextmenu-root-list {
