@@ -67,10 +67,10 @@ const UploadPhoto = () => {
                     <Form.Group className="d-flex flex-column mt-3 gap-1">
                         <label
                             id="photo-tag"
-                            className="d-flex align-items-center gap-1"
+                            // className="d-flex align-items-center gap-1"
                         >
                             <span className="pi pi-tags"></span> Tags:
-                            <small className="fst-italic">
+                            <small className="fst-italic d-block d-md-inline ms-md-2">
                                 (Please provide tags before choosing your
                                 photos)
                             </small>

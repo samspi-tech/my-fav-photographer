@@ -6,7 +6,6 @@ const CheckoutItems = ({ isEmptyCart, cartItems }) => {
     return (
         <Row className="justify-content-center">
             <Col lg={6}>
-                {isEmptyCart && <CustomMessage error="Your cart is empty" />}
                 <ListGroup>
                     <h3>Your order</h3>
                     {!isEmptyCart &&
@@ -19,6 +18,7 @@ const CheckoutItems = ({ isEmptyCart, cartItems }) => {
                             );
                         })}
                 </ListGroup>
+                {isEmptyCart && <CustomMessage error="Your cart is empty" />}
             </Col>
         </Row>
     );

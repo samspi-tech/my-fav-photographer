@@ -26,7 +26,14 @@ const CheckoutAddress = ({ address, setAddress, setIsError }) => {
     return (
         <Row className="flex-column align-items-center gy-1">
             <Col lg={6}>
-                <h3>Choose address</h3>
+                <div className="mb-3">
+                    <h3 className="mb-1">Choose address</h3>
+                    <small className="fst-italic d-flex align-items-center gap-2">
+                        <span className="pi pi-info-circle small"></span> If you
+                        do not have an address yet, you can add more than one
+                        from your settings.
+                    </small>
+                </div>
                 <Dropdown
                     value={address}
                     optionLabel="street"
