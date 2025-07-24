@@ -24,7 +24,9 @@ const UploadPhoto = () => {
     const loggedInUserId = getFromSessionStorage('userId');
 
     const [files, setFiles] = useState(null);
-    const { handlePhotosUpload } = usePhotosUpload(files);
+
+    const { isLoading, setIsLoading, handlePhotosUpload } =
+        usePhotosUpload(files);
 
     const yupPhotoSchema = object({
         body: string().max(2550, 'Must be 2550 characters or less').trim(),
@@ -56,6 +58,7 @@ const UploadPhoto = () => {
             />
             <Dialog
                 visible={isVisible}
+                showCloseIcon={!isLoading}
                 onHide={async () => {
                     handleIsVisible();
                     await getPhotographerPhotos(loggedInUserId);
@@ -117,6 +120,7 @@ const UploadPhoto = () => {
                             className="custom-file-upload"
                             onUpload={formik.handleSubmit}
                             disabled={formik.values.tag.trim() === ''}
+                            onProgress={() => setIsLoading(true)}
                             onSelect={(e) => setFiles([...e.files])}
                             url={`${import.meta.env.VITE_SERVER_BASE_URL}/photo/cloud-upload/photos`}
                             emptyTemplate={

@@ -3,7 +3,7 @@ import { Button } from 'primereact/button';
 import { Avatar } from 'primereact/avatar';
 import { useParams } from 'react-router-dom';
 import { TabPanel, TabView } from 'primereact/tabview';
-import { useContext, useEffect, useMemo } from 'react';
+import { useContext, useEffect, useMemo, useRef } from 'react';
 import ProfilePosts from './partials/profilePosts/ProfilePosts.jsx';
 import { FollowerContext } from '../../contexts/FollowerContext.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
@@ -12,6 +12,18 @@ import ProfileWorkshop from './partials/profileWorkshop/ProfileWorkshop.jsx';
 import ProfileEquipment from './partials/profileEquipment/ProfileEquipment.jsx';
 
 const Profile = ({ user }) => {
+    const tabRef = useRef(null);
+
+    const handleScroll = (ref) => {
+        const offsetTop = ref.offsetTop - 100;
+
+        window.scrollTo({
+            top: offsetTop,
+            left: 0,
+            behavior: 'smooth',
+        });
+    };
+
     const { firstName, lastName, avatar, _id: userId } = user;
 
     const {
@@ -79,17 +91,20 @@ const Profile = ({ user }) => {
                     />
                 )}
             </div>
-            <TabView className="profile-tabview d-flex flex-column align-items-center">
-                <TabPanel header="Posts">
+            <TabView
+                onClick={() => handleScroll(tabRef.current)}
+                className="profile-tabview d-flex flex-column align-items-center"
+            >
+                <TabPanel ref={tabRef} header="Posts">
                     <ProfilePosts userId={userId} />
                 </TabPanel>
-                <TabPanel header="Gallery">
+                <TabPanel ref={tabRef} header="Gallery">
                     <ProfilePhotos user={user} />
                 </TabPanel>
-                <TabPanel header="Equipment">
+                <TabPanel ref={tabRef} header="Equipment">
                     <ProfileEquipment userId={userId} />
                 </TabPanel>
-                <TabPanel header="Workshop">
+                <TabPanel ref={tabRef} header="Workshop">
                     <ProfileWorkshop user={user} />
                 </TabPanel>
             </TabView>

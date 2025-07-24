@@ -81,7 +81,9 @@ const ProfilePhotos = ({ user }) => {
                             <div className="d-flex flex-column gap-4 mb-3">
                                 <div className="d-flex flex-column flex-md-row gap-4 gap-md-0 justify-content-between align-items-center">
                                     {isActionAllowed && <UploadPhoto />}
-                                    {page === 1 && photos && <SearchPhoto />}
+                                    {photos && (
+                                        <SearchPhoto setPage={setPage} />
+                                    )}
                                 </div>
                                 {photos &&
                                     photos.length > 0 &&

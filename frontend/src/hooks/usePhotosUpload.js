@@ -11,6 +11,8 @@ export const usePhotosUpload = (files) => {
         const fileData = new FormData();
         files.map((file) => fileData.append('photos', file));
 
+        setIsLoading(true);
+
         try {
             const res = await fetch(
                 `${import.meta.env.VITE_SERVER_BASE_URL}/photo/cloud-upload/photos`,
@@ -27,11 +29,15 @@ export const usePhotosUpload = (files) => {
             return data;
         } catch (err) {
             setError(err.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     const handlePhotosUpload = async (userId, photoDescription) => {
         const uploadedFile = await uploadFileOnCloudinary();
+
+        setIsLoading(true);
 
         try {
             uploadedFile.photos.map((photo) => {
@@ -47,12 +53,15 @@ export const usePhotosUpload = (files) => {
             });
         } catch (err) {
             setError(err.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     return {
         error,
         isLoading,
+        setIsLoading,
         handlePhotosUpload,
     };
 };
