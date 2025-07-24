@@ -5,6 +5,9 @@ import { createContext, useState } from 'react';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+
     const [user, setUser] = useState(null);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -22,9 +25,10 @@ export const UserProvider = ({ children }) => {
 
     const getAllPhotographers = async (fullName = '') => {
         const data = await UserReq.get(
-            `user/photographers?fullName=${fullName}`,
+            `user/photographers?fullName=${fullName}&page=${page}&pageSize=4`,
         );
         setPhotographers(data.photographers);
+        setTotalPages(data.totalPages);
 
         return data;
     };
@@ -44,6 +48,9 @@ export const UserProvider = ({ children }) => {
                 error,
                 isLoading,
                 user,
+                page,
+                setPage,
+                totalPages,
                 setUser,
                 photographers,
                 singlePhotographer,

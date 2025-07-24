@@ -6,7 +6,7 @@ import { InputText } from 'primereact/inputtext';
 import { UserContext } from '../../../../../contexts/UserContext.jsx';
 import { PhotoContext } from '../../../../../contexts/PhotoContext.jsx';
 
-const SearchPhoto = () => {
+const SearchPhoto = ({ setPage }) => {
     const { photographerId } = useParams();
 
     const { user } = useContext(UserContext);
@@ -43,6 +43,7 @@ const SearchPhoto = () => {
                 <InputText
                     type="text"
                     name="photoQuery"
+                    onFocus={() => setPage(1)}
                     onChange={handlePhotoQuery}
                     placeholder="Search by tag"
                     value={photoQuery.trimStart()}

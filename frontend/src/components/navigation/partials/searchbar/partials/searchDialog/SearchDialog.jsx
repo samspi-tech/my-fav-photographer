@@ -1,15 +1,23 @@
 import './searchDialog.css';
 import { Button } from 'primereact/button';
-import { useContext, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Form, ListGroup } from 'react-bootstrap';
+import { useContext, useEffect, useState } from 'react';
 import Photographers from './partials/Photographers.jsx';
 import { UserContext } from '../../../../../../contexts/UserContext.jsx';
 import CustomMessage from '../../../../../customMessage/CustomMessage.jsx';
+import CustomPagination from '../../../../../customPagination/CustomPagination.jsx';
 
 const SearchDialog = ({ handleHide }) => {
-    const { error, isLoading, getAllPhotographers, photographers } =
-        useContext(UserContext);
+    const {
+        page,
+        error,
+        setPage,
+        isLoading,
+        totalPages,
+        photographers,
+        getAllPhotographers,
+    } = useContext(UserContext);
 
     const [fullName, setFullName] = useState('');
 
@@ -24,6 +32,12 @@ const SearchDialog = ({ handleHide }) => {
 
         isQueryPhotographer && getAllPhotographers(fullName);
     };
+
+    useEffect(() => {
+        getAllPhotographers();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [page]);
 
     return (
         <>
@@ -41,6 +55,7 @@ const SearchDialog = ({ handleHide }) => {
                         name="first"
                         autoFocus={true}
                         onChange={handleFullName}
+                        onFocus={() => setPage(1)}
                         value={fullName.trimStart()}
                         placeholder="Search photographer"
                         className="custom-input w-100 rounded-0 shadow-none"
@@ -53,25 +68,36 @@ const SearchDialog = ({ handleHide }) => {
                     className="custom-btn px-4 rounded-start-0 shadow-none"
                 />
             </Form>
-            {isQueryPhotographer && (
-                <ListGroup className="border rounded-0">
-                    {isLoading && <p>loading...</p>}
-                    {!isLoading && error && <CustomMessage error={error} />}
-                    {!isLoading &&
-                        !error &&
-                        photographers &&
-                        photographers.map((photographer) => {
-                            const { _id: photographerId } = photographer;
+            <ListGroup className="border rounded-0">
+                {isLoading && (
+                    <CustomMessage
+                        loading={true}
+                        error="Loading photographers..."
+                    />
+                )}
+                {!isLoading && error && <CustomMessage error={error} />}
+                {!isLoading &&
+                    !error &&
+                    photographers &&
+                    photographers.map((photographer) => {
+                        const { _id: photographerId } = photographer;
 
-                            return (
-                                <Photographers
-                                    key={photographerId}
-                                    photographer={photographer}
-                                    handleSearchbarVisibility={handleHide}
-                                />
-                            );
-                        })}
-                </ListGroup>
+                        return (
+                            <Photographers
+                                key={photographerId}
+                                photographer={photographer}
+                            />
+                        );
+                    })}
+            </ListGroup>
+            {totalPages > 1 && (
+                <div className="photographers-pagination-container border rounded-bottom">
+                    <CustomPagination
+                        page={page}
+                        setPage={setPage}
+                        totalPages={totalPages}
+                    />
+                </div>
             )}
         </>
     );

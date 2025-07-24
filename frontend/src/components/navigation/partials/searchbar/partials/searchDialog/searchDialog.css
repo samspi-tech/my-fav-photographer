@@ -3,3 +3,7 @@
     border-color: #FFF;
     background-color: #FFF;
 }
+
+.photographers-pagination-container {
+    background-color: var(--primary);
+}

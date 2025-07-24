@@ -1,16 +1,16 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar } from 'primereact/avatar';
 import { ListGroup } from 'react-bootstrap';
-import { useState } from 'react';
 
-const Photographers = ({ photographer, handleSearchbarVisibility }) => {
+const Photographers = ({ photographer }) => {
     const [isHover, setIsHover] = useState(false);
     const { _id: photographerId, firstName, lastName, avatar } = photographer;
 
     return (
         <Link
+            reloadDocument={true}
             className="text-decoration-none"
-            onClick={handleSearchbarVisibility}
             to={`/photographer/${photographerId}`}
         >
             <ListGroup.Item

@@ -13,7 +13,7 @@ export const FollowerProvider = ({ children }) => {
 
     const getFollowing = async (userId) => {
         const data = await FollowerReq.get(`follower/${userId}/following`);
-        setFollowing(data.following);
+        setFollowing(data);
 
         return data;
     };
