@@ -33,7 +33,7 @@ const CheckoutBuy = ({
             }, 2000);
 
             setTimeout(() => {
-                navigate('/homepage', { replace: true });
+                navigate('/following', { replace: true });
                 localStorage.removeItem('cart');
                 setCartItems([]);
             }, 4000);

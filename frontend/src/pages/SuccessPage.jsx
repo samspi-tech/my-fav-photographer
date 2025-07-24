@@ -15,7 +15,7 @@ const SuccessPage = () => {
 
             setTimeout(() => {
                 user.role === 'user'
-                    ? navigate('/homepage', { replace: true })
+                    ? navigate('/following', { replace: true })
                     : navigate('/profile', { replace: true });
             }, 2000);
         } else {

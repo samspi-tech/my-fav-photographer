@@ -8,17 +8,15 @@ import CustomMessage from '../customMessage/CustomMessage.jsx';
 import { getFromSessionStorage } from '../../utils/sessionStorage.js';
 import CustomPagination from '../customPagination/CustomPagination.jsx';
 
-const Posts = ({ isHomePage }) => {
+const Posts = () => {
     const { photographerId } = useParams();
 
     const {
         page,
-        posts,
         error,
         setPage,
         isLoading,
         totalPages,
-        getAllPosts,
         photographerPosts,
         getPhotographerPosts,
     } = useContext(PostContext);
@@ -30,9 +28,7 @@ const Posts = ({ isHomePage }) => {
         : loggedInUserId;
 
     useEffect(() => {
-        isHomePage
-            ? getAllPosts(loggedInUserId)
-            : getPhotographerPosts(postsPhotographerId);
+        getPhotographerPosts(postsPhotographerId);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loggedInUserId, page]);
@@ -44,25 +40,14 @@ const Posts = ({ isHomePage }) => {
                     <CustomMessage loading={true} error="Loading posts..." />
                 )}
                 {!isLoading && error && <CustomMessage error={error} />}
-                {isHomePage
-                    ? posts &&
-                      posts
-                          .reduce((acc, curr) => {
-                              curr = curr.photographerId.posts;
-                              return acc.concat(curr);
-                          }, [])
-                          .map((post) => {
-                              const { _id: key } = post;
-                              return <SinglePost key={key} post={post} />;
-                          })
-                    : photographerPosts &&
-                      photographerPosts.posts.map((post) => {
-                          const { _id: postId } = post;
+                {photographerPosts &&
+                    photographerPosts.posts.map((post) => {
+                        const { _id: postId } = post;
 
-                          return <SinglePost key={postId} post={post} />;
-                      })}
+                        return <SinglePost key={postId} post={post} />;
+                    })}
             </Row>
-            {!isHomePage && totalPages > 1 && (
+            {totalPages > 1 && (
                 <CustomPagination
                     page={page}
                     setPage={setPage}
