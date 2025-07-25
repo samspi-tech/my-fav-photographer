@@ -115,6 +115,7 @@ const Signup = ({ isVisible, handleIsVisible }) => {
                             name="dob"
                             value={formik.values.dob}
                             onChange={formik.handleChange}
+                            className="signup-calendar-input"
                         />
                         {formik.touched.dob && formik.errors.dob ? (
                             <ErrorMessage error={formik.errors.dob} />
@@ -183,14 +184,14 @@ const Signup = ({ isVisible, handleIsVisible }) => {
                         ) : null}
                     </Form.Group>
                 </div>
-                <div className="d-flex flex-column flex-md-row gap-3 w-100">
+                <div className="d-flex flex-column flex-md-row gap-3">
                     {isLoading ? (
                         <LoadingButton />
                     ) : (
                         <Button
                             type="submit"
                             label="Sign up"
-                            className="custom-btn w-100"
+                            className="custom-btn signup-btn w-100"
                         />
                     )}
                     {!isLoading && (

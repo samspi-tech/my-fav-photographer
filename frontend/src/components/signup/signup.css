@@ -48,10 +48,16 @@
 }
 
 .custom-password-input .p-password-input {
-    max-width: 206px;
+    max-width: 250px;
 }
 
 .custom-password-input .p-input-icon {
     display: flex;
     align-items: center;
+}
+
+.signup-calendar-input,
+.signup-btn,
+.cancel-btn {
+    min-width: 250px;
 }
