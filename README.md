@@ -19,7 +19,7 @@
 ## 🧑‍💻 About The Project
 
 Sign up and follow your favorite photographers to stay up to date on their work and events, or purchase their printed
-photos.
+photos. Or if you are a photographer register to share your stories, photos, equipments and workshops with your followers.
 
 ### Live Demo
 
