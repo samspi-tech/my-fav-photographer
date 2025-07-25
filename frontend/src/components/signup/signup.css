@@ -34,7 +34,14 @@
 
 .signup-form {
     margin-top: 200px;
-    max-width: 428px;
+}
+
+.signup-form input,
+.cancel-btn,
+.signup-btn {
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
 }
 
 @media (min-width: 768px) {
@@ -47,17 +54,7 @@
     }
 }
 
-.custom-password-input .p-password-input {
-    max-width: 250px;
-}
-
 .custom-password-input .p-input-icon {
     display: flex;
     align-items: center;
-}
-
-.signup-calendar-input,
-.signup-btn,
-.cancel-btn {
-    min-width: 250px;
 }
