@@ -3,10 +3,10 @@ import { Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import SinglePost from './partials/SinglePost.jsx';
-import { PostContext } from '../../contexts/PostContext.jsx';
-import CustomMessage from '../customMessage/CustomMessage.jsx';
-import { getFromSessionStorage } from '../../utils/sessionStorage.js';
-import CustomPagination from '../customPagination/CustomPagination.jsx';
+import { PostContext } from '../../../../../../contexts/PostContext.jsx';
+import CustomMessage from '../../../../../customMessage/CustomMessage.jsx';
+import { getFromSessionStorage } from '../../../../../../utils/sessionStorage.js';
+import CustomPagination from '../../../../../customPagination/CustomPagination.jsx';
 
 const Posts = () => {
     const { photographerId } = useParams();

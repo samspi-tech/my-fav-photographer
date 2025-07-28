@@ -1,6 +1,6 @@
 import { Avatar } from 'primereact/avatar';
 import HeaderMenu from './partials/HeaderMenu.jsx';
-import { getFromSessionStorage } from '../../../../utils/sessionStorage.js';
+import { getFromSessionStorage } from '../../../../../../../../utils/sessionStorage.js';
 import { Link } from 'react-router-dom';
 
 const PostHeader = ({ post }) => {

@@ -1,7 +1,7 @@
 import { Menu } from 'primereact/menu';
 import { useContext, useRef, useState } from 'react';
-import { PostContext } from '../../../../../contexts/PostContext.jsx';
-import PostForm from '../../../../postForm/PostForm.jsx';
+import { PostContext } from '../../../../../../../../../contexts/PostContext.jsx';
+import PostForm from '../../../../PostForm.jsx';
 import { Dialog } from 'primereact/dialog';
 
 const HeaderMenu = ({ userId, post }) => {

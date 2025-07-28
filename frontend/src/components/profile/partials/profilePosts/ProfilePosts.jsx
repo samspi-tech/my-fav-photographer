@@ -1,4 +1,4 @@
-import Posts from '../../../posts/Posts.jsx';
+import Posts from './partials/posts/Posts.jsx';
 import { Col, Container, Row } from 'react-bootstrap';
 import CreatePost from './partials/CreatePost.jsx';
 import { getFromSessionStorage } from '../../../../utils/sessionStorage.js';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import PostForm from '../../../../postForm/PostForm.jsx';
+import PostForm from './PostForm.jsx';
 
 const CreatePost = () => {
     const [isVisible, setIsVisible] = useState(false);
