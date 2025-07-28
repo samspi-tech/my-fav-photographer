@@ -71,7 +71,9 @@ const Login = () => {
                 </Form.Group>
 
                 {isLoading ? (
-                    <LoadingButton />
+                    <div className="mt-3">
+                        <LoadingButton />
+                    </div>
                 ) : (
                     <Button
                         type="submit"
