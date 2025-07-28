@@ -138,18 +138,20 @@ const AddressForm = ({
                     useGrouping={false}
                     value={formik.values.contact}
                     onValueChange={formik.handleChange}
-                    className="custom-input-number mb-2"
+                    className="custom-input-number"
                 />
                 {formik.touched.contact && formik.errors.contact ? (
                     <ErrorMessage error={formik.errors.contact} />
                 ) : null}
             </Form.Group>
             {isLoading ? (
-                <LoadingButton />
+                <div className="mt-2">
+                    <LoadingButton />
+                </div>
             ) : (
                 <Button
                     type="submit"
-                    className="custom-btn"
+                    className="custom-btn mt-2"
                     label={submitFn === 'create' ? 'Add' : 'Edit'}
                 />
             )}
