@@ -138,7 +138,7 @@ const AddressForm = ({
                     useGrouping={false}
                     value={formik.values.contact}
                     onValueChange={formik.handleChange}
-                    className="custom-input-number"
+                    className="custom-input-number mb-2"
                 />
                 {formik.touched.contact && formik.errors.contact ? (
                     <ErrorMessage error={formik.errors.contact} />
@@ -149,7 +149,7 @@ const AddressForm = ({
             ) : (
                 <Button
                     type="submit"
-                    className="custom-btn mt-2"
+                    className="custom-btn"
                     label={submitFn === 'create' ? 'Add' : 'Edit'}
                 />
             )}
