@@ -15,7 +15,7 @@ const Welcome = () => {
     const navigate = useNavigate();
 
     const handleProceed = () => {
-        navigate('/success');
+        navigate('/success', { replace: true });
     };
 
     useEffect(() => {

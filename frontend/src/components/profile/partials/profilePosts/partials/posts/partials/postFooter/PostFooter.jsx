@@ -1,6 +1,6 @@
-import Comments from '../../../comments/Comments.jsx';
+import Comments from '../../../../../../../comments/Comments.jsx';
 import VotePostButton from './partials/VotePostButton.jsx';
-import { getFromSessionStorage } from '../../../../utils/sessionStorage.js';
+import { getFromSessionStorage } from '../../../../../../../../utils/sessionStorage.js';
 
 const PostFooter = ({ post }) => {
     const loggedInUserId = getFromSessionStorage('userId');

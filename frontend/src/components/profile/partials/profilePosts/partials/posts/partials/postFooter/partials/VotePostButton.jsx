@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Button } from 'primereact/button';
-import { PostContext } from '../../../../../contexts/PostContext.jsx';
-import { getFromSessionStorage } from '../../../../../utils/sessionStorage.js';
+import { PostContext } from '../../../../../../../../../contexts/PostContext.jsx';
+import { getFromSessionStorage } from '../../../../../../../../../utils/sessionStorage.js';
 
 const VotePostButton = ({
     icon,

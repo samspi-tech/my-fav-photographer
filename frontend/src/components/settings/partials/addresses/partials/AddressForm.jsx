@@ -145,7 +145,9 @@ const AddressForm = ({
                 ) : null}
             </Form.Group>
             {isLoading ? (
-                <LoadingButton />
+                <div className="mt-2">
+                    <LoadingButton />
+                </div>
             ) : (
                 <Button
                     type="submit"

@@ -148,7 +148,7 @@ const EquipmentForm = ({
                 <Button
                     type="submit"
                     label="Post"
-                    className="custom-btn w-100 mt-2"
+                    className="custom-btn w-100"
                 />
             )}
         </Form>

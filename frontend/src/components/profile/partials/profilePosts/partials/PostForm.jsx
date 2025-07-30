@@ -5,10 +5,10 @@ import { Form } from 'react-bootstrap';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
-import ErrorMessage from '../errorMessage/ErrorMessage.jsx';
-import { PostContext } from '../../contexts/PostContext.jsx';
-import LoadingButton from '../loadingButton/LoadingButton.jsx';
-import { getFromSessionStorage } from '../../utils/sessionStorage.js';
+import ErrorMessage from '../../../../errorMessage/ErrorMessage.jsx';
+import { PostContext } from '../../../../../contexts/PostContext.jsx';
+import LoadingButton from '../../../../loadingButton/LoadingButton.jsx';
+import { getFromSessionStorage } from '../../../../../utils/sessionStorage.js';
 
 const PostForm = ({ initialValues, submitFn, postId, handleVisibility }) => {
     const { isLoading, createPost, updatePost, getPhotographerPosts } =
@@ -81,7 +81,7 @@ const PostForm = ({ initialValues, submitFn, postId, handleVisibility }) => {
                 <Button
                     type="submit"
                     label="Post"
-                    className="custom-btn w-100 mt-2"
+                    className="custom-btn w-100"
                 />
             )}
         </Form>

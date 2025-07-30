@@ -186,7 +186,9 @@ const Signup = ({ isVisible, handleIsVisible }) => {
                 </div>
                 <div className="d-flex flex-column flex-md-row gap-3">
                     {isLoading ? (
-                        <LoadingButton />
+                        <div className="signup-loading-btn-container">
+                            <LoadingButton />
+                        </div>
                     ) : (
                         <Button
                             type="submit"
@@ -194,17 +196,16 @@ const Signup = ({ isVisible, handleIsVisible }) => {
                             className="custom-btn signup-btn w-100"
                         />
                     )}
-                    {!isLoading && (
-                        <Button
-                            type="button"
-                            label="Cancel"
-                            onClick={() => {
-                                handleIsVisible();
-                                formik.handleReset();
-                            }}
-                            className="cancel-btn w-100"
-                        />
-                    )}
+                    <Button
+                        type="button"
+                        label="Cancel"
+                        disabled={isLoading}
+                        onClick={() => {
+                            handleIsVisible();
+                            formik.handleReset();
+                        }}
+                        className="cancel-btn w-100"
+                    />
                 </div>
                 {error && <ErrorMessage error={error} />}
             </Form>

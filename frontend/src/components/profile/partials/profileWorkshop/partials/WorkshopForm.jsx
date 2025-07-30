@@ -121,11 +121,7 @@ const WorkshopForm = ({
             {isLoading ? (
                 <LoadingButton />
             ) : (
-                <Button
-                    type="submit"
-                    className="custom-btn mt-2"
-                    label="Post"
-                />
+                <Button type="submit" className="custom-btn" label="Post" />
             )}
         </Form>
     );

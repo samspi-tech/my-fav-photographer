@@ -54,9 +54,9 @@ photos. Or if you are a photographer register to share your stories, photos, equ
    ```sh
    npm run dev
    ```  
-5. Install frontend NPM packages
+5. Open new Terminal and install frontend NPM packages
    ```sh
-   cd ../frontend
+   cd frontend
    npm install
    ```
 6. Run frontend
