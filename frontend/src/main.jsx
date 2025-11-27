@@ -39,5 +39,5 @@ createRoot(document.getElementById('root')).render(
                 </AddressProvider>
             </ShoppingCartProvider>
         </UserProvider>
-    </StrictMode>,
+    </StrictMode>
 );
