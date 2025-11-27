@@ -1,32 +1,46 @@
 <div align="center">
-<h1 align="center">📸 MyFavPhotographer</h1>
+<h1>📸 MyFavPhotographer</h1>
 
-<div style="margin:1rem">
-   <h3 style="margin:0.1rem;">‼️Attention‼️</h3>
-
-   <p style="margin:0; text-align:left;">If you want to see the old version of this project, please switch to <b>Main</b> branch.</p>
-
-  <div style="margin-top:0.5rem;">
-   <img alt="meme" src="https://c.tenor.com/D859oHFhTOwAAAAC/tenor.gif" width="65%"  />
-  </div>
+<div>
+   <h3>‼️Attention‼️</h3>
+   <p>If you want to see the old version of this project, please switch to 
+      <i>
+         <a href="https://github.com/samspi-tech/my-fav-photographer/tree/main">
+            <b>Main</b>
+         </a>
+      branch 
+      </i>.
+   </p>
+</div>
 </div>
 
-  <p style="text-align:left;">
+<div align="center">
+   <img src="https://c.tenor.com/D859oHFhTOwAAAAd/tenor.gif" width="350" height="350" />
+</div>
+
+</br>
+
+  <p align="center">
     The purpose of this project is to showcase the skills I acquired during my time at the 
-      <a href="https://epicode.com/en/">
-         <b>Epicode</b>
+       <b>
+          <a href="https://epicode.com/en/">
+        Epicode
       </a>
       Web Developer Bootcamp.
-    <br />
+       </b>
   </p>
-</div>
+
+  </br>
+
 
 ## 🧑‍💻 About The Project
 
 Sign up and follow your favorite photographers to stay up to date on their work and events, or purchase their printed
 photos. Or if you are a photographer register to share your stories, photos, equipments and workshops with your followers.
 
-<h2 style="text-align:center; margin-top:4rem;">⚠️ RE-WORK IN PROGRESS ⚠️</h2>
+</br>
+
+## ⚠️ RE-WORK IN PROGRESS ⚠️
 
 ### Building with
 
