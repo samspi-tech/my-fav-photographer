@@ -4,12 +4,10 @@
 <div>
    <h3>‼️Attention‼️</h3>
    <p>If you want to see the old version of this project, please switch to 
-      <i>
-         <a href="https://github.com/samspi-tech/my-fav-photographer/tree/main">
+      <i><a href="https://github.com/samspi-tech/my-fav-photographer/tree/main">
             <b>Main</b>
          </a>
-      branch 
-      </i>.
+      branch</i>.
    </p>
 </div>
 </div>
