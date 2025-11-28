@@ -1,0 +1,11 @@
+.container {
+    height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container hgroup {
+    margin-bottom: 2rem;
+}
