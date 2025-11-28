@@ -29,9 +29,10 @@ body {
 }
 
 .p-button:focus {
-    box-shadow: 0 0 0 2px #ffffff,
-    0 0 0 4px #ecc05b,
-    0 1px 2px 0 rgba(0, 0, 0, 0);
+    box-shadow:
+        0 0 0 2px #ffffff,
+        0 0 0 4px #ecc05b,
+        0 1px 2px 0 rgba(0, 0, 0, 0);
 }
 
 .p-inputtext:enabled:focus {
@@ -74,7 +75,6 @@ textarea {
     margin: 0;
     padding: 0;
 }
-
 
 .custom-menu .p-menuitem-link {
     transition: all 100ms linear;
@@ -159,5 +159,5 @@ textarea {
 
 .p-tabview-title {
     font-size: 20px;
-    font-family: "Bebas neue", sans-serif;
+    font-family: 'Bebas neue', sans-serif;
 }

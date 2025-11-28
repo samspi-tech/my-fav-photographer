@@ -1,0 +1,12 @@
+.container {
+    height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container span {
+    margin: 0 10px;
+    font-weight: 100;
+}
