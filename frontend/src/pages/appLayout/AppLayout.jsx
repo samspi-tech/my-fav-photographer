@@ -1,11 +1,14 @@
 import { Row } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 import styles from './AppLayout.module.css';
+import MainNav from '../../components/mainNav/MainNav';
 
 const AppLayout = () => {
     return (
         <main className={`container ${styles.appLayout}`}>
-            <Row>Nav</Row>
+            <Row>
+                <MainNav />
+            </Row>
             <Row>
                 <Outlet />
             </Row>
