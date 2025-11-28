@@ -1,5 +1,7 @@
+import { Col } from 'react-bootstrap';
+
 const Profile = () => {
-    return <div>Profile</div>;
+    return <Col>Profile</Col>;
 };
 
 export default Profile;

@@ -1,5 +1,7 @@
+import { Col } from 'react-bootstrap';
+
 const Homepage = () => {
-    return <div>Homepage</div>;
+    return <Col>Homepage</Col>;
 };
 
 export default Homepage;
