@@ -1,4 +1,4 @@
-import PhotographersList from '@/components/photographersList/PhotographersList';
+import PhotographersList from '../../components/photographersList/PhotographersList';
 
 const Photographers = () => {
     return <PhotographersList />;
