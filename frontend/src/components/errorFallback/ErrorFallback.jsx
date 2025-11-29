@@ -6,10 +6,12 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => {
     return (
         <Container className={styles.container} role="alert">
             <Row>
-                <Col>
+                <Col className="d-flex flex-column align-items-center">
                     <hgroup>
                         <h2>Oops, something went wrong!</h2>
-                        <pre>error: {error.message}</pre>
+                        <pre>
+                            <span>error:</span> {error.message}
+                        </pre>
                     </hgroup>
                     <CustomButton
                         text="Try again"

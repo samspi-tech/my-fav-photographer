@@ -7,5 +7,21 @@
 }
 
 .container hgroup {
+    text-align: center;
     margin-bottom: 2rem;
+}
+
+.container pre {
+    margin: 0 auto;
+    white-space: pre-wrap;
+}
+
+.container pre span {
+    font-weight: 600;
+}
+
+@media (min-width: 992px) {
+    .container pre {
+        width: 50%;
+    }
 }
