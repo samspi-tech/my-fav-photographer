@@ -1,11 +1,12 @@
 import { Row, Col } from 'react-bootstrap';
 import { usePhotographersQuery } from '@/reactQuery/queries/usePhotographersQuery.js';
 import PhotographerCard from './partials/PhotographerCard';
+import CustomSpinner from '../customSpinner/CustomSpinner';
 
 const PhotographersList = () => {
     const { data, isPending, error } = usePhotographersQuery();
 
-    if (isPending) return <p>loading</p>;
+    if (isPending) return <CustomSpinner />;
     if (error) return <p>error</p>;
 
     const { photographers } = data;

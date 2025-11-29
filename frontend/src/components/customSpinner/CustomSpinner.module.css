@@ -1,0 +1,10 @@
+.spinnerContainer {
+    height: 100dvh;
+    margin-top: -77px;
+}
+
+.spinner {
+    width: 65px;
+    height: 65px;
+    font-size: 1.5rem;
+}
