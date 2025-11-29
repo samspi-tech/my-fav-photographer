@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './ErrorFallback.module.css';
-import CustomButton from '../customButton/customButton';
+import CustomButton from '../customButton/CustomButton';
 
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
     return (
