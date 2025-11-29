@@ -24,7 +24,7 @@ const findAllPhotographers = async (username = '', page = 1, pageSize = 10) => {
     })
         .limit(pageSize)
         .skip(skipPages)
-        .select(['username', 'avatar', 'photographyStyle']);
+        .select(['username', 'avatar', 'photographyStyle', 'createdAt']);
 
     if (isArrayEmpty(photographers)) throw new PhotographerNotFoundException();
 
