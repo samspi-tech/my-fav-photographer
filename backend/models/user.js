@@ -3,27 +3,17 @@ const hashPassword = require('../utils/hashPassword');
 
 const UserSchema = new mongoose.Schema(
     {
-        firstName: {
+        username: {
             type: String,
             maxLength: 255,
             required: true,
-            trim: true,
-        },
-        lastName: {
-            type: String,
-            maxLength: 255,
-            required: true,
-            trim: true,
-        },
-        fullName: {
-            type: String,
             trim: true,
         },
         avatar: {
             type: String,
             maxLength: 255,
             default:
-                'https://images.unsplash.com/photo-1706606999710-72658165a73d?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                'https://res.cloudinary.com/diz5tgmqg/image/upload/v1764436515/avatar.png',
         },
         password: {
             type: String,
@@ -38,56 +28,19 @@ const UserSchema = new mongoose.Schema(
             required: true,
         },
         dob: {
-            type: String,
+            type: Date,
             required: true,
         },
         role: {
             type: String,
-            enum: ['admin', 'photographer', 'user'],
+            enum: ['photographer', 'user'],
             default: 'user',
         },
-        addresses: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'address',
-            },
-        ],
-        comments: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'comment',
-            },
-        ],
-        equipments: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'equipment',
-            },
-        ],
-        photos: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'photo',
-            },
-        ],
-        posts: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'post',
-            },
-        ],
-        workshops: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'workshop',
-            },
-        ],
-        followers: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'follower',
-            },
-        ],
+        photographyStyle: {
+            type: String,
+            maxLength: 2550,
+            trim: true,
+        },
     },
     { timestamps: true, strict: true },
 );

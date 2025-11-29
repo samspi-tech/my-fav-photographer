@@ -1,16 +1,11 @@
 const { body, validationResult } = require('express-validator');
 
 const userBodyValidation = [
-    body('firstName')
+    body('username')
         .isString()
-        .withMessage('FirstName must be a string')
+        .withMessage('Username must be a string')
         .isLength({ min: 1, max: 255 })
-        .withMessage('FirstName cannot be empty or longer than 255 chars'),
-    body('lastName')
-        .isString()
-        .withMessage('LastName must be a string')
-        .isLength({ min: 1, max: 255 })
-        .withMessage('LastName cannot be empty or longer than 255 chars'),
+        .withMessage('Username cannot be empty or longer than 255 chars'),
     body('avatar')
         .optional()
         .isLength({ max: 255 })
@@ -32,9 +27,14 @@ const userBodyValidation = [
     body('dob')
         .notEmpty()
         .withMessage('DateOfBirth cannot be empty')
-        .isISO8601()
-        .toDate()
+        .isDate()
         .withMessage('DateOfBirth must be a valid date'),
+    body('photographyStyle')
+        .optional()
+        .isLength({ max: 2550 })
+        .withMessage('You exceeded 2550 chars')
+        .isString()
+        .withMessage('This field accepts only strings'),
 ];
 
 const userBodyValidator = (req, res, next) => {

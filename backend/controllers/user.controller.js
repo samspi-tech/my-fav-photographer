@@ -1,28 +1,13 @@
 const userService = require('../services/user.service');
-const authService = require('../services/auth.service');
 
-const getAllUsers = async (req, res, next) => {
+const createUser = async (req, res, next) => {
     try {
-        const users = await userService.findAllUsers();
+        const { body } = req;
+        const newUser = await userService.createUser(body);
 
-        res.status(200).send({
-            statusCode: 200,
-            users,
-        });
-    } catch (err) {
-        next(err);
-    }
-};
-
-const getSinglePhotographer = async (req, res, next) => {
-    try {
-        const { photographerId } = req.params;
-
-        const photographer = await authService.findMe(photographerId);
-
-        res.status(200).send({
-            statusCode: 200,
-            photographer,
+        res.status(201).send({
+            statusCode: 201,
+            newUser,
         });
     } catch (err) {
         next(err);
@@ -31,10 +16,16 @@ const getSinglePhotographer = async (req, res, next) => {
 
 const getAllPhotographers = async (req, res, next) => {
     try {
-        const { fullName, page, pageSize } = req.query;
+        const { username, page, pageSize } = req.query;
+
+        const photographersData = await userService.findAllPhotographers(
+            username,
+            page,
+            pageSize,
+        );
 
         const { photographers, totalPages, totalPhotographers } =
-            await userService.findAllPhotographers(fullName, page, pageSize);
+            photographersData;
 
         res.status(200).send({
             statusCode: 200,
@@ -47,66 +38,7 @@ const getAllPhotographers = async (req, res, next) => {
     }
 };
 
-const createUser = async (req, res, next) => {
-    try {
-        const { body } = req;
-
-        const { firstName, lastName } = body;
-        const fullName = `${firstName} ${lastName}`;
-
-        const userBody = {
-            ...body,
-            fullName,
-        };
-
-        const newUser = await userService.createUser(userBody);
-
-        res.status(201).send({
-            statusCode: 201,
-            message: 'User created successfully!',
-            newUser,
-        });
-    } catch (err) {
-        next(err);
-    }
-};
-
-const updateUser = async (req, res, next) => {
-    try {
-        const { userId } = req.params;
-        const { body: userBody } = req;
-
-        const updatedUser = await userService.updateUser(userId, userBody);
-
-        res.status(200).send({
-            statusCode: 200,
-            message: 'User updated successfully!',
-            updatedUser,
-        });
-    } catch (err) {
-        next(err);
-    }
-};
-
-const deleteUser = async (req, res, next) => {
-    try {
-        const { userId } = req.params;
-        await userService.deleteUser(userId);
-
-        res.status(200).send({
-            statusCode: 200,
-            message: 'User deleted successfully!',
-        });
-    } catch (err) {
-        next(err);
-    }
-};
-
 module.exports = {
-    getAllUsers,
-    getSinglePhotographer,
-    getAllPhotographers,
     createUser,
-    updateUser,
-    deleteUser,
+    getAllPhotographers,
 };
