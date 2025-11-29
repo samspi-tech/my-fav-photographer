@@ -1,9 +1,12 @@
 import styles from './CustomButton.module.css';
 
-const CustomButton = ({ text, onClick }) => {
+const CustomButton = ({ text, icon, onClick }) => {
+    const Icon = icon;
+
     return (
         <button onClick={onClick} className={styles.btn}>
-            {text}
+            {icon && <Icon />}
+            <span>{text}</span>
         </button>
     );
 };

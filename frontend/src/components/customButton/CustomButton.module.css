@@ -6,6 +6,10 @@
     color: var(--button-text);
     background-color: var(--button);
 
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
     &:hover {
         background-color: var(--button-hover);
         box-shadow:

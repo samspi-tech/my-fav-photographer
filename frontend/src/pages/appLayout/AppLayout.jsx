@@ -6,17 +6,13 @@ import Footer from '@/components/footer/Footer';
 
 const AppLayout = () => {
     return (
-        <main className={`container ${styles.appLayout}`}>
-            <Row>
-                <MainNav />
-            </Row>
-            <Row>
+        <div className={styles.appLayout}>
+            <MainNav />
+            <main className="container">
                 <Outlet />
-            </Row>
-            <Row className={styles.footer}>
-                <Footer />
-            </Row>
-        </main>
+            </main>
+            <Footer />
+        </div>
     );
 };
 

@@ -7,34 +7,10 @@
 }
 
 .container h2 {
-    color: var(--headline);
+    margin-bottom: 1.5rem;
 }
 
-.container span:first-child {
+.container h2 span {
     margin: 0 10px;
     font-weight: 100;
-}
-
-.container span:last-child {
-    margin-left: 10px;
-}
-
-.container a {
-    margin-top: 1.5rem;
-    padding: 10px 15px;
-    border-radius: 2px;
-    text-decoration: none;
-    color: var(--button-text);
-    background-color: var(--button);
-
-    &:hover {
-        background-color: var(--button-hover);
-        box-shadow:
-            rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-            rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    }
-
-    &:active {
-        background-color: var(--button-active);
-    }
 }

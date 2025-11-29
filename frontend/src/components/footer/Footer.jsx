@@ -1,9 +1,17 @@
+import { Col, Row } from 'react-bootstrap';
+
 const Footer = () => {
     const currYear = new Date().getFullYear();
 
     return (
-        <footer className="col py-2">
-            <small>&copy; Copyright {currYear} &ndash; Andrea Facco</small>
+        <footer className="container py-2 mt-auto">
+            <Row>
+                <Col className="d-flex justify-content-center">
+                    <small>
+                        &copy; Copyright {currYear} &ndash; MyFavPhotographer
+                    </small>
+                </Col>
+            </Row>
         </footer>
     );
 };

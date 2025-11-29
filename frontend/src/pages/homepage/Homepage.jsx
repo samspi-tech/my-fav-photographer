@@ -1,7 +1,11 @@
-import { Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 
 const Homepage = () => {
-    return <Col>Homepage</Col>;
+    return (
+        <Row>
+            <Col>Homepage</Col>
+        </Row>
+    );
 };
 
 export default Homepage;
