@@ -1,7 +1,7 @@
-import { Col } from 'react-bootstrap';
+import PhotographersList from '@/components/photographersList/PhotographersList';
 
 const Photographers = () => {
-    return <Col>Photographers</Col>;
+    return <PhotographersList />;
 };
 
 export default Photographers;

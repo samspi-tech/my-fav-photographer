@@ -1,4 +1,4 @@
-import SERVER_BASE_URL from '../utils/constants';
+import { SERVER_BASE_URL } from '@/utils/constants.js';
 
 export const getAllPhotographers = async () => {
     try {
