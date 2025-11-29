@@ -46,6 +46,8 @@ photos. </br>Or if you are a photographer register to share your stories, photos
 
 ### Libraries 
 
+- React Router Dom
+- React Icons
 - React Error Boundary
 
 [CSSModules-url]: https://github.com/css-modules/css-modules
