@@ -44,6 +44,10 @@ photos. </br>Or if you are a photographer register to share your stories, photos
 [![MongoDB][MongoDB.com]][MongoDB-url]
 [![Mongoose][Mongoose.js]][Mongoose-url]
 
+### Libraries 
+
+- React Error Boundary
+
 [CSSModules-url]: https://github.com/css-modules/css-modules
 [CSSModules]: https://img.shields.io/badge/CSS%20Modules-000?style=for-the-badge&logo=css3&logoColor=white
 [Express-url]: https://expressjs.com/
