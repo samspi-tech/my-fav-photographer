@@ -12,6 +12,7 @@ const ScrollToTopButton = () => {
                 <CustomButton
                     variant="small"
                     icon={HiArrowUp}
+                    ariaLabel="Scroll to top"
                     onClick={handleScrollToTop}
                 />
             </div>
