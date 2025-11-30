@@ -1,0 +1,17 @@
+.container {
+    position: fixed;
+    bottom: 75px;
+    right: 50px;
+    z-index: 99;
+
+    animation: fade 0.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

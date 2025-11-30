@@ -5,6 +5,7 @@ import PhotographerCard from './partials/PhotographerCard';
 import CustomSpinner from '../customSpinner/CustomSpinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import CustomButton from '../customButton/CustomButton';
+import ScrollToTopButton from '../scrollToTopButton/ScrollToTopButton';
 
 const PhotographersList = () => {
     const {
@@ -45,6 +46,7 @@ const PhotographersList = () => {
                     />
                 </Col>
             </Row>
+            <ScrollToTopButton />
         </>
     );
 };
