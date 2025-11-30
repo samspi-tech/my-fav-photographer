@@ -45,7 +45,7 @@ const PhotographersList = () => {
                     {!isFetchingNextPage && hasNextPage && (
                         <CustomButton
                             text="Load More"
-                            onClick={() => fetchNextPage()}
+                            onClick={fetchNextPage}
                             isDisabled={!hasNextPage || isFetching}
                         />
                     )}
