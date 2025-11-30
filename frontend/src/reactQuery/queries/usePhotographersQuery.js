@@ -9,6 +9,7 @@ export const usePhotographersQuery = () => {
         fetchNextPage,
         hasNextPage,
         isFetchingNextPage,
+        status,
     } = useInfiniteQuery({
         queryKey: ['photographers'],
         queryFn: getAllPhotographers,
@@ -22,8 +23,9 @@ export const usePhotographersQuery = () => {
 
     return {
         data,
-        isFetching,
         error,
+        status,
+        isFetching,
         fetchNextPage,
         isFetchingNextPage,
         hasNextPage,

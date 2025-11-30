@@ -9,14 +9,16 @@ import CustomButton from '../customButton/CustomButton';
 const PhotographersList = () => {
     const {
         data,
-        isFetching,
         error,
+        status,
+        isFetching,
         fetchNextPage,
         isFetchingNextPage,
         hasNextPage,
     } = usePhotographersQuery();
 
-    if (error) return <ErrorMessage error={error} />;
+    if (status === 'pending') return <CustomSpinner />;
+    if (status === 'error') return <ErrorMessage error={error.message} />;
 
     const btnStatus = hasNextPage ? 'Load More' : 'Nothing more to load';
     const btnText = isFetchingNextPage ? 'Loading more...' : btnStatus;
@@ -24,7 +26,6 @@ const PhotographersList = () => {
     return (
         <>
             <Row className="py-5 g-3">
-                {isFetching && <CustomSpinner />}
                 {data?.pages.map((group, i) => (
                     <React.Fragment key={`photographers-${i}`}>
                         {group.photographers.map((photographer) => (
