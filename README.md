@@ -49,6 +49,7 @@ photos. </br>Or if you are a photographer register to share your stories, photos
 - React Router Dom
 - React Icons
 - React Error Boundary
+- React Query
 
 [CSSModules-url]: https://github.com/css-modules/css-modules
 [CSSModules]: https://img.shields.io/badge/CSS%20Modules-000?style=for-the-badge&logo=css3&logoColor=white
