@@ -23,7 +23,7 @@ export const useScrollToTop = () => {
 
         const hideButton = setTimeout(() => {
             setIsVisible(false);
-        }, 2000);
+        }, 3000);
 
         return () => {
             clearTimeout(hideButton);
