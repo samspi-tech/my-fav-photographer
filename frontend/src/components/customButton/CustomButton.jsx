@@ -1,10 +1,10 @@
 import styles from './CustomButton.module.css';
 
-const CustomButton = ({ text, icon, onClick }) => {
+const CustomButton = ({ text, icon, onClick, isDisabled }) => {
     const Icon = icon;
 
     return (
-        <button onClick={onClick} className={styles.btn}>
+        <button disabled={isDisabled} onClick={onClick} className={styles.btn}>
             {icon && <Icon />}
             <span>{text}</span>
         </button>

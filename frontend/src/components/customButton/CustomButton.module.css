@@ -21,6 +21,10 @@
         background-color: var(--button-active);
     }
 
+    &:disabled {
+        background-color: grey;
+    }
+
     transition:
         color 0.2s,
         background-color 0.2s;
