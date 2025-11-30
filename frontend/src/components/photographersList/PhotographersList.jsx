@@ -21,9 +21,6 @@ const PhotographersList = () => {
     if (status === 'pending') return <CustomSpinner />;
     if (status === 'error') return <ErrorMessage error={error.message} />;
 
-    const btnStatus = hasNextPage ? 'Load More' : 'Nothing more to load';
-    const btnText = isFetchingNextPage ? 'Loading more...' : btnStatus;
-
     return (
         <>
             <Row className="py-5 g-3">
@@ -39,11 +36,20 @@ const PhotographersList = () => {
             </Row>
             <Row>
                 <Col xs={12} className="d-flex justify-content-center pb-5">
-                    <CustomButton
-                        text={btnText}
-                        onClick={() => fetchNextPage()}
-                        isDisabled={!hasNextPage || isFetching}
-                    />
+                    {isFetchingNextPage && (
+                        <CustomButton
+                            isLoading={true}
+                            isDisabled={!hasNextPage || isFetching}
+                        />
+                    )}
+                    {!isFetchingNextPage && hasNextPage && (
+                        <CustomButton
+                            text="Load More"
+                            onClick={() => fetchNextPage()}
+                            isDisabled={!hasNextPage || isFetching}
+                        />
+                    )}
+                    {!hasNextPage && <small>No more pages to load.</small>}
                 </Col>
             </Row>
             <ScrollToTopButton />

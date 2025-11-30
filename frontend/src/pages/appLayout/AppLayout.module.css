@@ -7,4 +7,5 @@
 
 .appLayout main {
     overflow: scroll;
+    scrollbar-width: none;
 }
