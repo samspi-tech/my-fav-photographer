@@ -6,6 +6,7 @@ import CustomSpinner from '../customSpinner/CustomSpinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import CustomButton from '../customButton/CustomButton';
 import ScrollToTopButton from '../scrollToTopButton/ScrollToTopButton';
+import SearchBar from '../searchBar/SearchBar';
 
 const PhotographersList = () => {
     const {
@@ -23,6 +24,10 @@ const PhotographersList = () => {
 
     return (
         <>
+            <SearchBar
+                id="queryPhotographer"
+                placeholder="Search by username"
+            />
             <Row className="py-5 g-3">
                 {data?.pages.map((group, i) => (
                     <React.Fragment key={`photographers-${i}`}>

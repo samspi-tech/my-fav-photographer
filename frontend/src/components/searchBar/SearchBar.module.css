@@ -1,0 +1,57 @@
+.form > div {
+    width: 320px;
+    position: relative;
+}
+
+.form input {
+    width: 320px;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.5);
+
+    &:focus {
+        outline-color: var(--tertiary);
+    }
+}
+
+.form button {
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    color: var(--button-text);
+    background-color: var(--button);
+    box-shadow: -3px 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+.showBtn {
+    animation: show 0.3s ease-in-out forwards;
+}
+
+.hideBtn {
+    animation: hide 0.15s linear forwards;
+}
+
+@keyframes show {
+    from {
+        transform: translateY(-50%) scale(0);
+    }
+    to {
+        transform: translateY(-50%) scale(1);
+    }
+}
+
+@keyframes hide {
+    from {
+        transform: translateY(-50%) scale(1);
+    }
+    to {
+        transform: translateY(-50%) scale(0);
+    }
+}
