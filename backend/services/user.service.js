@@ -8,20 +8,19 @@ const createUser = async (body) => {
 };
 
 const findAllPhotographers = async (username = '', page = 1, pageSize = 10) => {
-    const totalPhotographers = await UserSchema.countDocuments({
-        role: 'photographer',
-    });
-
-    const totalPages = calcTotalPages(totalPhotographers, pageSize);
-    const skipPages = calcSkipPages(page, pageSize);
-
-    const photographers = await UserSchema.find({
+    const filter = {
         role: 'photographer',
         username: {
             $regex: `${username}`,
             $options: 'i',
         },
-    })
+    };
+
+    const totalPhotographers = await UserSchema.countDocuments(filter);
+    const totalPages = calcTotalPages(totalPhotographers, pageSize);
+    const skipPages = calcSkipPages(page, pageSize);
+
+    const photographers = await UserSchema.find(filter)
         .limit(pageSize)
         .skip(skipPages)
         .select(['username', 'avatar', 'photographyStyle', 'createdAt']);
