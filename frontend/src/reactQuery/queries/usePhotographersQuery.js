@@ -14,10 +14,10 @@ export const usePhotographersQuery = () => {
         queryKey: ['photographers'],
         queryFn: getAllPhotographers,
         initialPageParam: 1,
-        getNextPageParam: (lastPage, lastPageParam, pageParam) => {
-            if (lastPageParam[0].totalPages === pageParam) return undefined;
+        getNextPageParam: (data, _, pageParam) => {
+            const isLastPage = data.totalPages === pageParam;
 
-            return pageParam + 1;
+            return isLastPage ? undefined : pageParam + 1;
         },
     });
 
