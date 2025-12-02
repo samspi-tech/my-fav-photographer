@@ -1,7 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getAllPhotographers } from '@/services/user.service.js';
+import { useSearchParams } from 'react-router-dom';
 
 export const usePhotographersQuery = () => {
+    const [searchParams] = useSearchParams();
+    const username = searchParams.get('username') || '';
+
     const {
         data,
         isFetching,
@@ -11,8 +15,10 @@ export const usePhotographersQuery = () => {
         isFetchingNextPage,
         status,
     } = useInfiniteQuery({
-        queryKey: ['photographers'],
-        queryFn: getAllPhotographers,
+        queryKey: ['photographers', username],
+        queryFn: ({ pageParam }) => {
+            return getAllPhotographers({ username, pageParam });
+        },
         initialPageParam: 1,
         getNextPageParam: (data, _, pageParam) => {
             const isLastPage = data.totalPages === pageParam;

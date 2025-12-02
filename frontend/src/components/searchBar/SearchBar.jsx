@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { HiMagnifyingGlass } from 'react-icons/hi2';
-import { Col, Row } from 'react-bootstrap';
+import { HiMagnifyingGlass, HiArrowPath } from 'react-icons/hi2';
+import { Col } from 'react-bootstrap';
 import styles from './SearchBar.module.css';
 
 const SearchBar = ({ id, placeholder }) => {
     const [query, setQuery] = useState('');
-    const [, setSearchParams] = useSearchParams();
     const [isBtnVisible, setIsBtnVisible] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const username = searchParams.get('username');
 
     const btnAnimation = isBtnVisible ? 'showBtn' : 'hideBtn';
 
@@ -17,6 +19,8 @@ const SearchBar = ({ id, placeholder }) => {
         }, 500);
     };
 
+    const handleResetSearchParams = () => searchParams.set('');
+
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -25,7 +29,7 @@ const SearchBar = ({ id, placeholder }) => {
     };
 
     return (
-        <form onSubmit={onSubmit} className="row pt-5">
+        <form onSubmit={onSubmit} className="row pt-5 align-items-center">
             <Col className={styles.inputContainer}>
                 <input
                     id={id}
@@ -40,11 +44,21 @@ const SearchBar = ({ id, placeholder }) => {
                 <button
                     type="submit"
                     aria-label={placeholder}
-                    className={`${styles[btnAnimation]}`}
+                    className={`${styles.searchBtn} ${styles[btnAnimation]}`}
                 >
                     <HiMagnifyingGlass />
                 </button>
             </Col>
+            {username && (
+                <Col>
+                    <button
+                        className={styles.resetBtn}
+                        onClick={handleResetSearchParams}
+                    >
+                        <HiArrowPath />
+                    </button>
+                </Col>
+            )}
         </form>
     );
 };
