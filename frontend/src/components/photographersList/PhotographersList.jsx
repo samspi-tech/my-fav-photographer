@@ -26,7 +26,7 @@ const PhotographersList = () => {
         <>
             <SearchBar
                 id="queryPhotographer"
-                placeholder="Search by username"
+                placeholder="Search by username..."
             />
             <Row className="py-5 g-3">
                 {data?.pages.map((group, i) => (

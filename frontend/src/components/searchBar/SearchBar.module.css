@@ -1,10 +1,10 @@
-.form > div {
-    width: 320px;
+.inputContainer {
+    max-width: 320px;
     position: relative;
 }
 
-.form input {
-    width: 320px;
+.inputContainer input {
+    width: 100%;
     border: none;
     padding: 10px 15px;
     border-radius: 50px;
@@ -15,9 +15,9 @@
     }
 }
 
-.form button {
+.inputContainer button {
     position: absolute;
-    right: -2px;
+    right: 8px;
     top: 50%;
     transform: translateY(-50%) scale(0);
 
