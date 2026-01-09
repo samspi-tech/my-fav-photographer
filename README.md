@@ -8,10 +8,11 @@
 
 
 
-  <p align="center">
+  <p align="start">
     The purpose of this project is to showcase the skills I acquired during my time at the 
       <a href="https://epicode.com/en/">Epicode</a>
-      Web Developer Bootcamp.
+      Web Developer Bootcamp. <br />
+    I had one month to complete this task, while working a full-time job and with a basic knowledge of React, Express and Mongoose.
     <br />
   </p>
 </div>
